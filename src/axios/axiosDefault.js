@@ -1,11 +1,11 @@
-import axios from 'axios';
+import axios from "axios";
 
-const token = process.env.REACT_APP_TOKEN;
+const apiKey = process.env.API_KEY;
+const apiUrl = process.env.API_URL;
 
 export const instance = axios.create({
+  baseURL: apiUrl,
   headers: {
-    'Content-Type': 'application/json',
-    accept: 'application/json',
-    Authorization: `Bearer ${token}`,
+    Authorization: `Bearer ${apiKey}`,
   },
 });

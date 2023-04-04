@@ -1,7 +1,7 @@
-import { NavLink } from 'react-router-dom';
-import styled from 'styled-components';
+// import { NavLink } from 'react-router-dom';
+import styled from "styled-components";
 
-export const ItemLink = styled(NavLink)`
+export const ItemLink = styled("div")`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -52,7 +52,8 @@ export const Item = styled.li`
   border-radius: 20px;
   margin: 15px;
   cursor: pointer;
-  transition: transform ${(p) => p.theme.transition}, box-shadow ${(p) => p.theme.transition};
+  transition: transform ${(p) => p.theme.transition},
+    box-shadow ${(p) => p.theme.transition};
 
   &:hover,
   &:focus {

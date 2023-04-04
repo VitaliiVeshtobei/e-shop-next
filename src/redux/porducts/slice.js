@@ -6,15 +6,17 @@ const initialState = { categories: [] };
 const productsSlice = createSlice({
   name: 'products',
   initialState,
-  extraReducers: {
-    [getCategories.fulfilled]: (state, action) => {
-      action.payload.groups.pop();
-      state.categories = action.payload.groups;
-    },
-    [getCategories.rejected](state, action) {
-      console.log(action.payload);
-    },
-    [getCategories.pending](state) {},
+  reducers: {},
+  extraReducers: (builder) => {
+    builder
+      .addCase(getCategories.fulfilled, (state, action) => {
+        action.payload.groups.pop();
+        state.categories = action.payload.groups;
+      })
+      .addCase(getCategories.rejected, (state, action) => {
+        console.log(action.payload);
+      })
+      .addCase(getCategories.pending, (state) => {});
   },
 });
 

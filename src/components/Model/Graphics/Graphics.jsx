@@ -1,5 +1,5 @@
-import list from '../../../assets/bd/graphics.json';
-import { Table, Td, Th, Text } from './Graphics.styled';
+import list from "../../../../public/bd/graphics.json";
+import { Table, Td, Th, Text } from "./Graphics.styled";
 
 export const Graphics = () => {
   return (
@@ -13,12 +13,12 @@ export const Graphics = () => {
           </tr>
         </thead>
 
-        <tbody style={{ border: 'solid 1px red' }}>
+        <tbody style={{ border: "solid 1px red" }}>
           {list.map((item) => (
             <tr key={item.day}>
               <Td>{item.day}</Td>
               <Td>{item.time}</Td>
-              <Td>{''}</Td>
+              <Td>{""}</Td>
             </tr>
           ))}
         </tbody>

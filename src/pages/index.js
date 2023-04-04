@@ -1,14 +1,22 @@
 import Head from "next/head";
+import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { getCategories } from "@/redux/porducts/operations";
 import Image from "next/image";
 import { Inter } from "next/font/google";
 import styles from "@/styles/Home.module.css";
 
 import Benefits from "@/components/Benefits/Benefits";
 import { SliderFeedbacks } from "@/components/SliderFeedbacks/SliderFeedbacks";
+import { Categories } from "@/components/Categories/Categories";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getCategories());
+  }, [dispatch]);
   return (
     <>
       <Head>
@@ -20,6 +28,7 @@ export default function Home() {
       <main>
         {
           <>
+            <Categories />
             <Benefits />
             <SliderFeedbacks />
           </>

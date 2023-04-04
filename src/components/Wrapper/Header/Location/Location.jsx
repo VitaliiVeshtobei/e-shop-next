@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 
 import { CiLocationOn, CiCalendar } from "react-icons/ci";
-// import { ModalWrapper } from '../../../Model/ModelWrapper/ModelWrapper';
+import { ModalWrapper } from "../../../Model/ModelWrapper/ModelWrapper";
 import {
   Container,
   ListLocation,
@@ -42,9 +42,9 @@ const Location = () => {
           </LocationBtn>
         </ItemLocation>
       </ListLocation>
-      {/* {isOpenModal && (
+      {isOpenModal && (
         <ModalWrapper component={component} onClose={toggleModal} />
-      )} */}
+      )}
     </Container>
   );
 };
