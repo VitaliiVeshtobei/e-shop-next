@@ -5,11 +5,11 @@ import Search from './Search/Search';
 
 const Header = () => {
   return (
-    <>
+    <header>
       <Location />
       <Search />
       <NavBar />
-    </>
+    </header>
   );
 };
 

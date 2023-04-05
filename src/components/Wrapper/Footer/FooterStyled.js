@@ -4,7 +4,7 @@ import DEVICE from '../../../constants/deviceSize';
 const { tablet, laptop } = DEVICE;
 import Link from 'next/link';
 
-export const FooterContainer = styled.div`
+export const FooterContainer = styled.footer`
   height: 550px;
   background-color: ${(p) => p.theme.colors.accentBg};
   padding: 25px 30px;

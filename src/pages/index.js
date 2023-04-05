@@ -41,16 +41,15 @@ export default function Home({ data }) {
           href="/favicon.ico"
         />
       </Head>
-      <main>
-        {
-          <>
-            <Slider />
-            <Categories />
-            <Benefits />
-            <SliderFeedbacks />
-          </>
-        }
-      </main>
+
+      {
+        <>
+          <Slider />
+          <Categories />
+          <Benefits />
+          <SliderFeedbacks />
+        </>
+      }
     </>
   );
 }
