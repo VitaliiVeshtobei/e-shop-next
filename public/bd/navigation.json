@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "category": "Головна",
+    "path": "/"
+  },
+  {
+    "id": 2,
+    "category": "Всі товари",
+    "path": "/products"
+  },
+  {
+    "id": 3,
+    "category": "Відгуки",
+    "path": "/products"
+  },
+  {
+    "id": 4,
+    "category": "Контакти",
+    "path": "/products"
+  },
+  {
+    "id": 5,
+    "category": "Про нас",
+    "path": "/products"
+  },
+  {
+    "id": 6,
+    "category": "Доставка і оплата",
+    "path": "/products"
+  }
+]
