@@ -3,7 +3,7 @@ import { TbTruckDelivery } from 'react-icons/tb';
 import { MdOutlineHighQuality, MdStorage } from 'react-icons/md';
 import { Container, List } from './BenefitsStyled';
 
-const Benefits = () => {
+export const Benefits = () => {
   return (
     <Container>
       <List>
@@ -35,5 +35,3 @@ const Benefits = () => {
     </Container>
   );
 };
-
-export default Benefits;

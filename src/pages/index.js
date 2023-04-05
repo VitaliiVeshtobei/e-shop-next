@@ -1,22 +1,28 @@
 import Head from 'next/head';
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { getCategories } from '@/redux/porducts/operations';
-import Image from 'next/image';
-import { Inter } from 'next/font/google';
-import styles from '@/styles/Home.module.css';
 
-import Benefits from '@/components/Benefits/Benefits';
+import { Benefits } from '@/components/Benefits/Benefits';
 import { SliderFeedbacks } from '@/components/SliderFeedbacks/SliderFeedbacks';
 import { Categories } from '@/components/Categories/Categories';
+import { instance } from '@/axios/axiosDefault';
+import { getCategories } from '@/redux/porducts/slice';
 
-const inter = Inter({ subsets: ['latin'] });
+export async function getServerSideProps() {
+  const response = await instance('/groups/list');
+  const data = response.data;
 
-export default function Home() {
+  return {
+    props: { data },
+  };
+}
+
+export default function Home({ data }) {
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getCategories());
-  }, [dispatch]);
+    dispatch(getCategories(data));
+  }, [data, dispatch]);
+
   return (
     <>
       <Head>
@@ -37,7 +43,7 @@ export default function Home() {
       <main>
         {
           <>
-            {/* <Categories /> */}
+            <Categories />
             <Benefits />
             <SliderFeedbacks />
           </>
