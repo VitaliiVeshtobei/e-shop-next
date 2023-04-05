@@ -1,10 +1,10 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 // import { NavLink } from 'react-router-dom';
-import DEVICE from "../../../../../constants/deviceSize";
-export const ListCategoriesContainer = styled("div")`
+import DEVICE from '../../../../../constants/deviceSize';
+export const ListCategoriesContainer = styled('div')`
   position: absolute;
-  z-index: 2;
-
+  /* z-index: 2; */
+  top: 0;
   overflow: hidden;
   box-sizing: border-box;
 
@@ -36,15 +36,15 @@ export const ListCategoriesContainer = styled("div")`
   }
 `;
 
-export const ListCategories = styled("ul")`
+export const ListCategories = styled('ul')`
   font-size: 20px;
   background-color: ${(p) => p.theme.colors.navbar};
   padding: 30px;
-  border: 0.983537px solid ${(p) => p.theme.colors.border};
+
   border-top: none;
 `;
 
-export const ItemCategories = styled("li")`
+export const ItemCategories = styled('li')`
   transition: transform ${(p) => p.theme.transition};
   &:hover,
   &:focus {
@@ -55,11 +55,11 @@ export const ItemCategories = styled("li")`
   }
 `;
 
-export const NavLinkStyled = styled("div")`
+export const NavLinkStyled = styled('div')`
   position: relative;
   color: ${(p) => p.theme.colors.darkText};
   &::after {
-    content: "";
+    content: '';
     position: ${(p) => p.theme.line.position};
     bottom: ${(p) => p.theme.line.bottom};
     left: ${(p) => p.theme.line.left};
@@ -81,7 +81,7 @@ export const Backdrop = styled.div`
   z-index: 1;
   position: absolute;
   left: 0;
-  height: 100%;
+  height: 100vh;
   width: 100%;
 
   background-color: rgba(0, 0, 0, 0.4);

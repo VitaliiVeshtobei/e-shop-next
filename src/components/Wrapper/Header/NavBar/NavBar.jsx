@@ -30,36 +30,38 @@ const NavBar = () => {
   };
   return (
     <>
-      <Container>
-        <ButtonCategories
-          name="Categories"
-          type="button"
-          onClick={handleClick}
-        >
-          Каталог товарів
-        </ButtonCategories>
-        <ButtonCategories
-          name="Menu"
-          type="button"
-          onClick={handleClick}
-        >
-          Меню
-        </ButtonCategories>
-        <ListContainer>
-          {navigation.map((item) => (
-            <ItemContainer key={item.id}>
-              <LinkStyled href={item.path}>{item.category}</LinkStyled>
-            </ItemContainer>
-          ))}
-        </ListContainer>
-      </Container>
-      {showCategories && (
-        <MenuCategories
-          handleClick={handleClick}
-          data={nameButton === 'Menu' ? navigation : data}
-          nameButton={nameButton}
-        />
-      )}
+      <div style={{ position: 'relative' }}>
+        <Container>
+          <ButtonCategories
+            name="Categories"
+            type="button"
+            onClick={handleClick}
+          >
+            Каталог товарів
+          </ButtonCategories>
+          <ButtonCategories
+            name="Menu"
+            type="button"
+            onClick={handleClick}
+          >
+            Меню
+          </ButtonCategories>
+          <ListContainer>
+            {navigation.map((item) => (
+              <ItemContainer key={item.id}>
+                <LinkStyled href={item.path}>{item.category}</LinkStyled>
+              </ItemContainer>
+            ))}
+          </ListContainer>
+        </Container>
+        {showCategories && (
+          <MenuCategories
+            handleClick={handleClick}
+            data={nameButton === 'Menu' ? navigation : data}
+            nameButton={nameButton}
+          />
+        )}
+      </div>
     </>
   );
 };
