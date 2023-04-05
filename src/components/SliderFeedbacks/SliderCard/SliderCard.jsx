@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { LinkItem, Item, Div, AvatarContainer, Box } from './SliderCard.styled';
 
 export const SliderCard = ({ name, feedback, avatar, anime }) => {
@@ -6,7 +7,7 @@ export const SliderCard = ({ name, feedback, avatar, anime }) => {
       <LinkItem>
         <Div>
           <AvatarContainer>
-            <img
+            <Image
               src={avatar}
               alt={name}
             />
