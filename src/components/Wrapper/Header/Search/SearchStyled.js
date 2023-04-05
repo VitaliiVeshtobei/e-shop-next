@@ -1,15 +1,15 @@
-import styled from "styled-components";
-// import { NavLink } from 'react-router-dom';
-import DEVICE from "../../../../constants/deviceSize";
+import styled from 'styled-components';
+import DEVICE from '../../../../constants/deviceSize';
+import Link from 'next/link';
 
-export const Container = styled("div")`
+export const Container = styled('div')`
   display: flex;
   align-items: center;
   justify-content: space-around;
   height: 100px;
   background-color: ${(p) => p.theme.colors.accentBg};
 `;
-export const LogoContainer = styled("div")`
+export const LogoContainer = styled('div')`
   @media ${DEVICE.mobile} {
     display: none;
   }
@@ -18,10 +18,10 @@ export const LogoContainer = styled("div")`
   }
 `;
 
-export const FormStyled = styled("form")`
+export const FormStyled = styled('form')`
   position: relative;
 `;
-export const InputStyled = styled("input")`
+export const InputStyled = styled('input')`
   width: 438px;
   height: 56px;
   padding: 17px 25px;
@@ -48,7 +48,7 @@ export const InputStyled = styled("input")`
   }
 `;
 
-export const ButtonStyled = styled("button")`
+export const ButtonStyled = styled('button')`
   position: absolute;
   right: 0px;
   width: 132px;
@@ -78,7 +78,7 @@ export const ButtonStyled = styled("button")`
   }
 `;
 
-export const CartContainer = styled("div")`
+export const CartContainer = styled('div')`
   transition: transform ${(p) => p.theme.transition};
   &:hover,
   &:focus {
@@ -86,7 +86,7 @@ export const CartContainer = styled("div")`
   }
 `;
 
-export const NavLinkStyled = styled("div")`
+export const LinkStyled = styled(Link)`
   font-weight: 400;
   font-size: 14px;
   line-height: 21px;
@@ -96,7 +96,7 @@ export const NavLinkStyled = styled("div")`
   position: relative;
 
   &::after {
-    content: "";
+    content: '';
     position: ${(p) => p.theme.line.position};
     bottom: ${(p) => p.theme.line.bottom};
     left: ${(p) => p.theme.line.left};

@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 // import { getCategories } from './operations';
 
-const initialState = { categories: [] };
+const initialState = { categories: [], productsByCategory: [] };
 
 const productsSlice = createSlice({
   name: 'products',
@@ -9,6 +9,9 @@ const productsSlice = createSlice({
   reducers: {
     getCategories(state, action) {
       state.categories = action.payload.groups;
+    },
+    getProductsByCategory(state, action) {
+      state.productsByCategory = action.payload.products;
     },
   },
   // extraReducers: (builder) => {
@@ -25,4 +28,4 @@ const productsSlice = createSlice({
 });
 
 export const productsReducer = productsSlice.reducer;
-export const { getCategories } = productsSlice.actions;
+export const { getCategories, getProductsByCategory } = productsSlice.actions;

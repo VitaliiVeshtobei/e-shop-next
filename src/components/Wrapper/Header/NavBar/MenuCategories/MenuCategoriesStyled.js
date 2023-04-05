@@ -1,6 +1,7 @@
 import styled from 'styled-components';
-// import { NavLink } from 'react-router-dom';
 import DEVICE from '../../../../../constants/deviceSize';
+import Link from 'next/link';
+
 export const ListCategoriesContainer = styled('div')`
   position: absolute;
   /* z-index: 2; */
@@ -55,7 +56,7 @@ export const ItemCategories = styled('li')`
   }
 `;
 
-export const NavLinkStyled = styled('div')`
+export const LinkStyled = styled(Link)`
   position: relative;
   color: ${(p) => p.theme.colors.darkText};
   &::after {
