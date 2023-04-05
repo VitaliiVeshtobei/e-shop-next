@@ -10,6 +10,8 @@ export const SliderCard = ({ name, feedback, avatar, anime }) => {
             <Image
               src={avatar}
               alt={name}
+              width={60}
+              height={60}
             />
           </AvatarContainer>
           <h3>{name}</h3>

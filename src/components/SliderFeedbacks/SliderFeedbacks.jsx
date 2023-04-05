@@ -1,140 +1,140 @@
-import Slider from "react-slick";
-import { SliderCard } from "./SliderCard/SliderCard";
-import { SlideBtnContainer, Wrapper } from "./SliderFeedbacks.styled";
+import Slider from 'react-slick';
+import { SliderCard } from './SliderCard/SliderCard';
+import { SlideBtnContainer, Wrapper } from './SliderFeedbacks.styled';
 // import image1 from '../../assets/images/feedback/Ellipse 2.jpg';
 // import image2 from '../../assets/images/feedback/Ellipse 3.jpg';
 // import image3 from '../../assets/images/feedback/Ellipse 4.jpg';
-import { memo } from "react";
+import { memo } from 'react';
 
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
 const listFeedback = [
   {
-    id: "1",
-    name: "Sara Tuto",
+    id: '1',
+    name: 'Sara Tuto',
     // avatar: image3,
-    avatar: "images/feedback/Ellipse 2.jpg",
+    avatar: '/images/feedback/Ellipse 2.jpg',
     feedback:
-      "Lorem ipsum dolor sit amet consectetur. Nec sit enim tellus faucibus bibendum ullamcorper. Phasellus tristique aenean at lorem sed scelerisque. Lorem ipsum dolor sit amet consectetur. Nec sit enim tellus faucibus bibendum ullamcorper. Phasellus tristique aenean at lorem sed scelerisque.",
+      'Lorem ipsum dolor sit amet consectetur. Nec sit enim tellus faucibus bibendum ullamcorper. Phasellus tristique aenean at lorem sed scelerisque. Lorem ipsum dolor sit amet consectetur. Nec sit enim tellus faucibus bibendum ullamcorper. Phasellus tristique aenean at lorem sed scelerisque.',
   },
   {
-    id: "2",
-    name: "Deni Valesas",
+    id: '2',
+    name: 'Deni Valesas',
     // avatar: image1,
-    avatar: "images/feedback/Ellipse 3.jpg",
+    avatar: '/images/feedback/Ellipse 3.jpg',
     feedback:
-      "Lorem ipsum dolor sit amet consectetur. Nec sit enim tellus faucibus bibendum ullamcorper. Phasellus tristique aenean at lorem sed scelerisque.",
+      'Lorem ipsum dolor sit amet consectetur. Nec sit enim tellus faucibus bibendum ullamcorper. Phasellus tristique aenean at lorem sed scelerisque.',
   },
   {
-    id: "3",
-    name: "Bob Vose",
+    id: '3',
+    name: 'Bob Vose',
     // avatar: image2,
-    avatar: "images/feedback/Ellipse 4.jpg",
+    avatar: '/images/feedback/Ellipse 4.jpg',
     feedback:
-      "Lorem ipsum dolor sit amet consectetur. Nec sit enim tellus faucibus bibendum ullamcorper. Phasellus tristique aenean at lorem sed scelerisque.",
+      'Lorem ipsum dolor sit amet consectetur. Nec sit enim tellus faucibus bibendum ullamcorper. Phasellus tristique aenean at lorem sed scelerisque.',
   },
 
   {
-    id: "4",
-    name: "Sara Vose",
-    avatar: "images/feedback/Ellipse 4.jpg",
+    id: '4',
+    name: 'Sara Vose',
+    avatar: '/images/feedback/Ellipse 4.jpg',
     feedback:
-      "Lorem ipsum dolor sit amet consectetur. Nec sit enim tellus faucibus bibendum ullamcorper. Phasellus tristique aenean at lorem sed scelerisque. Lorem ipsum dolor sit amet consectetur. Nec sit enim tellus faucibus bibendum ullamcorper. Phasellus tristique aenean at lorem sed scelerisque.",
+      'Lorem ipsum dolor sit amet consectetur. Nec sit enim tellus faucibus bibendum ullamcorper. Phasellus tristique aenean at lorem sed scelerisque. Lorem ipsum dolor sit amet consectetur. Nec sit enim tellus faucibus bibendum ullamcorper. Phasellus tristique aenean at lorem sed scelerisque.',
   },
   {
-    id: "5",
-    name: "Deni Vose",
-    avatar: "images/feedback/Ellipse 3.jpg",
+    id: '5',
+    name: 'Deni Vose',
+    avatar: '/images/feedback/Ellipse 3.jpg',
     feedback:
-      "Lorem ipsum dolor sit amet consectetur. Nec sit enim tellus faucibus bibendum ullamcorper. Phasellus tristique aenean at lorem sed scelerisque.",
+      'Lorem ipsum dolor sit amet consectetur. Nec sit enim tellus faucibus bibendum ullamcorper. Phasellus tristique aenean at lorem sed scelerisque.',
   },
   {
-    id: "6",
-    name: "Bob Tures",
-    avatar: "images/feedback/Ellipse 2.jpg",
+    id: '6',
+    name: 'Bob Tures',
+    avatar: '/images/feedback/Ellipse 2.jpg',
     feedback:
-      "Lorem ipsum dolor sit amet consectetur. Nec sit enim tellus faucibus bibendum ullamcorper. Phasellus tristique aenean at lorem sed scelerisque.",
-  },
-
-  {
-    id: "7",
-    name: "Sara Vose",
-    avatar: "images/feedback/Ellipse 2.jpg",
-    feedback:
-      "Lorem ipsum dolor sit amet consectetur. Nec sit enim tellus faucibus bibendum ullamcorper. Phasellus tristique aenean at lorem sed scelerisque. Lorem ipsum dolor sit amet consectetur. Nec sit enim tellus faucibus bibendum ullamcorper. Phasellus tristique aenean at lorem sed scelerisque.",
-  },
-  {
-    id: "8",
-    name: "Deni Zoros",
-    avatar: "images/feedback/Ellipse 3.jpg",
-    feedback:
-      "Lorem ipsum dolor sit amet consectetur. Nec sit enim tellus faucibus bibendum ullamcorper. Phasellus tristique aenean at lorem sed scelerisque.",
-  },
-  {
-    id: "9",
-    name: "Bob Vose",
-    avatar: "images/feedback/Ellipse 4.jpg",
-    feedback:
-      "Lorem ipsum dolor sit amet consectetur. Nec sit enim tellus faucibus bibendum ullamcorper. Phasellus tristique aenean at lorem sed scelerisque.",
+      'Lorem ipsum dolor sit amet consectetur. Nec sit enim tellus faucibus bibendum ullamcorper. Phasellus tristique aenean at lorem sed scelerisque.',
   },
 
   {
-    id: "10",
-    name: "Sara Vose",
-    avatar: "images/feedback/Ellipse 3.jpg",
+    id: '7',
+    name: 'Sara Vose',
+    avatar: '/images/feedback/Ellipse 2.jpg',
     feedback:
-      "Lorem ipsum dolor sit amet consectetur. Nec sit enim tellus faucibus bibendum ullamcorper. Phasellus tristique aenean at lorem sed scelerisque. Lorem ipsum dolor sit amet consectetur. Nec sit enim tellus faucibus bibendum ullamcorper. Phasellus tristique aenean at lorem sed scelerisque.",
+      'Lorem ipsum dolor sit amet consectetur. Nec sit enim tellus faucibus bibendum ullamcorper. Phasellus tristique aenean at lorem sed scelerisque. Lorem ipsum dolor sit amet consectetur. Nec sit enim tellus faucibus bibendum ullamcorper. Phasellus tristique aenean at lorem sed scelerisque.',
   },
   {
-    id: "11",
-    name: "Deni Vose",
-    avatar: "images/feedback/Ellipse 2.jpg",
+    id: '8',
+    name: 'Deni Zoros',
+    avatar: '/images/feedback/Ellipse 3.jpg',
     feedback:
-      "Lorem ipsum dolor sit amet consectetur. Nec sit enim tellus faucibus bibendum ullamcorper. Phasellus tristique aenean at lorem sed scelerisque.",
+      'Lorem ipsum dolor sit amet consectetur. Nec sit enim tellus faucibus bibendum ullamcorper. Phasellus tristique aenean at lorem sed scelerisque.',
   },
   {
-    id: "12",
-    name: "Bob Vose",
-    avatar: "images/feedback/Ellipse 4.jpg",
-    feedback: " Phasellus tristique aenean at lorem sed scelerisque.",
-  },
-
-  {
-    id: "13",
-    name: "Sara Vose",
-    avatar: "images/feedback/Ellipse 3.jpg",
+    id: '9',
+    name: 'Bob Vose',
+    avatar: '/images/feedback/Ellipse 4.jpg',
     feedback:
-      "Lorem ipsum dolor sit amet consectetur. Nec sit enim tellus faucibus bibendum ullamcorper. Phasellus tristique aenean at lorem sed scelerisque. Lorem ipsum dolor sit amet consectetur. Nec sit enim tellus faucibus bibendum ullamcorper. Phasellus tristique aenean at lorem sed scelerisque.",
-  },
-  {
-    id: "14",
-    name: "Deni Vose",
-    avatar: "images/feedback/Ellipse 4.jpg",
-    feedback:
-      "Nec sit enim tellus faucibus bibendum ullamcorper. Phasellus tristique aenean at lorem sed scelerisque.Lorem ipsum dolor sit amet consectetur. Nec sit enim tellus faucibus bibendum ullamcorper. Phasellus tristique aenean at lorem sed scelerisque.",
-  },
-  {
-    id: "15",
-    name: "Bob Vose",
-    avatar: "images/feedback/Ellipse 2.jpg",
-    feedback:
-      "Lorem ipsum dolor sit amet consectetur. Nec sit enim tellus faucibus bibendum ullamcorper. Phasellus tristique aenean at lorem sed scelerisque.",
+      'Lorem ipsum dolor sit amet consectetur. Nec sit enim tellus faucibus bibendum ullamcorper. Phasellus tristique aenean at lorem sed scelerisque.',
   },
 
   {
-    id: "16",
-    name: "Sara Sucos",
-    avatar: "images/feedback/Ellipse 2.jpg",
+    id: '10',
+    name: 'Sara Vose',
+    avatar: '/images/feedback/Ellipse 3.jpg',
     feedback:
-      "Lorem ipsum dolor sit amet consectetur. Nec sit enim tellus faucibus bibendum ullamcorper. Phasellus tristique aenean at lorem sed scelerisque. ",
+      'Lorem ipsum dolor sit amet consectetur. Nec sit enim tellus faucibus bibendum ullamcorper. Phasellus tristique aenean at lorem sed scelerisque. Lorem ipsum dolor sit amet consectetur. Nec sit enim tellus faucibus bibendum ullamcorper. Phasellus tristique aenean at lorem sed scelerisque.',
   },
   {
-    id: "17",
-    name: "Dores Popen Das",
-    avatar: "images/feedback/Ellipse 4.jpg",
+    id: '11',
+    name: 'Deni Vose',
+    avatar: '/images/feedback/Ellipse 2.jpg',
     feedback:
-      "Lorem ipsum dolor sit amet consectetur. Nec sit enim tellus faucibus bibendum ullamcorper. Phasellus tristique aenean at lorem sed scelerisque.",
+      'Lorem ipsum dolor sit amet consectetur. Nec sit enim tellus faucibus bibendum ullamcorper. Phasellus tristique aenean at lorem sed scelerisque.',
+  },
+  {
+    id: '12',
+    name: 'Bob Vose',
+    avatar: '/images/feedback/Ellipse 4.jpg',
+    feedback: ' Phasellus tristique aenean at lorem sed scelerisque.',
+  },
+
+  {
+    id: '13',
+    name: 'Sara Vose',
+    avatar: '/images/feedback/Ellipse 3.jpg',
+    feedback:
+      'Lorem ipsum dolor sit amet consectetur. Nec sit enim tellus faucibus bibendum ullamcorper. Phasellus tristique aenean at lorem sed scelerisque. Lorem ipsum dolor sit amet consectetur. Nec sit enim tellus faucibus bibendum ullamcorper. Phasellus tristique aenean at lorem sed scelerisque.',
+  },
+  {
+    id: '14',
+    name: 'Deni Vose',
+    avatar: '/images/feedback/Ellipse 4.jpg',
+    feedback:
+      'Nec sit enim tellus faucibus bibendum ullamcorper. Phasellus tristique aenean at lorem sed scelerisque.Lorem ipsum dolor sit amet consectetur. Nec sit enim tellus faucibus bibendum ullamcorper. Phasellus tristique aenean at lorem sed scelerisque.',
+  },
+  {
+    id: '15',
+    name: 'Bob Vose',
+    avatar: '/images/feedback/Ellipse 2.jpg',
+    feedback:
+      'Lorem ipsum dolor sit amet consectetur. Nec sit enim tellus faucibus bibendum ullamcorper. Phasellus tristique aenean at lorem sed scelerisque.',
+  },
+
+  {
+    id: '16',
+    name: 'Sara Sucos',
+    avatar: '/images/feedback/Ellipse 2.jpg',
+    feedback:
+      'Lorem ipsum dolor sit amet consectetur. Nec sit enim tellus faucibus bibendum ullamcorper. Phasellus tristique aenean at lorem sed scelerisque. ',
+  },
+  {
+    id: '17',
+    name: 'Dores Popen Das',
+    avatar: '/images/feedback/Ellipse 4.jpg',
+    feedback:
+      'Lorem ipsum dolor sit amet consectetur. Nec sit enim tellus faucibus bibendum ullamcorper. Phasellus tristique aenean at lorem sed scelerisque.',
   },
 ];
 
