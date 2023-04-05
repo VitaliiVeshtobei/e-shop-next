@@ -28,16 +28,17 @@ const MenuCategories = ({ handleClick, data, nameButton }) => {
   };
   return (
     <>
-      <ListCategoriesContainer>
-        <ListCategories>
-          {data.map((item) => (
-            <ItemCategories key={item.id}>
-              <NavLinkStyled>{nameButton === 'Menu' ? item.category : item.name_multilang.uk}</NavLinkStyled>
-            </ItemCategories>
-          ))}
-        </ListCategories>
-      </ListCategoriesContainer>
-      <Backdrop onClick={handleClick}></Backdrop>
+      <Backdrop onClick={handleClick}>
+        <ListCategoriesContainer>
+          <ListCategories>
+            {data.map((item) => (
+              <ItemCategories key={item.id}>
+                <NavLinkStyled>{nameButton === 'Menu' ? item.category : item.name_multilang.uk}</NavLinkStyled>
+              </ItemCategories>
+            ))}
+          </ListCategories>
+        </ListCategoriesContainer>
+      </Backdrop>
     </>
   );
 };

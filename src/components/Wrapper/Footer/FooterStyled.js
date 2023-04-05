@@ -1,10 +1,11 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 // import { NavLink } from 'react-router-dom';
-import DEVICE from "../../../constants/deviceSize";
+import DEVICE from '../../../constants/deviceSize';
 const { tablet, laptop } = DEVICE;
+import Link from 'next/link';
 
 export const FooterContainer = styled.div`
-  height: 600px;
+  height: 550px;
   background-color: ${(p) => p.theme.colors.accentBg};
   padding: 25px 30px;
   @media ${tablet} {
@@ -40,12 +41,14 @@ export const LogoText = styled.p`
   line-height: 1.25;
   color: ${(p) => p.theme.colors.lightText};
   ::after {
-    content: "";
+    content: '';
     margin-top: 36px;
-    margin-bottom: 25px;
     display: block;
     width: 100%;
     border: 1px solid ${(p) => p.theme.colors.border};
+    @media ${tablet} {
+      margin-bottom: 25px;
+    }
   }
 
   @media ${tablet} {
@@ -104,7 +107,6 @@ export const ListCategories = styled.ul`
   flex-wrap: wrap;
   align-items: center;
   flex-direction: column;
-
   @media screen and (max-width: 767px) {
     height: 100px;
   }
@@ -145,15 +147,15 @@ export const CategoriesItem = styled.li`
   }
 `;
 
-export const CategoriesLink = styled("div")`
+export const CategoriesLink = styled(Link)`
   font-weight: 400;
   font-size: 15px;
   line-height: 1.52;
   color: ${(p) => p.theme.colors.lightText};
   position: relative;
-  cursor: pointer;
+  /* cursor: pointer; */
   &::after {
-    content: "";
+    content: '';
     position: ${(p) => p.theme.line.position};
     bottom: ${(p) => p.theme.line.bottom};
     left: ${(p) => p.theme.line.left};
@@ -161,6 +163,10 @@ export const CategoriesLink = styled("div")`
     width: ${(p) => p.theme.line.width};
     height: ${(p) => p.theme.line.height};
     background-color: ${(p) => p.theme.line.bgColor};
+    margin-bottom: 5px;
+    @media ${tablet} {
+      margin-bottom: 0px;
+    }
   }
 
   &:hover::after {
@@ -245,12 +251,12 @@ export const ListIconsLink = styled.a`
     transform: scale(1.05);
     color: ${(p) => {
       switch (p.color) {
-        case "tg":
-          return "#2AABEE";
-        case "vb":
-          return "#7360F2";
-        case "wt":
-          return "#25D366";
+        case 'tg':
+          return '#2AABEE';
+        case 'vb':
+          return '#7360F2';
+        case 'wt':
+          return '#25D366';
         default:
           return p.theme.colors.accent;
       }

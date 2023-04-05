@@ -5,7 +5,7 @@ import Link from 'next/link';
 
 export const Container = styled('div')`
   display: flex;
-
+  position: relative;
   align-items: center;
 
   height: 70px;
@@ -13,6 +13,7 @@ export const Container = styled('div')`
   font-weight: 500;
   font-size: 16px;
   line-height: 24px;
+
   @media ${DEVICE.mobile} {
     gap: 0;
     padding: 0;
