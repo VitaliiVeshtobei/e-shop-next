@@ -50,7 +50,6 @@ export const ButtonSlide = styled.button`
     -webkit-box-shadow: 0px 3px 6px -1px ${(p) => p.theme.colors.darkHover};
     box-shadow: 0px 3px 6px -1px ${(p) => p.theme.colors.darkHover};
     border: transparent;
-    outline: transparent;
   }
 
   :not(:last-child) {
