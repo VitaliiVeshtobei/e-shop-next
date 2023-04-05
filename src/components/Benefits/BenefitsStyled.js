@@ -83,6 +83,14 @@ export const List = styled('ul')`
       }
     }
     p:nth-child(2) {
+      @media ${DEVICE.mobile} {
+        display: block;
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 1.52;
+        /* font-size: 16px;
+        text-align: center; */
+      }
       @media ${DEVICE.tablet} {
         display: block;
         font-size: 16px;

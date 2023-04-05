@@ -1,7 +1,7 @@
 // import { NavLink } from 'react-router-dom';
-import styled from "styled-components";
+import styled from 'styled-components';
 
-export const ItemLink = styled("div")`
+export const ItemLink = styled('div')`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -30,12 +30,13 @@ export const Img = styled.img`
   margin-bottom: 10px;
   height: 200px;
 `;
+
 export const ContainerImg = styled.div`
   width: 200px;
 
-  @media screen and (max-width: 420px) {
+  /* @media screen and (max-width: 420px) {
     width: 240px;
-  }
+  } */
 `;
 
 export const Item = styled.li`
@@ -52,8 +53,7 @@ export const Item = styled.li`
   border-radius: 20px;
   margin: 15px;
   cursor: pointer;
-  transition: transform ${(p) => p.theme.transition},
-    box-shadow ${(p) => p.theme.transition};
+  transition: transform ${(p) => p.theme.transition}, box-shadow ${(p) => p.theme.transition};
 
   &:hover,
   &:focus {

@@ -5,8 +5,7 @@ export const Container = styled('div')`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 50px;
-  height: 70px;
+
   font-weight: 400;
   font-size: 14px;
   line-height: 21px;
@@ -15,7 +14,9 @@ export const Container = styled('div')`
     height: 50px;
     padding: 20px;
   }
-  @media ${DEVICE.tablet} {
+  @media ${DEVICE.laptop} {
+    padding: 0 50px;
+    height: 70px;
   }
   p span {
     @media ${DEVICE.mobile} {

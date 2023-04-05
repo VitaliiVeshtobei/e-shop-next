@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { List, Nav, Text, Wrapper } from './Categories.styled';
 import { CategoriesCard } from './CategoriesCard/CategoriesCard';
-import { selectCategories } from '../../redux/porducts/selectors';
+import { selectCategories } from '../../redux/products/selectors';
 
 export const Categories = () => {
   const data = useSelector(selectCategories);
