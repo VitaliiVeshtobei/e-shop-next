@@ -45,10 +45,17 @@ const NavBar = () => {
   const data = useSelector(selectCategories);
 
   const handleClick = (e) => {
+    if (!e) {
+      setShowCategories((prev) => !prev);
+      return;
+    }
     const btn = e.target.name;
-    // if (btn) {
-    //   setShowCategories((prev) => !prev);
-    // }
+
+    if (!btn || !e) {
+      setShowCategories((prev) => !prev);
+      return;
+    }
+
     if (showCategories && btn !== nameButton) return;
     setNameButton(btn);
     setShowCategories((prev) => !prev);
