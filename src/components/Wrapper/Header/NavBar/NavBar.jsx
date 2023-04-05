@@ -1,35 +1,40 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { selectCategories } from '../../../../redux/porducts/selectors';
+import { selectCategories } from '../../../../redux/products/selectors';
 import MenuCategories from './MenuCategories/MenuCategories';
-import { useRouter } from 'next/router';
-import { ButtonCategories, Container, ListContainer, ItemContainer, NavLinkStyled } from './NavBarStyled';
+
+import { ButtonCategories, Container, ListContainer, ItemContainer, LinkStyled } from './NavBarStyled';
 
 const menu = [
   {
     id: 1,
     category: 'Головна',
+    path: '/',
   },
   {
     id: 2,
     category: 'Всі товари',
+    path: '/products',
   },
   {
     id: 3,
     category: 'Відгуки',
+    path: '/products',
   },
   {
     id: 4,
     category: 'Контакти',
+    path: '/products',
   },
   {
     id: 5,
     category: 'Про нас',
+    path: '/products',
   },
   {
     id: 6,
-
     category: 'Доставка і оплата',
+    path: '/products',
   },
 ];
 
@@ -38,10 +43,12 @@ const NavBar = () => {
   const [nameButton, setNameButton] = useState(null);
 
   const data = useSelector(selectCategories);
-  const router = useRouter();
 
   const handleClick = (e) => {
     const btn = e.target.name;
+    // if (btn) {
+    //   setShowCategories((prev) => !prev);
+    // }
     if (showCategories && btn !== nameButton) return;
     setNameButton(btn);
     setShowCategories((prev) => !prev);
@@ -66,7 +73,7 @@ const NavBar = () => {
         <ListContainer>
           {menu.map((item) => (
             <ItemContainer key={item.id}>
-              <NavLinkStyled onClick={() => router.push('/products')}>{item.category}</NavLinkStyled>
+              <LinkStyled href={item.path}>{item.category}</LinkStyled>
             </ItemContainer>
           ))}
         </ListContainer>

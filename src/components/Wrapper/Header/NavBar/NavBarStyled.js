@@ -1,8 +1,9 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 // import { NavLink } from 'react-router-dom';
-import DEVICE from "../../../../constants/deviceSize";
+import DEVICE from '../../../../constants/deviceSize';
+import Link from 'next/link';
 
-export const Container = styled("div")`
+export const Container = styled('div')`
   display: flex;
 
   align-items: center;
@@ -30,7 +31,7 @@ export const Container = styled("div")`
   }
 `;
 
-export const ButtonCategories = styled("button")`
+export const ButtonCategories = styled('button')`
   border: none;
   height: 100%;
   font-weight: 500;
@@ -48,7 +49,7 @@ export const ButtonCategories = styled("button")`
     box-shadow: 0px 3px 26px -1px ${(p) => p.theme.colors.darkHover};
   }
 `;
-export const ListContainer = styled("ul")`
+export const ListContainer = styled('ul')`
   display: flex;
   align-items: center;
 
@@ -65,7 +66,7 @@ export const ListContainer = styled("ul")`
   }
 `;
 
-export const ItemContainer = styled("li")`
+export const ItemContainer = styled('li')`
   transition: transform ${(p) => p.theme.transition};
   &:hover,
   &:focus {
@@ -73,7 +74,7 @@ export const ItemContainer = styled("li")`
   }
 `;
 
-export const NavLinkStyled = styled("div")`
+export const LinkStyled = styled(Link)`
   color: ${(p) => p.theme.colors.darkText};
   font-weight: 500;
   font-size: 16px;
@@ -82,7 +83,7 @@ export const NavLinkStyled = styled("div")`
   cursor: pointer;
 
   &::after {
-    content: "";
+    content: '';
     position: ${(p) => p.theme.line.position};
     bottom: ${(p) => p.theme.line.bottom};
     left: ${(p) => p.theme.line.left};

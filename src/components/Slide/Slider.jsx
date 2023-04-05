@@ -12,8 +12,8 @@ import {
   // Div,
   SlideContainer,
 } from './Slider.styled';
-import image from '../../assets/images/Ukraine.jpg';
-import image2 from '../../assets/images/bgLights.jpg';
+// import image from '/images/Ukraine.jpg';
+// import image2 from '/images/bgLights.jpg';
 
 import { useState } from 'react';
 import { useEffect } from 'react';
@@ -23,35 +23,35 @@ const dataSlider = [
     id: uuidv4(),
     title: 'Lorem ipsum',
     subTitle: 'Lorem',
-    img: image2,
+    // img: image2,
+    img: '/images/Ukraine.jpg',
   },
   {
     id: uuidv4(),
     title: 'Lorem ipsum',
     subTitle: 'Lorem',
-    img: image,
+    // img: image,
+    img: '/images/bgLights.jpg',
   },
 ];
 
 export const Slider = () => {
   const [slideIndex, setSlideIndex] = useState(1);
   const [timeoutId, setTimeoutId] = useState(null);
-  const isSmallScreen = window.matchMedia('(max-width: 320px)').matches;
+  // const isSmallScreen = window.matchMedia('(max-width: 320px)').matches;
 
   useEffect(() => {
-    if (!isSmallScreen) {
-      const newTimeoutId = setTimeout(() => {
-        if (slideIndex === dataSlider.length) {
-          setSlideIndex(1);
-        } else {
-          setSlideIndex(slideIndex + 1);
-        }
-      }, 10000);
-      setTimeoutId(newTimeoutId);
+    const newTimeoutId = setTimeout(() => {
+      if (slideIndex === dataSlider.length) {
+        setSlideIndex(1);
+      } else {
+        setSlideIndex(slideIndex + 1);
+      }
+    }, 5000);
+    setTimeoutId(newTimeoutId);
 
-      return () => clearTimeout(newTimeoutId);
-    }
-  }, [slideIndex, isSmallScreen]);
+    return () => clearTimeout(newTimeoutId);
+  }, [slideIndex]);
 
   // const moveDot = (index) => {
   //   setSlideIndex(index);
