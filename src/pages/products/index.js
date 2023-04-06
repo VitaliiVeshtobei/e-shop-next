@@ -39,7 +39,7 @@ function Products({ data, query }) {
             display: 'flex',
             gap: '10px',
             border: '1px solid grey',
-            width: '300px',
+            width: '400px',
             alignItems: 'center',
             padding: '10px',
           }}
@@ -47,8 +47,8 @@ function Products({ data, query }) {
           <Image
             src={item.main_image}
             alt="fotka"
-            width={150}
-            height={150}
+            width={200}
+            height={200}
           />
           <p>{`${idx + 1} :${item.name}`}</p>
         </li>
