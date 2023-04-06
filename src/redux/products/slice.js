@@ -10,7 +10,7 @@ const productsSlice = createSlice({
       state.categories = action.payload;
     },
     getProductsByCategory(state, action) {
-      state.productsByCategory = action.payload.products;
+      state.productsByCategory = action.payload;
     },
   },
 });
