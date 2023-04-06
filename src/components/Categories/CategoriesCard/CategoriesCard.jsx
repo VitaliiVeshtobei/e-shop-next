@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { Img, Item, ItemLink, ContainerImg } from './CategoriesCard.styled';
 // import image from '../../../assets/images/pngegg.png';
 
@@ -9,11 +10,12 @@ export const CategoriesCard = ({ id, img, category }) => {
     >
       <ItemLink href={{ pathname: '/products', query: { category: id } }}>
         <ContainerImg>
-          <Img
+          <Image
             width={200}
             height={200}
             src={img.includes('http') ? img : '/images/pngegg.png'}
             alt={category}
+            priority
           />
         </ContainerImg>
 
