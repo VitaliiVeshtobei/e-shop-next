@@ -7,9 +7,12 @@ export const CategoriesCard = ({ id, img, category }) => {
       key={id}
       id={id}
     >
-      <ItemLink>
+      <ItemLink href={{ pathname: '/products', query: { category: id } }}>
         <ContainerImg>
           <Img
+            width={1000}
+            height={1000}
+            priority={true}
             src={img.includes('http') ? img : '/images/pngegg.png'}
             alt={category}
           />

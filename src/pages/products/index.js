@@ -7,9 +7,7 @@ import Image from 'next/image';
 
 export async function getServerSideProps({ query }) {
   const category = query.category;
-
   const response = await instance(`/products/${category ? `list?limit=500&group_id=${category}` : 'list?limit=500'}`);
-  // const response = await instance(`/products/list`);
   const data = response.data.products;
 
   return {
@@ -18,8 +16,6 @@ export async function getServerSideProps({ query }) {
 }
 
 function Products({ data, query }) {
-  console.log(query);
-  console.log(data);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getProductsByCategory(data));
