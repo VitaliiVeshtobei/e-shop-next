@@ -72,14 +72,12 @@ export const ButtonLeft = styled.button`
     transition: transform ${(p) => p.theme.transition}, box-shadow ${(p) => p.theme.transition};
   }
 
-  &:hover svg,
-  &:focus svg {
+  &:hover svg {
     transform: scale(1.5);
   }
 
   @media screen and (max-width: 768px) {
-    &:hover svg,
-    &:focus svg {
+    &:hover svg {
       transform: scale(1.2);
     }
   }
@@ -110,14 +108,12 @@ export const ButtonRight = styled.button`
     transition: transform ${(p) => p.theme.transition}, box-shadow ${(p) => p.theme.transition};
   }
 
-  &:hover svg,
-  &:focus svg {
+  &:hover svg {
     transform: scale(1.5);
   }
 
   @media screen and (max-width: 768px) {
-    &:hover svg,
-    &:focus svg {
+    &:hover svg {
       transform: scale(1.2);
     }
   }

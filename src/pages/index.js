@@ -7,7 +7,7 @@ import { SliderFeedbacks } from '@/components/SliderFeedbacks/SliderFeedbacks';
 import { Categories } from '@/components/Categories/Categories';
 import { instance } from '@/axios/axiosDefault';
 import { getCategories } from '@/redux/products/slice';
-import { Slider } from '@/components/Slide/Slider';
+import { Slider } from '@/components/Slider/Slider';
 
 export async function getServerSideProps() {
   const response = await instance('/groups/list');
