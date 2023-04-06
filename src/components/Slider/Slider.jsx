@@ -13,31 +13,42 @@ import {
 
 import { useState } from 'react';
 import { useEffect } from 'react';
+import image1 from '../../../public/images/slider-1.jpg';
+import image2 from '../../../public/images/slider-2.jpg';
+import image3 from '../../../public/images/slider-3.jpg';
+import image4 from '../../../public/images/slider-4.jpg';
+import image5 from '../../../public/images/slider-5.jpg';
 
 const dataSlider = [
   {
     id: uuidv4(),
     title: 'Lorem ipsum',
     subTitle: 'Lorem-1',
-    img: '/images/slider-1.jpg',
+    img: image1,
   },
   {
     id: uuidv4(),
     title: 'Lorem ipsum',
     subTitle: 'Lorem-2',
-    img: '/images/slider-2.jpg',
+    img: image2,
   },
   {
     id: uuidv4(),
     title: 'Lorem ipsum',
     subTitle: 'Lorem-3',
-    img: '/images/slider-3.jpg',
+    img: image3,
   },
   {
     id: uuidv4(),
     title: 'Lorem ipsum',
     subTitle: 'Lorem-4',
-    img: '/images/slider-4.jpg',
+    img: image4,
+  },
+  {
+    id: uuidv4(),
+    title: 'Lorem ipsum',
+    subTitle: 'Lorem-5',
+    img: image5,
   },
 ];
 
@@ -89,6 +100,7 @@ export const Slider = () => {
       clearTimeout(timeoutId);
     }
   };
+
   const handleSliderHover = () => {
     setIsHovered(true);
     if (timeoutId) {
@@ -122,9 +134,7 @@ export const Slider = () => {
               key={item.id}
               src={item.img}
               alt={item.title}
-              layout="fill"
-              objectFit="cover"
-              quality={100}
+              priority
             />
           ) : (
             <ImageContainer
@@ -132,9 +142,7 @@ export const Slider = () => {
               key={item.id}
               src={item.img}
               alt={item.title}
-              layout="fill"
-              objectFit="cover"
-              quality={100}
+              priority
             />
           );
         })}
