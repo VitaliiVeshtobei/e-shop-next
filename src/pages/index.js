@@ -11,7 +11,7 @@ import { Slider } from '@/components/Slide/Slider';
 
 export async function getServerSideProps() {
   const response = await instance('/groups/list');
-  const data = response.data;
+  const data = response.data.groups.slice(0, response.data.groups.length - 1);
 
   return {
     props: { data },
