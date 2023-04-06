@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import { instance } from '@/axios/axiosDefault';
 import { getProductsByCategory } from '@/redux/products/slice';
 import Image from 'next/image';
+import ProductsList from '@/components/ProductsList/ProductsList';
 
 export async function getServerSideProps({ query }) {
   const category = query.category;
@@ -21,40 +22,7 @@ function Products({ data, query }) {
     dispatch(getProductsByCategory(data));
   }, [data, dispatch]);
 
-  return (
-    <ul
-      style={{
-        display: 'flex',
-        flexWrap: 'wrap',
-        gap: '10px',
-        alignItems: 'start',
-        padding: '20px',
-        justifyContent: 'center',
-      }}
-    >
-      {data?.map((item, idx) => (
-        <li
-          key={item.id}
-          style={{
-            display: 'flex',
-            gap: '10px',
-            border: '1px solid grey',
-            width: '400px',
-            alignItems: 'center',
-            padding: '10px',
-          }}
-        >
-          <Image
-            src={item.main_image}
-            alt="fotka"
-            width={200}
-            height={200}
-          />
-          <p>{`${idx + 1} :${item.name}`}</p>
-        </li>
-      ))}
-    </ul>
-  );
+  return <ProductsList />;
 }
 
 export default Products;
