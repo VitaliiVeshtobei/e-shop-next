@@ -5,24 +5,23 @@ export const Wrapper = styled.section`
   position: relative;
   display: block;
   height: 350px;
-
   background-color: silver;
 
   @media screen and (max-width: 1440px) {
     height: 400px;
   }
   @media screen and (max-width: 1240px) {
-    height: 350px;
+    height: 300px;
   }
   @media screen and (max-width: 960px) {
-    height: 250px;
+    height: 230px;
   }
   @media screen and (max-width: 768px) {
     height: 200px;
   }
 
   @media screen and (max-width: 450px) {
-    height: 150px;
+    height: 120px;
   }
   @media screen and (max-width: 320px) {
     display: none;
@@ -36,14 +35,13 @@ export const Wrapper = styled.section`
 export const ImageContainer = styled(Image)`
   position: absolute;
   height: 100%;
-  min-width: 100%;
+  width: 100%;
+  object-fit: cover;
   transition: opacity ease-in-out 1s;
-  object-position: center;
   ${(p) => (p.anime === 'true' ? `opacity: 1;` : 'opacity: 0;')};
 `;
 
 export const SlideContainer = styled.div`
-position: relative
   width: 100%;
 `;
 
@@ -77,6 +75,8 @@ export const ButtonLeft = styled.button`
   }
 
   @media screen and (max-width: 768px) {
+    width: 25px;
+    height: 35px;
     &:hover svg {
       transform: scale(1.2);
     }
@@ -113,6 +113,8 @@ export const ButtonRight = styled.button`
   }
 
   @media screen and (max-width: 768px) {
+    width: 25px;
+    height: 35px;
     &:hover svg {
       transform: scale(1.2);
     }
@@ -127,6 +129,9 @@ export const SlideBtnContainer = styled.div`
   bottom: 10px;
   left: 50%;
   transform: translateX(-50%);
+  @media screen and (max-width: 450px) {
+    bottom: 0;
+  }
 `;
 
 export const ButtonSlide = styled.button`
@@ -156,5 +161,9 @@ export const ButtonSlide = styled.button`
   @media screen and (max-width: 768px) {
     width: 10px;
     height: 10px;
+  }
+  @media screen and (max-width: 450px) {
+    width: 7px;
+    height: 7px;
   }
 `;
