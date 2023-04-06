@@ -6,7 +6,7 @@ export const Container = styled('div')`
   display: flex;
   align-items: center;
   justify-content: space-around;
-  height: 100px;
+  height: 70px;
   background-color: ${(p) => p.theme.colors.accentBg};
 `;
 export const LogoContainer = styled('div')`

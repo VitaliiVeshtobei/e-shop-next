@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 
 export const Wrapper = styled.section`
-  margin-top: 75px;
+  margin-top: 50px;
   @media screen and (max-width: 768px) {
-    margin-top: 50px;
+    margin-top: 40px;
   }
 `;
 

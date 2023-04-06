@@ -16,7 +16,7 @@ export const Container = styled('div')`
   }
   @media ${DEVICE.laptop} {
     padding: 0 50px;
-    height: 70px;
+    height: 50px;
   }
   p span {
     @media ${DEVICE.mobile} {

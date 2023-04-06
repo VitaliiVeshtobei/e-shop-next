@@ -2,27 +2,29 @@ import Image from 'next/image';
 import styled from 'styled-components';
 
 export const Wrapper = styled.section`
-  display: block;
   position: relative;
-  height: 750px;
-  padding: 37px 0 0;
+  display: block;
+  height: 350px;
+
+  background-color: silver;
 
   @media screen and (max-width: 1440px) {
-    height: 550px;
+    height: 400px;
   }
   @media screen and (max-width: 1240px) {
-    height: 450px;
+    height: 350px;
   }
   @media screen and (max-width: 960px) {
-    height: 380px;
+    height: 250px;
   }
   @media screen and (max-width: 768px) {
-    height: 270px;
+    height: 200px;
   }
+
   @media screen and (max-width: 450px) {
-    height: 220px;
+    height: 150px;
   }
-  @media screen and (max-width: 449px) {
+  @media screen and (max-width: 320px) {
     display: none;
   }
 
@@ -34,13 +36,14 @@ export const Wrapper = styled.section`
 export const ImageContainer = styled(Image)`
   position: absolute;
   height: 100%;
-  width: 100%;
+  min-width: 100%;
   transition: opacity ease-in-out 1s;
-
+  object-position: center;
   ${(p) => (p.anime === 'true' ? `opacity: 1;` : 'opacity: 0;')};
 `;
 
 export const SlideContainer = styled.div`
+position: relative
   width: 100%;
 `;
 
@@ -60,7 +63,7 @@ export const ButtonLeft = styled.button`
   border-radius: 20px;
   color: ${(p) => p.theme.colors.lightText};
   transition: transform ${(p) => p.theme.transition}, opacity ${(p) => p.theme.transition};
-  transform: translateY(30%);
+  transform: translateY(-50%);
 
   svg {
     filter: drop-shadow(1px 3px 3px rgba(0, 0, 0, 1));
@@ -87,7 +90,7 @@ export const ButtonRight = styled.button`
   position: absolute;
   top: 50%;
   right: 0;
-  transform: translateY(30%);
+  transform: translateY(-50%);
   cursor: pointer;
   display: flex;
   justify-content: center;
@@ -125,35 +128,29 @@ export const SlideBtnContainer = styled.div`
   justify-content: center;
   padding: 7px;
   position: absolute;
-  bottom: 0;
+  bottom: 10px;
   left: 50%;
   transform: translateX(-50%);
-
-  @media screen and (max-width: 1240px) {
-    bottom: -30px;
-  }
 `;
 
 export const ButtonSlide = styled.button`
   cursor: pointer;
   width: 16px;
   height: 16px;
-  border: 1px solid ${(p) => p.theme.colors.corrasion};
+  border: ${(p) => (p.dot ? `transparent` : `1px solid ${p.theme.colors.corrasion}`)};
+  transform: ${(p) => (p.dot ? `scale(1.05)` : `scale(1)`)};
+  box-shadow: ${(p) => (p.dot ? `0px 3px 6px -1px ${p.theme.colors.darkHover}` : 'none')};
   background-color: ${(p) => (p.dot ? p.theme.colors.accent : 'transparent')};
   border-radius: 50%;
   transition: transform ${(p) => p.theme.transition}, box-shadow ${(p) => p.theme.transition},
     background-color ${(p) => p.theme.transition};
 
   &:hover {
-    background-color: ${(p) => p.theme.colors.accent};
-    transform: scale(1.05);
-    -webkit-box-shadow: 0px 3px 6px -1px ${(p) => p.theme.colors.darkHover};
-    box-shadow: 0px 3px 6px -1px ${(p) => p.theme.colors.darkHover};
-    border: transparent;
+    transform: scale(1.07);
   }
 
   &:focus {
-    transform: scale(1.05);
+    transform: scale(1.07);
   }
 
   :not(:last-child) {
