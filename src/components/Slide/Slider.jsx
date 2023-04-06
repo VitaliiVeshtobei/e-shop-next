@@ -18,20 +18,26 @@ const dataSlider = [
   {
     id: uuidv4(),
     title: 'Lorem ipsum',
-    subTitle: 'Lorem',
-    img: '/images/Ukraine.jpg',
+    subTitle: 'Lorem-1',
+    img: '/images/slider-1.jpg',
   },
   {
     id: uuidv4(),
     title: 'Lorem ipsum',
-    subTitle: 'Lorem',
-    img: '/images/UkraineNo.jpg',
+    subTitle: 'Lorem-2',
+    img: '/images/slider-2.jpg',
   },
   {
     id: uuidv4(),
     title: 'Lorem ipsum',
-    subTitle: 'Lorem',
-    img: '/images/bgLights.jpg',
+    subTitle: 'Lorem-3',
+    img: '/images/slider-3.jpg',
+  },
+  {
+    id: uuidv4(),
+    title: 'Lorem ipsum',
+    subTitle: 'Lorem-4',
+    img: '/images/slider-4.jpg',
   },
 ];
 
@@ -106,6 +112,7 @@ export const Slider = () => {
     <Wrapper
       onMouseEnter={handleSliderHover}
       onMouseLeave={handleSliderLeave}
+      style={{ marginTop: 30 }}
     >
       <SlideContainer>
         {dataSlider.map((item, index) => {
@@ -115,9 +122,9 @@ export const Slider = () => {
               key={item.id}
               src={item.img}
               alt={item.title}
-              width={1440}
-              height={750}
-              priority
+              layout="fill"
+              objectFit="cover"
+              quality={100}
             />
           ) : (
             <ImageContainer
@@ -125,9 +132,9 @@ export const Slider = () => {
               key={item.id}
               src={item.img}
               alt={item.title}
-              width={1440}
-              height={750}
-              priority
+              layout="fill"
+              objectFit="cover"
+              quality={100}
             />
           );
         })}
