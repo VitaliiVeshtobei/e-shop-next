@@ -43,7 +43,7 @@ export default class MyDocument extends Document {
 
   render() {
     return (
-      <Html>
+      <Html lang="ua">
         <Head />
         <body>
           <Main />
