@@ -1,7 +1,10 @@
 // import { NavLink } from 'react-router-dom';
+
+import Image from 'next/image';
+import Link from 'next/link';
 import styled from 'styled-components';
 
-export const ItemLink = styled('div')`
+export const ItemLink = styled(Link)`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -24,7 +27,7 @@ export const ItemLink = styled('div')`
   }
 `;
 
-export const Img = styled.img`
+export const Img = styled(Image)`
   box-sizing: border-box;
   width: 100%;
   margin-bottom: 10px;

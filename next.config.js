@@ -9,6 +9,10 @@ const nextConfig = {
     // Enables the styled-components SWC transform
     styledComponents: true,
   },
+
+  images: {
+    domains: ['images.prom.ua'],
+  },
 };
 
 module.exports = nextConfig;

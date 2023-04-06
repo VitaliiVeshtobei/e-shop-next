@@ -1,11 +1,5 @@
 import React, { useEffect } from 'react';
-import {
-  Backdrop,
-  ItemCategories,
-  ListCategories,
-  ListCategoriesContainer,
-  NavLinkStyled,
-} from './MenuCategoriesStyled';
+import { Backdrop, ItemCategories, ListCategories, ListCategoriesContainer, LinkStyled } from './MenuCategoriesStyled';
 
 const MenuCategories = ({ handleClick, data, nameButton }) => {
   useEffect(() => {
@@ -33,7 +27,11 @@ const MenuCategories = ({ handleClick, data, nameButton }) => {
           <ListCategories>
             {data.map((item) => (
               <ItemCategories key={item.id}>
-                <NavLinkStyled>{nameButton === 'Menu' ? item.category : item.name_multilang.uk}</NavLinkStyled>
+                <LinkStyled
+                  href={nameButton === 'Menu' ? item.path : { pathname: '/products', query: { category: item.id } }}
+                >
+                  {nameButton === 'Menu' ? item.category : item.name_multilang.uk}
+                </LinkStyled>
               </ItemCategories>
             ))}
           </ListCategories>

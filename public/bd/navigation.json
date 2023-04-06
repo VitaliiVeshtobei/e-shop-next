@@ -12,21 +12,21 @@
   {
     "id": 3,
     "category": "Відгуки",
-    "path": "/products"
+    "path": "/reviews"
   },
   {
     "id": 4,
     "category": "Контакти",
-    "path": "/products"
+    "path": "/contacts"
   },
   {
     "id": 5,
     "category": "Про нас",
-    "path": "/products"
+    "path": "/about"
   },
   {
     "id": 6,
     "category": "Доставка і оплата",
-    "path": "/products"
+    "path": "/delivery"
   }
 ]
