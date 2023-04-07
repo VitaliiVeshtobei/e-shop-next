@@ -124,7 +124,6 @@ export const Slider = () => {
     <Wrapper
       onMouseEnter={handleSliderHover}
       onMouseLeave={handleSliderLeave}
-      style={{ marginTop: 30 }}
     >
       <SlideContainer>
         {dataSlider.map((item, index) => {
