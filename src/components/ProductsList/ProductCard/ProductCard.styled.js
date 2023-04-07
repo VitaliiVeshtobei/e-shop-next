@@ -13,12 +13,29 @@ export const Wrapper = styled(Link)`
   padding: 28px 14px;
 `;
 
+export const DiscountPercent = styled.div`
+  position: absolute;
+  top: 33px;
+  left: 60px;
+  height: 30px;
+  width: 45px;
+  padding: 2px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 25px;
+  background-color: ${(p) => p.theme.colors.accent};
+  color: ${(p) => p.theme.colors.lightText};
+`;
+
 export const Cart = styled.button`
   position: absolute;
   width: 30px;
   height: 30px;
-  left: 260px;
-  top: 25px;
+  left: 267px;
+  top: 12px;
   background-color: ${(p) => p.theme.colors.smoke};
   border-radius: 50%;
   outline: none;
@@ -46,6 +63,7 @@ export const ProductImage = styled(Image)`
   margin-bottom: 6px;
   margin-left: auto;
   margin-right: auto;
+  /* display: block; */
 `;
 
 export const Article = styled.p`
@@ -57,7 +75,7 @@ export const Article = styled.p`
 
 export const ProductName = styled.p`
   font-weight: 500;
-  font-size: 17px;
+  font-size: 16px;
   line-height: 1.23;
   color: ${(p) => p.theme.colors.scndDarkText};
   margin-bottom: 10px;
@@ -80,8 +98,36 @@ export const ProductStatus = styled.p`
 `;
 
 export const Price = styled.p`
+  font-weight: ${(p) => {
+    if (p.type === 'old') {
+      return '400';
+    }
+    return '700';
+  }};
+  font-size: 17px;
+  line-height: 1.23;
+  color: ${(p) => {
+    if (p.type === 'old') {
+      return p.theme.colors.greyText;
+    }
+    return p.theme.colors.darkText;
+  }};
+
+  text-decoration: ${(p) => {
+    if (p.type === 'old') {
+      return 'line-through';
+    }
+    return 'none';
+  }}; ;
+`;
+
+export const DiscountPrice = styled.p`
+  margin-right: 20px;
+  color: ${(p) => p.theme.colors.warning};
   font-weight: 700;
   font-size: 17px;
   line-height: 1.23;
-  color: ${(p) => p.theme.colors.darkText};
+`;
+export const DiscountWrap = styled.div`
+  display: flex;
 `;

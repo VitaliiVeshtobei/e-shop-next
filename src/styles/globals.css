@@ -40,3 +40,7 @@ button {
 input {
   font-family: inherit;
 }
+
+img {
+  display: block;
+}

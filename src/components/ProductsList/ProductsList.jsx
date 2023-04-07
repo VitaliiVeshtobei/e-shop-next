@@ -17,9 +17,10 @@ const ProductsList = () => {
               id={item.id}
               image={item.main_image}
               article={item.sku}
-              name={item.name}
+              name={item.name_multilang.uk}
               price={item.price}
               status={item.in_stock}
+              discount={item.discount}
             />
           </Item>
         ))}
