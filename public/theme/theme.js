@@ -14,6 +14,7 @@ export const theme = {
     unactive: '#AFAFAF',
     available: '#30BD57',
     darkHover: '#2D3033',
+    warning: '#FF2400',
   },
 
   line: {

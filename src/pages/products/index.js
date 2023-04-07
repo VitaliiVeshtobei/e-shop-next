@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 
 import { instance } from '@/axios/axiosDefault';
 import { getProductsByCategory } from '@/redux/products/slice';
-import Image from 'next/image';
+
 import ProductsList from '@/components/ProductsList/ProductsList';
 
 export async function getServerSideProps({ query }) {
@@ -22,7 +22,11 @@ function Products({ data, query }) {
     dispatch(getProductsByCategory(data));
   }, [data, dispatch]);
 
-  return <ProductsList />;
+  return (
+    <>
+      <ProductsList />
+    </>
+  );
 }
 
 export default Products;
