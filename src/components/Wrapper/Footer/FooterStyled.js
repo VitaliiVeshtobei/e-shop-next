@@ -160,7 +160,8 @@ export const CategoriesLink = styled(Link)`
     bottom: ${(p) => p.theme.line.bottom};
     left: ${(p) => p.theme.line.left};
     transition: ${(p) => p.theme.line.transition};
-    width: ${(p) => p.theme.line.width};
+    /* width: ${(p) => p.theme.line.width}; */
+    width: ${(p) => (p.path === p.href ? '100%' : p.theme.line.width)};
     height: ${(p) => p.theme.line.height};
     background-color: ${(p) => p.theme.line.bgColor};
     margin-bottom: 5px;
