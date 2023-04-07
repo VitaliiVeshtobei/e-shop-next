@@ -11,6 +11,9 @@ const NavBar = () => {
   const [nameButton, setNameButton] = useState(null);
 
   const data = useSelector(selectCategories);
+  const localCategories = typeof window !== 'undefined' ? window.localStorage.getItem('categories') : false;
+
+  const categories = data.length ? data : JSON.parse(localCategories) ?? [];
 
   const handleClick = (e) => {
     if (!e) {
@@ -28,6 +31,7 @@ const NavBar = () => {
     setNameButton(btn);
     setShowCategories((prev) => !prev);
   };
+
   return (
     <>
       <div style={{ position: 'relative' }}>
@@ -57,7 +61,7 @@ const NavBar = () => {
         {showCategories && (
           <MenuCategories
             handleClick={handleClick}
-            data={nameButton === 'Menu' ? navigation : data}
+            data={nameButton === 'Menu' ? navigation : categories}
             nameButton={nameButton}
           />
         )}

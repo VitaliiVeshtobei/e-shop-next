@@ -7,6 +7,17 @@ const productsSlice = createSlice({
   initialState,
   reducers: {
     getCategories(state, action) {
+      localStorage.setItem(
+        'categories',
+        JSON.stringify(
+          action.payload.map((item) => {
+            return {
+              name_multilang: item.name_multilang,
+              id: item.id,
+            };
+          })
+        )
+      );
       state.categories = action.payload;
     },
     getProductsByCategory(state, action) {
