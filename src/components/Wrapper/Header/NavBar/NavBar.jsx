@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useRouter } from 'next/router';
 import { useSelector } from 'react-redux';
 import { selectCategories } from '../../../../redux/products/selectors';
 import MenuCategories from './MenuCategories/MenuCategories';
@@ -10,7 +11,13 @@ const NavBar = () => {
   const [showCategories, setShowCategories] = useState(false);
   const [nameButton, setNameButton] = useState(null);
 
+  const router = useRouter();
+  const path = router.asPath;
+
   const data = useSelector(selectCategories);
+  const localCategories = typeof window !== 'undefined' ? window.localStorage.getItem('categories') : false;
+
+  const categories = data.length ? data : JSON.parse(localCategories) ?? [];
 
   const handleClick = (e) => {
     if (!e) {
@@ -28,6 +35,7 @@ const NavBar = () => {
     setNameButton(btn);
     setShowCategories((prev) => !prev);
   };
+
   return (
     <>
       <div style={{ position: 'relative' }}>
@@ -49,7 +57,12 @@ const NavBar = () => {
           <ListContainer>
             {navigation.map((item) => (
               <ItemContainer key={item.id}>
-                <LinkStyled href={item.path}>{item.category}</LinkStyled>
+                <LinkStyled
+                  href={item.path}
+                  path={path}
+                >
+                  {item.category}
+                </LinkStyled>
               </ItemContainer>
             ))}
           </ListContainer>
@@ -57,7 +70,7 @@ const NavBar = () => {
         {showCategories && (
           <MenuCategories
             handleClick={handleClick}
-            data={nameButton === 'Menu' ? navigation : data}
+            data={nameButton === 'Menu' ? navigation : categories}
             nameButton={nameButton}
           />
         )}

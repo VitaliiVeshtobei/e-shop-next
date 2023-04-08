@@ -1,4 +1,5 @@
 import React from 'react';
+import { useRouter } from 'next/router';
 import Image from 'next/image';
 import { FaWhatsapp, FaTelegramPlane, FaViber } from 'react-icons/fa';
 import { CiPhone, CiLocationOn } from 'react-icons/ci';
@@ -21,6 +22,8 @@ import {
 import navigation from '../../../../public/bd/navigation.json';
 
 const Footer = () => {
+  const router = useRouter();
+  const path = router.asPath;
   return (
     <FooterContainer>
       <Container>
@@ -39,7 +42,12 @@ const Footer = () => {
           <ListCategories>
             {navigation.map((item) => (
               <CategoriesItem key={item.id}>
-                <CategoriesLink href={item.path}>{item.category}</CategoriesLink>
+                <CategoriesLink
+                  href={item.path}
+                  path={path}
+                >
+                  {item.category}
+                </CategoriesLink>
               </CategoriesItem>
             ))}
           </ListCategories>
@@ -96,4 +104,4 @@ const Footer = () => {
   );
 };
 
-export default Footer;
+export default React.memo(Footer);
