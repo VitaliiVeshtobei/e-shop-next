@@ -1,9 +1,9 @@
-import React from "react";
-import { IoIosArrowForward } from "react-icons/Io";
-import { Container, LinkStyled } from "./Navigation.styled";
-import { useRouter } from "next/router";
+import React from 'react';
+import { IoIosArrowForward } from 'react-icons/io';
+import { Container, LinkStyled } from './Navigation.styled';
+import { useRouter } from 'next/router';
 
-import navigation from "../../../public/bd/navigation.json";
+import navigation from '../../../public/bd/navigation.json';
 
 export const Navigation = () => {
   const router = useRouter();
@@ -12,7 +12,7 @@ export const Navigation = () => {
 
   return (
     <Container>
-      <LinkStyled href={"/"}>Головна</LinkStyled>
+      <LinkStyled href={'/'}>Головна</LinkStyled>
 
       <IoIosArrowForward />
       <LinkStyled href={router.pathname}>{category}</LinkStyled>
