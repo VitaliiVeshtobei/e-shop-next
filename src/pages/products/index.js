@@ -7,7 +7,11 @@ import { getProductsByCategory } from "@/redux/products/slice";
 import ProductsList from "@/components/ProductsList/ProductsList";
 import { FilterBar } from "@/components/FilterBar/FilterBar";
 
+
 import { Container } from "./Products.styled";
+
+import { FilterByPrice } from "@/components/FilterByPrice/FilterByPrice";
+
 
 export async function getServerSideProps({ query }) {
   const category = query.category;
@@ -30,10 +34,12 @@ function Products({ data, query }) {
   }, [data, dispatch]);
 
   return (
+<FilterByPrice />
     <Container>
       <FilterBar />
       <ProductsList />
     </Container>
+
   );
 }
 
