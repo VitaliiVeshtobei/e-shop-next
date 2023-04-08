@@ -5,6 +5,7 @@ import { instance } from '@/axios/axiosDefault';
 import { getProductsByCategory } from '@/redux/products/slice';
 import Image from 'next/image';
 import ProductsList from '@/components/ProductsList/ProductsList';
+import { FilterBar } from '@/components/FilterBar/FilterBar';
 
 export async function getServerSideProps({ query }) {
   const category = query.category;
@@ -22,7 +23,12 @@ function Products({ data, query }) {
     dispatch(getProductsByCategory(data));
   }, [data, dispatch]);
 
-  return <ProductsList />;
+  return (
+    <div style={{ display: 'flex', gap: '30px' }}>
+      <FilterBar />
+      <ProductsList />
+    </div>
+  );
 }
 
 export default Products;
