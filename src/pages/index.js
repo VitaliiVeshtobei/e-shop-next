@@ -9,13 +9,28 @@ import { instance } from '@/axios/axiosDefault';
 import { getCategories } from '@/redux/products/slice';
 import { Slider } from '@/components/Slider/Slider';
 
-export async function getServerSideProps() {
-  const response = await instance('/groups/list');
-  const data = response.data.groups.slice(0, response.data.groups.length - 1);
+// export async function getServerSideProps() {
+//   const response = await instance('/groups/list');
+//   const data = response.data.groups.slice(0, response.data.groups.length - 1);
 
-  return {
-    props: { data },
-  };
+//   return {
+//     props: { data },
+//   };
+// }
+export async function getServerSideProps() {
+  try {
+    const response = await instance('/groups/list');
+    const data = response.data.groups.slice(0, response.data.groups.length - 1);
+
+    return {
+      props: { data },
+    };
+  } catch (error) {
+    console.error(error);
+    return {
+      props: { data: [] },
+    };
+  }
 }
 
 export default function Home({ data }) {
