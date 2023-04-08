@@ -7,8 +7,6 @@ import { getProductsByCategory } from "@/redux/products/slice";
 import ProductsList from "@/components/ProductsList/ProductsList";
 import { FilterBar } from "@/components/FilterBar/FilterBar";
 
-import { Container } from "./Products.styled";
-
 export async function getServerSideProps({ query }) {
   const category = query.category;
   const response = await instance(
@@ -30,10 +28,10 @@ function Products({ data, query }) {
   }, [data, dispatch]);
 
   return (
-    <Container>
+    <div style={{ gap: " 16px", display: "flex" }}>
       <FilterBar />
       <ProductsList />
-    </Container>
+    </div>
   );
 }
 
