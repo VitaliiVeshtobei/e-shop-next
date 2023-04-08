@@ -8,14 +8,14 @@ import navigation from '../../../public/bd/navigation.json';
 export const Navigation = () => {
   const router = useRouter();
 
-  const { category } = navigation.find((item) => item.path === router.pathname);
+  const name = navigation.find((item) => item.path === router.pathname);
 
   return (
     <Container>
       <LinkStyled href={'/'}>Головна</LinkStyled>
 
       <IoIosArrowForward />
-      <LinkStyled href={router.pathname}>{category}</LinkStyled>
+      <LinkStyled href={router.pathname}>{name ? name.category : 'Корзина'}</LinkStyled>
     </Container>
   );
 };
