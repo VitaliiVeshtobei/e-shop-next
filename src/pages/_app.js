@@ -8,6 +8,7 @@ import { Loader } from '@/components/Loader/Loader';
 
 import Wrapper from '@/components/Wrapper/Wrapper';
 import { store } from '@/redux/store';
+
 export default function App({ Component, pageProps }) {
   const [isLoading, setIsLoading] = useState(false);
   useEffect(() => {

@@ -4,7 +4,7 @@ import styled from 'styled-components';
 export const Wrapper = styled.section`
   position: relative;
   display: block;
-  height: 350px;
+  height: 450px;
   background-color: silver;
 
   @media screen and (max-width: 1440px) {
