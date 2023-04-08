@@ -34,11 +34,13 @@ function Products({ data, query }) {
   }, [data, dispatch]);
 
   return (
+<>
 <FilterByPrice />
     <Container>
       <FilterBar />
       <ProductsList />
     </Container>
+    </>
 
   );
 }
