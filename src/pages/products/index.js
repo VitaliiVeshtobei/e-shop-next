@@ -6,6 +6,7 @@ import { getProductsByCategory } from '@/redux/products/slice';
 
 import ProductsList from '@/components/ProductsList/ProductsList';
 import { FilterBar } from '@/components/FilterBar/FilterBar';
+import { FilterByPrice } from '@/components/FilterByPrice/FilterByPrice';
 
 export async function getServerSideProps({ query }) {
   const category = query.category;
@@ -24,12 +25,13 @@ function Products({ data, query }) {
   }, [data, dispatch]);
 
   return (
-
-    <div style={{ display: 'flex', gap: '30px' }}>
-      <FilterBar />
-      <ProductsList />
-    </div>
-
+    <>
+      <FilterByPrice />
+      <div style={{ gap: ' 16px', display: 'flex' }}>
+        <FilterBar />
+        <ProductsList />
+      </div>
+    </>
   );
 }
 
