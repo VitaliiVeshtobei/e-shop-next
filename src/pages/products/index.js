@@ -26,7 +26,9 @@ function Products({ data, query }) {
 
   return (
     <>
-      <FilterByPrice />
+      <div style={{ marginBottom: '35px', marginTop: '-30px' }}>
+        <FilterByPrice />
+      </div>
       <div style={{ gap: ' 16px', display: 'flex' }}>
         <FilterBar />
         <ProductsList />
