@@ -94,7 +94,8 @@ export const Icon = styled(BsCheckLg)`
 
 export const Label = styled.label`
   cursor: pointer;
-  /* width: 100%; */
+  width: 100%;
+  height: 100%;
   display: block;
   font-family: 'Mulish';
   font-style: normal;

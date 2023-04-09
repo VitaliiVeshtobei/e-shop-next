@@ -1,4 +1,4 @@
-import { selectCategories } from '@/redux/products/selectors';
+import { selectCategories, selectProductsByCategory } from '@/redux/products/selectors';
 
 import { useSelector } from 'react-redux';
 import {
@@ -13,29 +13,83 @@ import {
   TextNumber,
   Wrapper,
 } from './FilterBar.styled';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { PriceInput } from './PriceInput/PriceInput';
+import { useRouter } from 'next/router';
 
 export const FilterBar = () => {
-  const products = useSelector(selectCategories);
+  const router = useRouter();
+  const { category } = router.query;
+
+  const products = useSelector(selectProductsByCategory);
+
   const [selectedCategory, setSelectedCategory] = useState('');
   const [selectedAvailable, setSelectedAvailable] = useState('');
-  const [total, setTotal] = useState(0);
+  const [total, setTotal] = useState([]);
+  const [available, setAvailable] = useState(0);
+  const [notAvailable, setNotAvailable] = useState(0);
+
+  useEffect(() => {
+    const res = products.reduce((acc, cur) => {
+      if (!acc[cur.group.id]) {
+        acc[cur.group.id] = { idCategory: cur.group.id, total: 0, name_multilang: cur.group.name_multilang };
+      }
+      acc[cur.group.id].total++;
+      return acc;
+    }, {});
+    const resultArray = Object.values(res);
+    setTotal(resultArray.reverse());
+  }, [products]);
+
+  useEffect(() => {
+    let available = 0;
+    let notAvailable = 0;
+    products.map((item) => {
+      if (item.in_stock) {
+        return ++available;
+      }
+      return ++notAvailable;
+    });
+    setAvailable(available);
+    setNotAvailable(notAvailable);
+  }, [products, selectedCategory]);
 
   const hendleClickCategories = (event) => {
-    const { value } = event.target;
-    if (value === selectedCategory) {
+    const { id, value } = event.target;
+    const ctatusId = id === '' ? id : +id;
+    if (ctatusId === selectedCategory || value === '') {
       return setSelectedCategory('');
     }
-    setSelectedCategory(value);
+    setSelectedCategory(ctatusId);
   };
 
-  const nendleClickAvailable = (event) => {
+  useEffect(() => {
+    if (category !== undefined && selectedCategory === '') {
+      console.log(category);
+      return setSelectedCategory(+category);
+    }
+  }, [category, selectedCategory]);
+
+  const hendleClickIcon = (event) => {
+    if (+event === selectedCategory) {
+      return setSelectedCategory('');
+    }
+    setSelectedCategory(+event);
+  };
+
+  const hendleClickAvailable = (event) => {
     const { value } = event.target;
     if (value === selectedAvailable) {
       return setSelectedAvailable('');
     }
     setSelectedAvailable(value);
+  };
+
+  const hendleClickAvailableIcon = (event) => {
+    if (event === selectedAvailable) {
+      return setSelectedAvailable('');
+    }
+    setSelectedAvailable(event);
   };
 
   const resetInput = () => {
@@ -66,26 +120,26 @@ export const FilterBar = () => {
             onChange={hendleClickCategories}
             onClick={hendleClickCategories}
           />
-          <Label htmlFor="all">Всі</Label>
-          <Icon />
-          <TextNumber>{total}</TextNumber>
+          <Label htmlFor="all">Всі товари</Label>
+          <Icon onClick={() => hendleClickIcon('')} />
+          <TextNumber>{products.length}</TextNumber>
         </Item>
-        {products &&
-          products.map(({ name_multilang, id }) => {
+        {total.length >= 0 &&
+          total.map(({ name_multilang, idCategory, total }) => {
             return (
               <Item key={name_multilang.uk}>
                 <InputContainer
                   name="categories"
-                  id={id}
+                  id={idCategory}
                   style={{ marginRight: '12px' }}
                   type="radio"
                   value={name_multilang.uk}
-                  checked={selectedCategory === name_multilang.uk}
+                  checked={selectedCategory === +idCategory}
                   onChange={hendleClickCategories}
                   onClick={hendleClickCategories}
                 />
-                <Label htmlFor={id}>{name_multilang.uk}</Label>
-                <Icon />
+                <Label htmlFor={idCategory}>{name_multilang.uk}</Label>
+                <Icon onClick={() => hendleClickIcon(idCategory)} />
                 <TextNumber>{total}</TextNumber>
               </Item>
             );
@@ -101,12 +155,12 @@ export const FilterBar = () => {
             name="available"
             value="В наявності"
             checked={selectedAvailable === 'В наявності'}
-            onChange={nendleClickAvailable}
-            onClick={nendleClickAvailable}
+            onChange={hendleClickAvailable}
+            onClick={hendleClickAvailable}
           />
           <Label htmlFor="available">В наявності</Label>
-          <Icon />
-          <TextNumber>{total}</TextNumber>
+          <Icon onClick={() => hendleClickAvailableIcon('В наявності')} />
+          <TextNumber>{available}</TextNumber>
         </Item>
         <Item key="not-available">
           <InputContainer
@@ -116,8 +170,8 @@ export const FilterBar = () => {
             disabled
           />
           <Label htmlFor="not-available">Немає в наявності</Label>
-          <Icon />
-          <TextNumber>{total}</TextNumber>
+          <Icon onClick={() => hendleClickAvailableIcon('')} />
+          <TextNumber>{notAvailable}</TextNumber>
         </Item>
       </Container>
       <Container className="price-slider-container">
