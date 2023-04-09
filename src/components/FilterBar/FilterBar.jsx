@@ -17,14 +17,12 @@ import { useEffect, useState } from 'react';
 import { PriceInput } from './PriceInput/PriceInput';
 import { useRouter } from 'next/router';
 
-export const FilterBar = () => {
+export const FilterBar = ({ selectedCategory, setSelectedCategory, selectedAvailable, setSelectedAvailable }) => {
   const router = useRouter();
   const { category } = router.query;
 
   const products = useSelector(selectProductsByCategory);
 
-  const [selectedCategory, setSelectedCategory] = useState('');
-  const [selectedAvailable, setSelectedAvailable] = useState('');
   const [total, setTotal] = useState([]);
   const [available, setAvailable] = useState(0);
   const [notAvailable, setNotAvailable] = useState(0);
@@ -65,8 +63,10 @@ export const FilterBar = () => {
 
   useEffect(() => {
     if (category !== undefined && selectedCategory === '') {
-      console.log(category);
       return setSelectedCategory(+category);
+    }
+    if (category === undefined && selectedCategory === '') {
+      return setSelectedCategory('');
     }
   }, [category, selectedCategory]);
 
@@ -109,21 +109,23 @@ export const FilterBar = () => {
         </Button>
       </Header>
       <Container>
-        <Item key="all">
-          <InputContainer
-            name="categories"
-            id="all"
-            style={{ marginRight: '12px' }}
-            type="radio"
-            value={''}
-            checked={selectedCategory === ''}
-            onChange={hendleClickCategories}
-            onClick={hendleClickCategories}
-          />
-          <Label htmlFor="all">Всі товари</Label>
-          <Icon onClick={() => hendleClickIcon('')} />
-          <TextNumber>{products.length}</TextNumber>
-        </Item>
+        {!category && (
+          <Item key="all">
+            <InputContainer
+              name="categories"
+              id="all"
+              style={{ marginRight: '12px' }}
+              type="radio"
+              value={''}
+              checked={selectedCategory === ''}
+              onChange={hendleClickCategories}
+              onClick={hendleClickCategories}
+            />
+            <Label htmlFor="all">Всі товари</Label>
+            <Icon onClick={() => hendleClickIcon('')} />
+            <TextNumber>{products.length}</TextNumber>
+          </Item>
+        )}
         {total.length >= 0 &&
           total.map(({ name_multilang, idCategory, total }) => {
             return (

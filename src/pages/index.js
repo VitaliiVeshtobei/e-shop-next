@@ -6,7 +6,7 @@ import { Benefits } from '@/components/Benefits/Benefits';
 import { SliderFeedbacks } from '@/components/SliderFeedbacks/SliderFeedbacks';
 import { Categories } from '@/components/Categories/Categories';
 import { instance } from '@/axios/axiosDefault';
-import { getCategories } from '@/redux/products/slice';
+import { getCategories, getProductsFilter } from '@/redux/products/slice';
 import { Slider } from '@/components/Slider/Slider';
 
 // export async function getServerSideProps() {
@@ -21,23 +21,25 @@ export async function getServerSideProps() {
   try {
     const response = await instance('/groups/list');
     const data = response.data.groups.slice(0, response.data.groups.length - 1);
-
+    const res = await instance(`/products/list?limit=500`);
+    const list = res.data.products;
     return {
-      props: { data },
+      props: { data, list },
     };
   } catch (error) {
     console.error(error);
     return {
-      props: { data: [] },
+      props: { data: [], list: [] },
     };
   }
 }
 
-export default function Home({ data }) {
+export default function Home({ data, list }) {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getCategories(data));
-  }, [data, dispatch]);
+    dispatch(getProductsFilter(list));
+  }, [data, dispatch, list]);
 
   return (
     <>
