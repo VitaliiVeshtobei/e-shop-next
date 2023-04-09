@@ -21,13 +21,12 @@ export const BtnStyled = styled('button')`
   cursor: pointer;
   transition: background-color ${(p) => p.theme.transition}, color ${(p) => p.theme.transition};
 
-  &:hover {
-    background-color: rgba(98, 148, 148, 0.5);
-    color: #ffffff;
-  }
   ${(p) =>
     p.activeBtn
       ? `background-color: rgba(98, 148, 148, 0.85);
     color: #ffffff;`
-      : ''}
+      : `&:hover {
+    background-color: rgba(98, 148, 148, 0.5);
+    color: #ffffff;
+  }`}
 `;
