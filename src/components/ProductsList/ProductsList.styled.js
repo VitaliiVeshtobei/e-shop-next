@@ -1,19 +1,27 @@
-import styled from 'styled-components';
-import ReactPaginate from 'react-paginate';
+import styled from "styled-components";
+import ReactPaginate from "react-paginate";
+
+export const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
 
 export const List = styled.ul`
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
+  margin-right: -16px;
 `;
 
 export const Item = styled.li`
   width: 310px;
   border: 1px solid ${(p) => p.theme.colors.border};
   border-radius: 20px;
-  margin-right: 27px;
+  margin-right: 16px;
   margin-bottom: 24px;
 
-  transition: transform ${(p) => p.theme.transition}, box-shadow ${(p) => p.theme.transition};
+  transition: transform ${(p) => p.theme.transition},
+    box-shadow ${(p) => p.theme.transition};
 
   &:hover,
   &:focus {

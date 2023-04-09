@@ -1,11 +1,11 @@
-import { useState } from 'react';
+import { useState } from "react";
 
-import { useSelector } from 'react-redux';
+import { useSelector } from "react-redux";
 
-import ProductCard from './ProductCard/ProductCard';
-import { selectProductsByCategory } from '@/redux/products/selectors';
+import ProductCard from "./ProductCard/ProductCard";
+import { selectProductsByCategory } from "@/redux/products/selectors";
 
-import { List, Item, Pagination } from './ProductsList.styled';
+import { List, Item, Pagination, Container } from "./ProductsList.styled";
 
 const ProductsList = () => {
   const [itemOffset, setItemOffset] = useState(0);
@@ -25,12 +25,12 @@ const ProductsList = () => {
     window.scrollTo({
       top: 0,
       left: 0,
-      behavior: 'smooth',
+      behavior: "smooth",
     });
   };
 
   return (
-    <>
+    <Container>
       <List>
         {currentItems?.map((item) => (
           <Item key={item.id}>
@@ -58,7 +58,7 @@ const ProductsList = () => {
           className="Pagination"
         />
       )}
-    </>
+    </Container>
   );
 };
 

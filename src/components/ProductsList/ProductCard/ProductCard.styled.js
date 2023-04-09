@@ -1,6 +1,9 @@
-import styled from 'styled-components';
-import Link from 'next/link';
-import Image from 'next/image';
+import styled from "styled-components";
+import Link from "next/link";
+import Image from "next/image";
+
+import DEVICE from "@/constants/deviceSize";
+const { tablet, laptop } = DEVICE;
 
 export const Wrapper = styled(Link)`
   position: relative;
@@ -16,26 +19,36 @@ export const Wrapper = styled(Link)`
 export const DiscountPercent = styled.div`
   position: absolute;
   top: 33px;
-  left: 60px;
+  left: 13%;
   height: 30px;
   width: 45px;
   padding: 2px;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 600;
   border-radius: 25px;
   background-color: ${(p) => p.theme.colors.accent};
   color: ${(p) => p.theme.colors.lightText};
+  @media screen and (min-width: 370px) {
+    top: 33px;
+    left: 60px;
+    height: 30px;
+    width: 45px;
+  }
+
+  @media ${laptop} {
+    font-size: 14px;
+  }
 `;
 
 export const Cart = styled.button`
   position: absolute;
-  width: 30px;
-  height: 30px;
-  left: 267px;
-  top: 12px;
+  width: 28px;
+  height: 28px;
+  left: 80%;
+  top: 85%;
   background-color: ${(p) => p.theme.colors.smoke};
   border-radius: 50%;
   outline: none;
@@ -50,6 +63,14 @@ export const Cart = styled.button`
   &:hover,
   &:focus {
     transform: scale(1.1);
+  }
+
+  @media screen and (min-width: 370px) {
+    left: 267px;
+
+    top: 12px;
+    width: 30px;
+    height: 30px;
   }
 
   svg {
@@ -67,22 +88,28 @@ export const ProductImage = styled(Image)`
 `;
 
 export const Article = styled.p`
-  font-size: 14px;
+  font-size: 12px;
   line-height: 1.23;
   color: ${(p) => p.theme.colors.greyText};
   margin-bottom: 6px;
+  @media ${laptop} {
+    font-size: 14px;
+  }
 `;
 
 export const ProductName = styled.p`
   font-weight: 500;
-  font-size: 16px;
+  font-size: 14px;
   line-height: 1.23;
   color: ${(p) => p.theme.colors.scndDarkText};
   margin-bottom: 10px;
+  @media ${laptop} {
+    font-size: 16px;
+  }
 `;
 
 export const ProductStatus = styled.p`
-  font-size: 15px;
+  font-size: 13px;
   line-height: 1.23;
   color: ${(p) => {
     switch (p.status) {
@@ -95,38 +122,49 @@ export const ProductStatus = styled.p`
     }
   }};
   margin-bottom: 6px;
+
+  @media ${laptop} {
+    font-size: 15px;
+  }
 `;
 
 export const Price = styled.p`
   font-weight: ${(p) => {
-    if (p.type === 'old') {
-      return '400';
+    if (p.type === "old") {
+      return "400";
     }
-    return '700';
+    return "700";
   }};
-  font-size: 17px;
+  font-size: 15px;
   line-height: 1.23;
   color: ${(p) => {
-    if (p.type === 'old') {
+    if (p.type === "old") {
       return p.theme.colors.greyText;
     }
     return p.theme.colors.darkText;
   }};
 
   text-decoration: ${(p) => {
-    if (p.type === 'old') {
-      return 'line-through';
+    if (p.type === "old") {
+      return "line-through";
     }
-    return 'none';
-  }}; ;
+    return "none";
+  }};
+
+  @media ${laptop} {
+    font-size: 17px;
+  }
 `;
 
 export const DiscountPrice = styled.p`
   margin-right: 20px;
   color: ${(p) => p.theme.colors.warning};
   font-weight: 700;
-  font-size: 17px;
+  font-size: 15px;
   line-height: 1.23;
+  @media ${laptop} {
+    font-size: 17px;
+  }
 `;
 export const DiscountWrap = styled.div`
   display: flex;
