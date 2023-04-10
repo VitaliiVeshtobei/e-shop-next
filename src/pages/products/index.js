@@ -23,7 +23,6 @@ function Products({ data, query }) {
   useEffect(() => {
     dispatch(getProductsByCategory(data));
   }, [data, dispatch]);
-
   return (
     <>
       <div style={{ marginBottom: '35px', marginTop: '-30px' }}>
