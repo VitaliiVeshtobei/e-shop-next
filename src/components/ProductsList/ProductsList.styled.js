@@ -13,6 +13,7 @@ export const Item = styled.li`
   border-radius: 20px;
   margin-right: 16px;
   margin-bottom: 24px;
+  max-height: 450px;
 
   transition: transform ${(p) => p.theme.transition}, box-shadow ${(p) => p.theme.transition};
   &:hover,

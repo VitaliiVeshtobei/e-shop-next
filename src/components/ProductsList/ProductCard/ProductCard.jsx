@@ -15,9 +15,22 @@ import {
   DiscountPercent,
 } from './ProductCard.styled';
 
-const ProductCard = ({ image, article, name, status, price, id, discount }) => {
+const ProductCard = ({ image, article, name, price, id, discount, presence }) => {
+  const renderSwitch = (param) => {
+    switch (param) {
+      case 'available':
+        return 'В наявності';
+      case 'not_available':
+        return 'Немає в наявності';
+      case 'waiting':
+        return 'Очікується';
+      default:
+        return '';
+    }
+  };
+
   return (
-    <Wrapper href={{ pathname: '/product-details' }}>
+    <Wrapper href={{ pathname: `/products/${id}` }}>
       <div>
         <Cart>
           <IoCartOutline />
@@ -39,7 +52,7 @@ const ProductCard = ({ image, article, name, status, price, id, discount }) => {
         <ProductName>{name}</ProductName>
       </div>
       <div>
-        <ProductStatus status={status}>{status ? 'В наявності' : 'Немає в наявності'}</ProductStatus>
+        <ProductStatus status={presence}>{renderSwitch(presence)}</ProductStatus>
         {discount ? (
           <DiscountWrap>
             <DiscountPrice>{price - discount.value} грн</DiscountPrice> <Price type="old">{price} грн </Price>

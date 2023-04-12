@@ -14,8 +14,8 @@ const ProductsList = ({ currentItems }) => {
               article={item.sku}
               name={item.name_multilang.uk}
               price={item.price}
-              status={item.in_stock}
               discount={item.discount}
+              presence={item.presence}
             />
           </Item>
         ))}
