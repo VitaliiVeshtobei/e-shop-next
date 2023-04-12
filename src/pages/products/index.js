@@ -12,7 +12,10 @@ import Pagination from '@/components/ProductsList/Pagination/Pagination';
 
 export async function getServerSideProps({ query }) {
   const category = query.category;
-  const response = await instance(`/products/${category ? `list?limit=500&group_id=${category}` : 'list?limit=500'}`);
+  const response =
+    category !== 'all'
+      ? await instance(`/products/${category ? `list?limit=500&group_id=${category}` : 'list?limit=500'}`)
+      : await instance(`/products/list?limit=500`);
   const data = response.data.products;
 
   return {
@@ -50,7 +53,7 @@ function Products({ data, query }) {
         <FilterByPrice />
       </div>
       <div style={{ gap: ' 16px', display: 'flex' }}>
-        <FilterBar />
+        <FilterBar data={data} />
         <ProductsList currentItems={currentItems} />
       </div>
       <Pagination

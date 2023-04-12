@@ -9,7 +9,6 @@ export const Navigation = () => {
   const router = useRouter();
 
   const name = navigation.find((item) => item.path === router.pathname);
-
   return (
     <Container>
       <LinkStyled href={'/'}>Головна</LinkStyled>

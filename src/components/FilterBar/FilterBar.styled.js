@@ -53,15 +53,6 @@ export const Button = styled.button`
   }
 `;
 
-export const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-  padding-top: 20px;
-  padding-bottom: 20px;
-  border-bottom: 1px solid #b6b6b6;
-`;
-
 export const InputContainer = styled.input`
   &[type='radio'] {
     position: absolute;
@@ -128,7 +119,25 @@ export const Label = styled.label`
   }
 `;
 
-export const Item = styled.div`
+export const Container = styled.ul`
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #b6b6b6;
+`;
+
+export const ContainerPrice = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #b6b6b6;
+`;
+
+export const Item = styled.li`
   position: relative;
   display: flex;
   align-items: center;
