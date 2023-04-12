@@ -9,25 +9,12 @@ export const Navigation = () => {
   const router = useRouter();
 
   const name = navigation.find((item) => item.path === router.pathname);
-
-  const handleClick = () => {
-    if (name.path === '/products') {
-      return router.push({
-        pathname: '/products',
-        query: { category: 'all' },
-      });
-    }
-    router.push({
-      pathname: router.pathname,
-    });
-  };
-
   return (
     <Container>
       <LinkStyled href={'/'}>Головна</LinkStyled>
 
       <IoIosArrowForward />
-      <LinkStyled onClick={handleClick}>{name ? name.category : 'Корзина'}</LinkStyled>
+      <LinkStyled href={router.pathname}>{name ? name.category : 'Корзина'}</LinkStyled>
     </Container>
   );
 };
