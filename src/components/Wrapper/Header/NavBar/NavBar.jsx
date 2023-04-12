@@ -55,16 +55,19 @@ const NavBar = () => {
             Меню
           </ButtonCategories>
           <ListContainer>
-            {navigation.map((item) => (
-              <ItemContainer key={item.id}>
-                <LinkStyled
-                  href={item.path}
-                  path={path}
-                >
-                  {item.category}
-                </LinkStyled>
-              </ItemContainer>
-            ))}
+            {navigation.map((item) => {
+              const query = item.path === '/products' ? 'category=all' : '';
+              return (
+                <ItemContainer key={item.id}>
+                  <LinkStyled
+                    href={{ pathname: item.path, query }}
+                    path={path}
+                  >
+                    {item.category}
+                  </LinkStyled>
+                </ItemContainer>
+              );
+            })}
           </ListContainer>
         </Container>
         {showCategories && (

@@ -40,16 +40,19 @@ const Footer = () => {
         <CategoriesContainer>
           <TitleCategories>Карта сайту</TitleCategories>
           <ListCategories>
-            {navigation.map((item) => (
-              <CategoriesItem key={item.id}>
-                <CategoriesLink
-                  href={item.path}
-                  path={path}
-                >
-                  {item.category}
-                </CategoriesLink>
-              </CategoriesItem>
-            ))}
+            {navigation.map((item) => {
+              const query = item.path === '/products' ? 'category=all' : '';
+              return (
+                <CategoriesItem key={item.id}>
+                  <CategoriesLink
+                    href={{ pathname: item.path, query }}
+                    path={path}
+                  >
+                    {item.category}
+                  </CategoriesLink>
+                </CategoriesItem>
+              );
+            })}
           </ListCategories>
         </CategoriesContainer>
 
