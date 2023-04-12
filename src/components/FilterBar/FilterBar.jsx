@@ -17,7 +17,6 @@ import {
 import { useEffect, useState } from 'react';
 import { PriceInput } from './PriceInput/PriceInput';
 import { useRouter } from 'next/router';
-import Link from 'next/link';
 
 export const FilterBar = ({ data }) => {
   const router = useRouter();
@@ -151,20 +150,18 @@ export const FilterBar = ({ data }) => {
           categories.map(({ name_multilang, id }) => {
             return (
               <Item key={name_multilang.uk}>
-                <Link href="#">
-                  <InputContainer
-                    name="categories"
-                    id={id}
-                    style={{ marginRight: '12px' }}
-                    type="radio"
-                    value={name_multilang.uk}
-                    checked={selectedCategory === id}
-                    onChange={hendleClickCategories}
-                    onClick={hendleClickCategories}
-                  />
-                  <Label htmlFor={id}>{name_multilang.uk}</Label>
-                  <Icon onClick={() => hendleClickIcon(id)} />
-                </Link>
+                <InputContainer
+                  name="categories"
+                  id={id}
+                  style={{ marginRight: '12px' }}
+                  type="radio"
+                  value={name_multilang.uk}
+                  checked={selectedCategory === id}
+                  onChange={hendleClickCategories}
+                  onClick={hendleClickCategories}
+                />
+                <Label htmlFor={id}>{name_multilang.uk}</Label>
+                <Icon onClick={() => hendleClickIcon(id)} />
               </Item>
             );
           })}
