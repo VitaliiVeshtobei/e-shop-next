@@ -1,10 +1,27 @@
 import Image from 'next/image';
 import React, { useState } from 'react';
 import { AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai';
-import { Container, Price, ProductContainer, Quantity, QuantityContainer, Sum } from './CartProduct.styled';
+import {
+  Container,
+  MinusBtn,
+  PlusBtn,
+  Price,
+  ProductContainer,
+  Quantity,
+  QuantityContainer,
+  Sum,
+} from './CartProduct.styled';
 
 export const CartProduct = ({ product }) => {
   const [quantity, setQuantity] = useState(1);
+  const handlePlus = () => {
+    setQuantity((prev) => prev + 1);
+  };
+  const handleMinus = () => {
+    if (quantity > 1) {
+      setQuantity((prev) => prev - 1);
+    }
+  };
   return (
     <Container>
       <ProductContainer>
@@ -18,11 +35,22 @@ export const CartProduct = ({ product }) => {
       </ProductContainer>
       <Price>{`${product.price} ₴`}</Price>
       <QuantityContainer>
-        <AiOutlineMinus />
+        <MinusBtn
+          type="button"
+          onClick={handleMinus}
+          quantity={quantity}
+        >
+          <AiOutlineMinus />
+        </MinusBtn>
 
         <Quantity>{quantity}</Quantity>
 
-        <AiOutlinePlus />
+        <PlusBtn
+          type="button"
+          onClick={handlePlus}
+        >
+          <AiOutlinePlus />
+        </PlusBtn>
       </QuantityContainer>
       <Sum>{`${quantity * product.price} ₴`}</Sum>
     </Container>

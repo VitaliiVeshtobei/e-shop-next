@@ -7,7 +7,10 @@ export const ListStyled = styled('ul')`
   height: 60px;
   background-color: ${(p) => p.theme.colors.accentBg};
   color: ${(p) => p.theme.colors.lightText};
-  li {
-    flex-basis: 25%;
+  li:first-child {
+    flex-basis: 40%;
+  }
+  li:not(:first-child) {
+    flex-basis: 20%;
   }
 `;
