@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Container = styled('div')`
-  max-width: 870px;
+  width: 870px;
 `;
 export const ListProducts = styled('ul')``;
 export const ProductItem = styled('li')`

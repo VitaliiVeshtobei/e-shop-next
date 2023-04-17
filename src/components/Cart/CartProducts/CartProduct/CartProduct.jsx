@@ -15,6 +15,7 @@ import {
 
 export const CartProduct = ({ product }) => {
   const [quantity, setQuantity] = useState(1);
+
   const handlePlus = () => {
     setQuantity((prev) => prev + 1);
   };

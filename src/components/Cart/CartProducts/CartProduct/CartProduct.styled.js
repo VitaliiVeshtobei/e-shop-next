@@ -23,10 +23,12 @@ export const ProductContainer = styled('div')`
   p {
     margin: auto 0;
     font-size: 13px;
+    color: ${(p) => p.theme.colors.accentBg};
   }
 `;
 export const Price = styled('p')`
   flex-basis: 20%;
+  color: #2f2f2f;
 `;
 export const QuantityContainer = styled('div')`
   display: flex;
@@ -40,9 +42,11 @@ export const Quantity = styled('div')`
   padding: 10px 20px;
   border: 1px solid #c3c3c3;
   border-radius: 10px;
+  color: #2f2f2f;
 `;
 export const Sum = styled('p')`
   flex-basis: 20%;
+  color: #2f2f2f;
 `;
 export const CloseContainer = styled('div')`
   position: absolute;

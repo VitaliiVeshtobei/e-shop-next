@@ -8,7 +8,7 @@ import { CartBtns } from './CartBtns/CartBtns';
 
 export const CartProducts = () => {
   const products = useSelector(selectProductsByCategory);
-  console.log(products);
+
   return (
     <Container>
       <HeaderList />
