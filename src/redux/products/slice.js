@@ -1,6 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { getCartLocal, removeProductFromCartLocal, setCartLocal } from '@/localStorage/localStorage';
 
-const initialState = { categories: [], productsByCategory: [] };
+const initialState = {
+  categories: [],
+  productsByCategory: [],
+  cart: getCartLocal() ?? [],
+};
 
 const productsSlice = createSlice({
   name: 'products',
@@ -23,8 +28,28 @@ const productsSlice = createSlice({
     getProductsByCategory(state, action) {
       state.productsByCategory = action.payload;
     },
+    addCart(state, action) {
+      const index = state.cart.findIndex((item) => item.id === action.payload.id);
+      if (index < 0) {
+        state.cart.push(action.payload);
+        setCartLocal(action.payload);
+        return;
+      }
+      state.cart.splice(index, 1);
+      removeProductFromCartLocal(index);
+    },
+    // deleteCart(state, action) {
+    //   const index = state.cart.findIndex((item) => item.id === action.payload.id);
+    //   if (index < 0) {
+    //     state.cart.push(action.payload);
+    //     setCartLocal(action.payload);
+    //     return;
+    //   }
+    //   state.cart.splice(index, 1);
+    //   removeProductFromCartLocal(index);
+    // },
   },
 });
 
 export const productsReducer = productsSlice.reducer;
-export const { getCategories, getProductsByCategory } = productsSlice.actions;
+export const { getCategories, getProductsByCategory, addCart } = productsSlice.actions;

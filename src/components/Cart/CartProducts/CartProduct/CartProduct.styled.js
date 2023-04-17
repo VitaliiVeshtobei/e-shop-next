@@ -48,13 +48,14 @@ export const Sum = styled('p')`
   flex-basis: 20%;
   color: #2f2f2f;
 `;
-export const CloseContainer = styled('div')`
+export const CloseBtn = styled('button')`
   position: absolute;
   display: flex;
   align-items: center;
   right: 10px;
   cursor: pointer;
-
+  border: none;
+  background: none;
   svg {
     height: 24px;
     width: 24px;

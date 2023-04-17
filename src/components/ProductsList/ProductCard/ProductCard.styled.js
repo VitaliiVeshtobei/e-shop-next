@@ -1,8 +1,8 @@
-import styled from "styled-components";
-import Link from "next/link";
-import Image from "next/image";
+import styled from 'styled-components';
+import Link from 'next/link';
+import Image from 'next/image';
 
-import DEVICE from "@/constants/deviceSize";
+import DEVICE from '@/constants/deviceSize';
 const { tablet, laptop } = DEVICE;
 
 export const Wrapper = styled(Link)`
@@ -49,7 +49,7 @@ export const Cart = styled.button`
   height: 28px;
   left: 80%;
   top: 85%;
-  background-color: ${(p) => p.theme.colors.smoke};
+  background-color: ${(p) => (p.inCart ? p.theme.colors.accent : p.theme.colors.smoke)};
   border-radius: 50%;
   outline: none;
   border: none;
@@ -130,25 +130,25 @@ export const ProductStatus = styled.p`
 
 export const Price = styled.p`
   font-weight: ${(p) => {
-    if (p.type === "old") {
-      return "400";
+    if (p.type === 'old') {
+      return '400';
     }
-    return "700";
+    return '700';
   }};
   font-size: 15px;
   line-height: 1.23;
   color: ${(p) => {
-    if (p.type === "old") {
+    if (p.type === 'old') {
       return p.theme.colors.greyText;
     }
     return p.theme.colors.darkText;
   }};
 
   text-decoration: ${(p) => {
-    if (p.type === "old") {
-      return "line-through";
+    if (p.type === 'old') {
+      return 'line-through';
     }
-    return "none";
+    return 'none';
   }};
 
   @media ${laptop} {

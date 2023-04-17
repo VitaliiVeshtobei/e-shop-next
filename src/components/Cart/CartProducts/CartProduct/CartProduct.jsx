@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import React, { useState } from 'react';
-import { AiOutlineMinus, AiOutlinePlus, AiOutlineCloseCircle } from 'react-icons/ai';
+import { AiOutlineMinus, AiOutlinePlus, AiOutlineDelete } from 'react-icons/ai';
+
 import {
   Container,
   MinusBtn,
@@ -10,11 +11,19 @@ import {
   Quantity,
   QuantityContainer,
   Sum,
-  CloseContainer,
+  CloseBtn,
 } from './CartProduct.styled';
+import { useDispatch } from 'react-redux';
+import { addCart } from '@/redux/products/slice';
 
 export const CartProduct = ({ product }) => {
   const [quantity, setQuantity] = useState(1);
+
+  const dispatch = useDispatch();
+
+  const handleDelete = (product) => {
+    dispatch(addCart(product));
+  };
 
   const handlePlus = () => {
     setQuantity((prev) => prev + 1);
@@ -28,7 +37,7 @@ export const CartProduct = ({ product }) => {
     <Container>
       <ProductContainer>
         <Image
-          src={product.main_image}
+          src={product.image}
           alt={product.name}
           width={140}
           height={120}
@@ -55,9 +64,9 @@ export const CartProduct = ({ product }) => {
         </PlusBtn>
       </QuantityContainer>
       <Sum>{`${quantity * product.price} ₴`}</Sum>
-      <CloseContainer>
-        <AiOutlineCloseCircle />
-      </CloseContainer>
+      <CloseBtn onClick={() => handleDelete(product)}>
+        <AiOutlineDelete />
+      </CloseBtn>
     </Container>
   );
 };

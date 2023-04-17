@@ -8,6 +8,7 @@ export const List = styled.ul`
 `;
 
 export const Item = styled.li`
+  position: relative;
   width: 310px;
   border: 1px solid ${(p) => p.theme.colors.border};
   border-radius: 20px;
