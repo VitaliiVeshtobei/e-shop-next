@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import React, { useState } from 'react';
-import { AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai';
+import { AiOutlineMinus, AiOutlinePlus, AiOutlineCloseCircle } from 'react-icons/ai';
 import {
   Container,
   MinusBtn,
@@ -10,6 +10,7 @@ import {
   Quantity,
   QuantityContainer,
   Sum,
+  CloseContainer,
 } from './CartProduct.styled';
 
 export const CartProduct = ({ product }) => {
@@ -53,6 +54,9 @@ export const CartProduct = ({ product }) => {
         </PlusBtn>
       </QuantityContainer>
       <Sum>{`${quantity * product.price} ₴`}</Sum>
+      <CloseContainer>
+        <AiOutlineCloseCircle />
+      </CloseContainer>
     </Container>
   );
 };

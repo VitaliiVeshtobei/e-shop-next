@@ -4,6 +4,7 @@ import { HeaderList } from './HeaderList/HeaderList';
 import { selectProductsByCategory } from '@/redux/products/selectors';
 import { CartProduct } from './CartProduct/CartProduct';
 import { Container, ProductItem } from './CartProducts.styled';
+import { CartBtns } from './CartBtns/CartBtns';
 
 export const CartProducts = () => {
   const products = useSelector(selectProductsByCategory);
@@ -20,6 +21,7 @@ export const CartProducts = () => {
           );
         })}
       </ul>
+      <CartBtns />
     </Container>
   );
 };

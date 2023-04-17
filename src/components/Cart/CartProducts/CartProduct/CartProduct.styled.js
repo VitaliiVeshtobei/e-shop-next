@@ -44,8 +44,24 @@ export const Quantity = styled('div')`
 export const Sum = styled('p')`
   flex-basis: 20%;
 `;
+export const CloseContainer = styled('div')`
+  position: absolute;
+  display: flex;
+  align-items: center;
+  right: 10px;
+  cursor: pointer;
+
+  svg {
+    height: 24px;
+    width: 24px;
+    fill: #d2d2d2;
+    transition: fill ${(p) => p.theme.transition};
+    &:hover {
+      fill: #3e77aa;
+    }
+  }
+`;
 export const PlusBtn = styled('button')`
-  width: 40px;
   cursor: pointer;
   border: none;
   background: none;
