@@ -12,7 +12,10 @@ import Pagination from '@/components/ProductsList/Pagination/Pagination';
 
 export async function getServerSideProps({ query }) {
   const category = query.category;
-  const response = await instance(`/products/${category ? `list?limit=500&group_id=${category}` : 'list?limit=500'}`);
+  const response =
+    category !== 'all'
+      ? await instance(`/products/${category ? `list?limit=500&group_id=${category}` : 'list?limit=500'}`)
+      : await instance(`/products/list?limit=500`);
   const data = response.data.products;
 
   return {
@@ -22,19 +25,23 @@ export async function getServerSideProps({ query }) {
 
 function Products({ data, query }) {
   const [itemOffset, setItemOffset] = useState(0);
+  const [currentPage, setCurrentPage] = useState(0);
 
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getProductsByCategory(data));
-    // setItemOffset(0);
+    setCurrentPage(0);
+    setItemOffset(0);
   }, [data, dispatch]);
 
   const products = useSelector(selectProductsByCategory);
-  const itemsPerPage = 20;
+  const itemsPerPage = 6;
   const endOffset = itemOffset + itemsPerPage;
   const currentItems = products.slice(itemOffset, endOffset);
   const pageCount = Math.ceil(products.length / itemsPerPage);
+
   const handlePageClick = (event) => {
+    setCurrentPage(event.selected);
     const newOffset = (event.selected * itemsPerPage) % products.length;
     setItemOffset(newOffset);
     window.scrollTo({
@@ -50,12 +57,13 @@ function Products({ data, query }) {
         <FilterByPrice />
       </div>
       <div style={{ gap: ' 16px', display: 'flex' }}>
-        <FilterBar />
+        <FilterBar data={data} />
         <ProductsList currentItems={currentItems} />
       </div>
       <Pagination
         pageCount={pageCount}
         handlePageClick={handlePageClick}
+        currentPage={currentPage}
       />
     </>
   );

@@ -1,6 +1,6 @@
 import { PaginationStyled } from './Pagination.styled';
 
-const Pagination = ({ pageCount, handlePageClick }) => {
+const Pagination = ({ pageCount, handlePageClick, currentPage }) => {
   return (
     <>
       {pageCount > 1 && (
@@ -12,7 +12,7 @@ const Pagination = ({ pageCount, handlePageClick }) => {
           pageCount={pageCount}
           previousLabel="<"
           renderOnZeroPageCount={null}
-          // initialPage={0}
+          forcePage={currentPage}
         />
       )}
     </>

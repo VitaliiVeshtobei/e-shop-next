@@ -1,7 +1,8 @@
 import React from 'react';
+import CartWrapper from '@/components/Cart/CartWrapper';
 
 const Cart = () => {
-  return <div>Cart</div>;
+  return <CartWrapper />;
 };
 
 export default Cart;

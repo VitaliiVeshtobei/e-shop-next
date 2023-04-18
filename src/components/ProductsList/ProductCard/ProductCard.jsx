@@ -14,6 +14,11 @@ import {
   DiscountWrap,
   DiscountPercent,
 } from './ProductCard.styled';
+import { useDispatch } from 'react-redux';
+import { addCart } from '@/redux/products/slice';
+import { useEffect, useState } from 'react';
+import { getCartLocal } from '@/localStorage/localStorage';
+
 
 const ProductCard = ({ image, article, name, price, id, discount, presence }) => {
   const renderSwitch = (param) => {
@@ -28,13 +33,30 @@ const ProductCard = ({ image, article, name, price, id, discount, presence }) =>
         return '';
     }
   };
+  const [inCart, setInCart] = useState(false);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const cartLocal = getCartLocal();
+    if (!cartLocal) return;
+    const productInCart = cartLocal.find((product) => product.id === id);
+    if (productInCart) {
+      setInCart(true);
+    }
+  }, [id]);
+
+  const cartClick = () => {
+    const priceProduct = discount ? price - discount.value : price;
+    dispatch(addCart({ image, name, price: priceProduct, id }));
+    setInCart((prev) => !prev);
+  };
 
   return (
+  <>
     <Wrapper href={{ pathname: `/products/${id}` }}>
       <div>
-        <Cart>
-          <IoCartOutline />
-        </Cart>
+        
 
         {discount && (
           <DiscountPercent>
@@ -62,6 +84,14 @@ const ProductCard = ({ image, article, name, price, id, discount, presence }) =>
         )}
       </div>
     </Wrapper>
+    <Cart
+        onClick={cartClick}
+        inCart={inCart}
+      >
+        <IoCartOutline />
+      </Cart>
+     </>
+
   );
 };
 

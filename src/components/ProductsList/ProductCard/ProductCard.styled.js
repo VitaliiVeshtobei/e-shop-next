@@ -49,7 +49,7 @@ export const Cart = styled.button`
   height: 28px;
   left: 80%;
   top: 85%;
-  background-color: ${(p) => p.theme.colors.smoke};
+  background-color: ${(p) => (p.inCart ? p.theme.colors.accent : p.theme.colors.smoke)};
   border-radius: 50%;
   outline: none;
   border: none;
