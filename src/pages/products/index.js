@@ -36,7 +36,7 @@ function Products({ data, query }) {
   }, [data, dispatch]);
 
   const products = useSelector(selectProductsByCategory);
-  const itemsPerPage = 6;
+  const itemsPerPage = 20;
   const endOffset = itemOffset + itemsPerPage;
 
   const currentItems = products.slice(itemOffset, endOffset);
