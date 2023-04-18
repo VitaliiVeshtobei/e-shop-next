@@ -34,10 +34,11 @@ export const FilterByPrice = () => {
     setActiveNewestBtn(true);
     setActiveCheapBtn(false);
     setActiveExpensiveBtn(false);
-    // const newest = [...products].sort(
-    //   (a, b) => b.date_modified.toLocaleDateString() - a.date_modified.toLocaleDateString()
-    // );
-    // dispatch(getProductsByCategory(newest));
+
+    const newest = [...products].sort(
+      (a, b) => new Date(b.date_modified).getTime() - new Date(a.date_modified).getTime()
+    );
+    dispatch(getProductsByCategory(newest));
   };
   return (
     <Container>
