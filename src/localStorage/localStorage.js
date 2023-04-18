@@ -2,6 +2,10 @@ export const getCartLocal = () => {
   const localCart = typeof window !== 'undefined' ? window.localStorage.getItem('cart') : false;
   return JSON.parse(localCart);
 };
+export const getCategoriesLocal = () => {
+  const localCategories = typeof window !== 'undefined' ? window.localStorage.getItem('categories') : false;
+  return JSON.parse(localCategories);
+};
 export const setCartLocal = (product) => {
   const localCart = getCartLocal();
   if (!localCart) {
