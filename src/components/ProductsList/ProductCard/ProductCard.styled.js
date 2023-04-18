@@ -113,10 +113,12 @@ export const ProductStatus = styled.p`
   line-height: 1.23;
   color: ${(p) => {
     switch (p.status) {
-      case true:
+      case 'available':
         return p.theme.colors.available;
-      case false:
+      case 'not_available':
         return p.theme.colors.corrasion;
+      case 'waiting':
+        return p.theme.colors.waiting;
       default:
         return p.theme.colors.greyText;
     }

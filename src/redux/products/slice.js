@@ -7,11 +7,14 @@ import {
   setCartLocal,
 } from '@/localStorage/localStorage';
 
+
 const initialState = {
   categories: [],
   productsByCategory: [],
   cart: getCartLocal() ?? [],
+  productInfo: {} 
 };
+
 
 const productsSlice = createSlice({
   name: 'products',
@@ -34,6 +37,10 @@ const productsSlice = createSlice({
     getProductsByCategory(state, action) {
       state.productsByCategory = action.payload;
     },
+
+    getProductInfo(state, action) {
+      state.productInfo = action.payload;
+},
     addCart(state, action) {
       const index = state.cart.findIndex((item) => item.id === action.payload.id);
       if (index < 0) {
@@ -68,5 +75,8 @@ const productsSlice = createSlice({
 });
 
 export const productsReducer = productsSlice.reducer;
-export const { getCategories, getProductsByCategory, addCart, resetCart, quantityCartPlus, quantityCartMinus } =
+
+
+export const { getCategories, getProductsByCategory, addCart, resetCart, quantityCartPlus, quantityCartMinus,getProductInfo  } =
   productsSlice.actions;
+
