@@ -19,3 +19,11 @@ export const removeProductFromCartLocal = (index) => {
   localCart.splice(index, 1);
   localStorage.setItem('cart', JSON.stringify(localCart));
 };
+
+export const resetCartLocal = () => {
+  localStorage.removeItem('cart');
+};
+
+export const quantityLocal = (cart) => {
+  localStorage.setItem('cart', JSON.stringify(cart));
+};

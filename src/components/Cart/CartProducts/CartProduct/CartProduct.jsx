@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { AiOutlineMinus, AiOutlinePlus, AiOutlineDelete } from 'react-icons/ai';
 
 import {
@@ -14,10 +14,16 @@ import {
   CloseBtn,
 } from './CartProduct.styled';
 import { useDispatch } from 'react-redux';
-import { addCart } from '@/redux/products/slice';
+import { addCart, quantityCartMinus, quantityCartPlus } from '@/redux/products/slice';
 
 export const CartProduct = ({ product }) => {
   const [quantity, setQuantity] = useState(1);
+
+  useEffect(() => {
+    if (product.quantity) {
+      setQuantity(product.quantity);
+    }
+  }, [product.quantity]);
 
   const dispatch = useDispatch();
 
@@ -27,10 +33,12 @@ export const CartProduct = ({ product }) => {
 
   const handlePlus = () => {
     setQuantity((prev) => prev + 1);
+    dispatch(quantityCartPlus(product));
   };
   const handleMinus = () => {
     if (quantity > 1) {
       setQuantity((prev) => prev - 1);
+      dispatch(quantityCartMinus(product));
     }
   };
   return (

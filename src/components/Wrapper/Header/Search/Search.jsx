@@ -11,6 +11,7 @@ import {
   LinkStyled,
   CartCount,
   LogoContainer,
+  IconContainer,
 } from './SearchStyled';
 import logo from '../../../../../public/images/logo 1.png';
 import { useSelector } from 'react-redux';
@@ -43,9 +44,11 @@ const Search = () => {
       </FormStyled>
       <CartContainer>
         <LinkStyled href={'/cart'}>
-          <IoCartOutline style={{ color: 'white', height: 24, width: 24 }} />
-          <CartCount>{quantity}</CartCount>
-          <span>Корзина</span>
+          <IconContainer>
+            <IoCartOutline />
+            <CartCount quantity={quantity}>{quantity}</CartCount>
+          </IconContainer>
+          <p>Корзина</p>
         </LinkStyled>
       </CartContainer>
     </Container>
