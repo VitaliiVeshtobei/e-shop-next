@@ -94,6 +94,11 @@ export const LinkStyled = styled(Link)`
   align-items: center;
   color: ${(p) => p.theme.colors.lightText};
   position: relative;
+  svg {
+    color: 'white';
+    height: 24px;
+    width: 24px;
+  }
 
   &::after {
     content: '';
@@ -124,6 +129,7 @@ export const LinkStyled = styled(Link)`
 `;
 
 export const CartCount = styled.div`
+  display: ${(p) => (!p.quantity ? 'none' : 'flex')};
   border-radius: 50%;
   background-color: ${(p) => p.theme.colors.accent};
   color: ${(p) => p.theme.colors.lightText};
@@ -131,8 +137,12 @@ export const CartCount = styled.div`
   height: 18px;
   font-size: 11px;
   font-weight: 600;
-  display: flex;
+
   justify-content: center;
+  align-items: center;
+`;
+export const IconContainer = styled.div`
+  display: flex;
   align-items: center;
   margin-right: 12px;
 `;
