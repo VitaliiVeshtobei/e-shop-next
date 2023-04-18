@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { useSelector } from 'react-redux';
 import { selectCategories } from '../../../../redux/products/selectors';
@@ -10,14 +10,15 @@ import { ButtonCategories, Container, ListContainer, ItemContainer, LinkStyled }
 const NavBar = () => {
   const [showCategories, setShowCategories] = useState(false);
   const [nameButton, setNameButton] = useState(null);
+  const [categories, setCategories] = useState([]);
 
   const router = useRouter();
   const path = router.asPath;
 
   const data = useSelector(selectCategories);
-  const localCategories = typeof window !== 'undefined' ? window.localStorage.getItem('categories') : false;
-
-  const categories = data.length ? data : JSON.parse(localCategories) ?? [];
+  useEffect(() => {
+    setCategories(data);
+  }, [data]);
 
   const handleClick = (e) => {
     if (!e) {
