@@ -25,19 +25,23 @@ export async function getServerSideProps({ query }) {
 
 function Products({ data, query }) {
   const [itemOffset, setItemOffset] = useState(0);
+  const [currentPage, setCurrentPage] = useState(0);
 
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getProductsByCategory(data));
-    // setItemOffset(0);
+    setCurrentPage(0);
+    setItemOffset(0);
   }, [data, dispatch]);
 
   const products = useSelector(selectProductsByCategory);
-  const itemsPerPage = 20;
+  const itemsPerPage = 6;
   const endOffset = itemOffset + itemsPerPage;
   const currentItems = products.slice(itemOffset, endOffset);
   const pageCount = Math.ceil(products.length / itemsPerPage);
+
   const handlePageClick = (event) => {
+    setCurrentPage(event.selected);
     const newOffset = (event.selected * itemsPerPage) % products.length;
     setItemOffset(newOffset);
     window.scrollTo({
@@ -59,6 +63,7 @@ function Products({ data, query }) {
       <Pagination
         pageCount={pageCount}
         handlePageClick={handlePageClick}
+        currentPage={currentPage}
       />
     </>
   );
