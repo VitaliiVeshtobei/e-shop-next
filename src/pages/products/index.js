@@ -17,9 +17,10 @@ export async function getServerSideProps({ query }) {
       ? await instance(`/products/${category ? `list?limit=500&group_id=${category}` : 'list?limit=500'}`)
       : await instance(`/products/list?limit=500`);
   const data = response.data.products;
+  const newest = data.sort((a, b) => new Date(b.date_modified).getTime() - new Date(a.date_modified).getTime());
 
   return {
-    props: { data, query },
+    props: { data: newest, query },
   };
 }
 
@@ -52,6 +53,7 @@ function Products({ data, query }) {
 
   const itemsPerPage = 6;
   const endOffset = itemOffset + itemsPerPage;
+
   const currentItems = listProducts.slice(itemOffset, endOffset);
   const pageCount = Math.ceil(listProducts.length / itemsPerPage);
 
