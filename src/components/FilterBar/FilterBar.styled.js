@@ -54,6 +54,7 @@ export const Button = styled.button`
 `;
 
 export const InputContainer = styled.input`
+  margin-right: 12px;
   &[type='radio'] {
     position: absolute;
     width: 1px;
@@ -145,4 +146,6 @@ export const Item = styled.li`
   height: 26px;
   cursor: pointer;
   transition: transform ${(p) => p.theme.transition};
+
+  ${(p) => (p.disabled ? `pointer-events: none;` : '')}
 `;

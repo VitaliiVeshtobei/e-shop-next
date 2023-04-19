@@ -16,18 +16,25 @@ import {
   WrapperPrice,
 } from './PriceInput.styled';
 
-export const PriceInput = () => {
+export const PriceInput = ({ data, fnFilter, min, max }) => {
+  const [sliderValueMax, setSliderValueMax] = useState(10000);
+
   const [sliderValue, setSliderValue] = useState([2500, 7500]);
+
+  useEffect(() => {
+    setSliderValue([+min, +max]);
+    setSliderValueMax(max + (max / 10) * 3);
+  }, [data, max, min, setSliderValue]);
 
   const handleSliderChange = (event) => {
     const { name, value } = event.target;
     let number = value;
-    let priceGap = 1000;
+    let priceGap = 500;
     if (number === '') {
       number = '0';
     }
     const intValue = parseInt(number);
-    if (/^\d*$/.test(number) && intValue >= 0 && intValue <= 10000) {
+    if (/^\d*$/.test(number) && intValue >= 0 && intValue <= sliderValueMax) {
       const otherValue = name === 'min' ? sliderValue[1] : sliderValue[0];
       const difference = Math.abs(otherValue - intValue);
       if (difference >= priceGap) {
@@ -55,7 +62,8 @@ export const PriceInput = () => {
   };
 
   const resetPrice = () => {
-    setSliderValue([2500, 7500]);
+    setSliderValue([min, max]);
+    fnFilter([min, max]);
   };
 
   useEffect(() => {
@@ -69,7 +77,7 @@ export const PriceInput = () => {
     const rangeInputs = document.querySelectorAll('.range-input input');
     const progress = document.querySelector('.progress');
 
-    let priceGap = 1000;
+    let priceGap = 500;
     rangeInputs.forEach((input) => {
       input.addEventListener('input', (e) => {
         let minVal = parseInt(sliderValue[0]);
@@ -80,6 +88,10 @@ export const PriceInput = () => {
       });
     });
   }, [sliderValue]);
+
+  const reconfirm = () => {
+    fnFilter(sliderValue);
+  };
 
   return (
     <ContainerInput>
@@ -111,7 +123,12 @@ export const PriceInput = () => {
           />
         </Field>
 
-        <Button type="button">OK</Button>
+        <Button
+          type="button"
+          onClick={reconfirm}
+        >
+          OK
+        </Button>
       </Wrapper>
       <Slider>
         <Progress className="progress" />
@@ -122,7 +139,7 @@ export const PriceInput = () => {
           type="range"
           name="min"
           min="0"
-          max="10000"
+          max={sliderValueMax}
           value={sliderValue[0]}
           onChange={handleSliderChange}
         />
@@ -130,7 +147,7 @@ export const PriceInput = () => {
           type="range"
           name="max"
           min="0"
-          max="10000"
+          max={sliderValueMax}
           value={sliderValue[1]}
           onChange={handleSliderChange}
         />
