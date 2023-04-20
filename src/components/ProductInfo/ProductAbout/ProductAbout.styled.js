@@ -49,13 +49,13 @@ export const Price = styled.p`
     }
     return 'none';
   }};
-  margin-bottom: 10px;
+  margin-bottom: 16px;
 `;
 export const Status = styled.p`
   display: flex;
   align-items: center;
   font-weight: 500;
-  font-size: 18px;
+  font-size: 16px;
   line-height: 1.27;
   margin-bottom: 32px;
   color: ${(p) => {
@@ -99,15 +99,27 @@ export const Text = styled.p`
 
 export const Btn = styled.button`
   cursor: pointer;
-  background-color: ${(p) => p.theme.colors.accent};
+  background-color: ${(p) => {
+    if (p.inStock !== 'available') {
+      return p.theme.colors.unactive;
+    }
+    switch (p.inCart) {
+      case true:
+        return p.theme.colors.available;
+      case false:
+        return p.theme.colors.accent;
+      default:
+        return p.theme.colors.accent;
+    }
+  }};
   color: ${(p) => p.theme.colors.lightText};
-  height: 65px;
-  width: 190px;
+  height: 55px;
+  width: 150px;
   border-radius: 32px;
   border: none;
 
   font-weight: 600;
-  font-size: 20px;
+  font-size: 18px;
   line-height: 1.22;
 
   margin-bottom: 65px;
@@ -118,9 +130,18 @@ export const Btn = styled.button`
     margin-right: 30px;
   }
 
-  &:hover,
-  &:focus {
-    box-shadow: 0px 3px 26px -1px ${(p) => p.theme.colors.darkHover};
-    transform: scale(1.05);
+  &:hover {
+    box-shadow: ${(p) => {
+      if (p.inStock !== 'available') {
+        return;
+      }
+      return `0px 3px 26px -1px ${p.theme.colors.darkHover}`;
+    }};
+    transform: ${(p) => {
+      if (p.inStock !== 'available') {
+        return;
+      }
+      return `scale(1.05)`;
+    }};
   }
 `;
