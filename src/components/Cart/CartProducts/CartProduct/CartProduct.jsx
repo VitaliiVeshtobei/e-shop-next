@@ -12,6 +12,7 @@ import {
   QuantityContainer,
   Sum,
   CloseBtn,
+  PriceContainer,
 } from './CartProduct.styled';
 import { useDispatch } from 'react-redux';
 import { addCart, quantityCartMinus, quantityCartPlus } from '@/redux/products/slice';
@@ -52,29 +53,31 @@ export const CartProduct = ({ product }) => {
         />
         <p>{product.name}</p>
       </ProductContainer>
-      <Price>{`${product.price} ₴`}</Price>
-      <QuantityContainer>
-        <MinusBtn
-          type="button"
-          onClick={handleMinus}
-          quantity={quantity}
-        >
-          <AiOutlineMinus />
-        </MinusBtn>
+      <PriceContainer>
+        <Price>{`${product.price} ₴`}</Price>
+        <QuantityContainer>
+          <MinusBtn
+            type="button"
+            onClick={handleMinus}
+            quantity={quantity}
+          >
+            <AiOutlineMinus />
+          </MinusBtn>
 
-        <Quantity>{quantity}</Quantity>
+          <Quantity>{quantity}</Quantity>
 
-        <PlusBtn
-          type="button"
-          onClick={handlePlus}
-        >
-          <AiOutlinePlus />
-        </PlusBtn>
-      </QuantityContainer>
-      <Sum>{`${quantity * product.price} ₴`}</Sum>
-      <CloseBtn onClick={() => handleDelete(product)}>
-        <AiOutlineDelete />
-      </CloseBtn>
+          <PlusBtn
+            type="button"
+            onClick={handlePlus}
+          >
+            <AiOutlinePlus />
+          </PlusBtn>
+        </QuantityContainer>
+        <Sum>{`${quantity * product.price} ₴`}</Sum>
+        <CloseBtn onClick={() => handleDelete(product)}>
+          <AiOutlineDelete />
+        </CloseBtn>
+      </PriceContainer>
     </Container>
   );
 };

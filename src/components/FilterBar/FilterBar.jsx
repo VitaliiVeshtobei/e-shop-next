@@ -18,7 +18,7 @@ import { useEffect, useState } from 'react';
 import { PriceInput } from './PriceInput/PriceInput';
 import { useRouter } from 'next/router';
 
-export const FilterBar = ({ data }) => {
+export const FilterBar = ({ data, setSliderValue, setFilterStatus }) => {
   const router = useRouter();
   const { category } = router.query;
 
@@ -28,27 +28,40 @@ export const FilterBar = ({ data }) => {
   const [status, setStatus] = useState(false);
   const [categories, setCategories] = useState([]);
 
+  const [priceMin, setPriceMin] = useState(0);
+  const [priceMax, setPriceMax] = useState(0);
+
   useEffect(() => {
     const localCategories = typeof window !== 'undefined' ? window.localStorage.getItem('categories') : null;
     const categoriesLocal = localCategories ? JSON.parse(localCategories) : categoriesList;
     setCategories(categoriesLocal);
     if (category === 'all') {
+      setFilterStatus('');
       setSelectedCategory(category);
     }
-  }, [categoriesList, category]);
+  }, [categoriesList, category, setFilterStatus]);
 
   const [available, setAvailable] = useState(0);
+  const [waiting, setWaiting] = useState(0);
   const [notAvailable, setNotAvailable] = useState(0);
 
   useEffect(() => {
     let available = 0;
     let notAvailable = 0;
+    let waiting = 0;
+
     data.map((item) => {
-      if (item.in_stock) {
+      if (item.presence === 'available') {
         return ++available;
       }
-      return ++notAvailable;
+      if (item.presence === 'waiting') {
+        return ++waiting;
+      }
+      if (item.presence === 'not_available') {
+        return ++notAvailable;
+      }
     });
+    setWaiting(waiting);
     setAvailable(available);
     setNotAvailable(notAvailable);
   }, [data, selectedCategory]);
@@ -57,11 +70,24 @@ export const FilterBar = ({ data }) => {
     const { id, value } = event.target;
     const ctatusId = id === 'all' ? id : +id;
     setStatus(true);
+    setFilterStatus('');
+    setSelectedAvailable('');
+
+    if (+id === selectedCategory) {
+      setFilterStatus('');
+      router.push({
+        pathname: '/products',
+        query: { category: 'all' },
+      });
+      return setSelectedCategory('all');
+    }
+
     if (value === 'all') {
       router.push({
         pathname: '/products',
         query: { category: 'all' },
       });
+
       return setSelectedCategory('all');
     }
     setSelectedCategory(ctatusId);
@@ -78,10 +104,12 @@ export const FilterBar = ({ data }) => {
       }
       return setSelectedCategory(+category);
     }
-  }, [category, selectedCategory, status]);
+  }, [category, selectedCategory, setFilterStatus, status]);
 
   const hendleClickIcon = (event) => {
+    setSelectedAvailable('');
     if (event === selectedCategory) {
+      setFilterStatus('');
       router.push({
         pathname: '/products',
         query: { category: 'all' },
@@ -98,19 +126,24 @@ export const FilterBar = ({ data }) => {
   const hendleClickAvailable = (event) => {
     const { value } = event.target;
     if (value === selectedAvailable) {
+      setFilterStatus('');
       return setSelectedAvailable('');
     }
     setSelectedAvailable(value);
+    setFilterStatus(event);
   };
 
   const hendleClickAvailableIcon = (event) => {
     if (event === selectedAvailable) {
+      setFilterStatus('');
       return setSelectedAvailable('');
     }
     setSelectedAvailable(event);
+    setFilterStatus(event);
   };
 
   const resetInput = () => {
+    setFilterStatus('');
     setSelectedAvailable('');
     setSelectedCategory('all');
     setStatus(true);
@@ -119,6 +152,17 @@ export const FilterBar = ({ data }) => {
       query: { category: 'all' },
     });
   };
+
+  useEffect(() => {
+    const price = data.map(({ price }) => price);
+    const min = Math.min.apply(null, price);
+    const max = Math.max.apply(null, price);
+
+    setPriceMin(min);
+    setPriceMax(max);
+
+    setSliderValue([+min, +max]);
+  }, [data, setSliderValue]);
 
   return (
     <Wrapper>
@@ -171,32 +215,61 @@ export const FilterBar = ({ data }) => {
         <Item key="available">
           <InputContainer
             id="available"
-            style={{ marginRight: '12px' }}
             type="radio"
             name="available"
-            value="В наявності"
-            checked={selectedAvailable === 'В наявності'}
+            value="available"
+            checked={selectedAvailable === 'available'}
             onChange={hendleClickAvailable}
             onClick={hendleClickAvailable}
           />
           <Label htmlFor="available">В наявності</Label>
-          <Icon onClick={() => hendleClickAvailableIcon('В наявності')} />
+          <Icon onClick={() => hendleClickAvailableIcon('available')} />
           <TextNumber>{available}</TextNumber>
         </Item>
-        <Item key="not-available">
+        <Item
+          key="waiting"
+          disabled={!waiting}
+        >
           <InputContainer
-            id="not-available"
-            style={{ marginRight: '12px' }}
+            id="waiting"
             type="radio"
-            disabled
+            name="waiting"
+            value="waiting"
+            checked={selectedAvailable === 'waiting'}
+            onChange={hendleClickAvailable}
+            onClick={hendleClickAvailable}
+            disabled={!waiting ? true : null}
           />
-          <Label htmlFor="not-available">Немає в наявності</Label>
-          <Icon onClick={() => hendleClickAvailableIcon('')} />
+          <Label htmlFor="waiting">Очікується</Label>
+          <Icon onClick={() => hendleClickAvailableIcon('waiting')} />
+          <TextNumber>{waiting}</TextNumber>
+        </Item>
+        <Item
+          key="not_available"
+          disabled={!notAvailable}
+        >
+          <InputContainer
+            id="not_available"
+            type="radio"
+            name="not_available"
+            value="not_available"
+            checked={selectedAvailable === 'not_available'}
+            onChange={hendleClickAvailable}
+            onClick={hendleClickAvailable}
+            disabled={!notAvailable ? true : null}
+          />
+          <Label htmlFor="not_available">Немає в наявності</Label>
+          <Icon onClick={() => hendleClickAvailableIcon('not_available')} />
           <TextNumber>{notAvailable}</TextNumber>
         </Item>
       </Container>
       <ContainerPrice className="price-slider-container">
-        <PriceInput />
+        <PriceInput
+          data={data}
+          min={priceMin}
+          max={priceMax}
+          fnFilter={setSliderValue}
+        />
       </ContainerPrice>
     </Wrapper>
   );
