@@ -15,82 +15,96 @@ import {
   Wrapper,
   WrapperPrice,
 } from './PriceInput.styled';
+import { Message } from '../Message/Message';
 
 export const PriceInput = ({ data, fnFilter, min, max }) => {
-  const [sliderValueMax, setSliderValueMax] = useState(10000);
-
-  const [sliderValue, setSliderValue] = useState([2500, 7500]);
+  const [sliderValue, setSliderValue] = useState([min, max]);
+  const [messageMin, setMessageMin] = useState(false);
+  const [messageMax, setMessageMax] = useState(false);
 
   useEffect(() => {
     setSliderValue([+min, +max]);
-    setSliderValueMax(max + (max / 10) * 3);
   }, [data, max, min, setSliderValue]);
 
   const handleSliderChange = (event) => {
     const { name, value } = event.target;
     let number = value;
-    let priceGap = 500;
     if (number === '') {
       number = '0';
     }
-    const intValue = parseInt(number);
-    if (/^\d*$/.test(number) && intValue >= 0 && intValue <= sliderValueMax) {
-      const otherValue = name === 'min' ? sliderValue[1] : sliderValue[0];
-      const difference = Math.abs(otherValue - intValue);
-      if (difference >= priceGap) {
-        let newPosition;
-        if (name === 'min') {
-          if (intValue <= sliderValue[1] - priceGap) {
-            newPosition = [intValue, sliderValue[1]];
-          } else {
-            newPosition = [sliderValue[1] - priceGap, sliderValue[1]];
-          }
-        } else {
-          if (intValue >= sliderValue[0] + priceGap) {
-            newPosition = [sliderValue[0], intValue];
-          } else {
-            newPosition = [sliderValue[0], sliderValue[0] + priceGap];
-          }
-        }
-        setSliderValue(newPosition);
-      } else if (name === 'min' && intValue >= sliderValue[1]) {
-        setSliderValue([sliderValue[1] - priceGap, sliderValue[1]]);
-      } else if (name === 'max' && intValue <= sliderValue[0]) {
-        setSliderValue([sliderValue[0], sliderValue[0] + priceGap]);
-      }
+    let intValue = parseInt(number);
+
+    if (name === 'max' && intValue > max) {
+      setMessageMax(true);
     }
+    if (name === 'max' && intValue <= max) {
+      setMessageMax(false);
+    }
+    if (name === 'min' && intValue < min) {
+      setMessageMin(true);
+    }
+
+    if (name === 'min' && intValue >= min) {
+      setMessageMin(false);
+    }
+
+    if (name === 'max' && intValue.toString().length > max.toString().length + 1) {
+      return;
+    }
+    if (name === 'min' && intValue > sliderValue[1]) {
+      return;
+    }
+
+    let newPosition;
+    if (name === 'min') {
+      newPosition = [intValue, sliderValue[1]];
+    } else {
+      newPosition = [sliderValue[0], intValue];
+    }
+    return setSliderValue(newPosition);
+  };
+
+  useEffect(() => {
+    const rangeInputs = document.querySelectorAll('.range-input input');
+    const progress = document.querySelector('.progress');
+    const calculateProgressPosition = () => {
+      const minVal = parseInt(sliderValue[0]);
+      const maxVal = parseInt(sliderValue[1]);
+      const minValuePercentage = ((minVal - rangeInputs[0].min) / (rangeInputs[0].max - rangeInputs[0].min)) * 100;
+      const maxValuePercentage = ((maxVal - rangeInputs[1].min) / (rangeInputs[1].max - rangeInputs[1].min)) * 100;
+
+      progress.style.left = minValuePercentage <= 0 ? '0%' : `${minValuePercentage - 3}%`;
+      progress.style.right = maxValuePercentage > 100 ? '100%' : `${100 - maxValuePercentage - 3}%`;
+    };
+
+    calculateProgressPosition();
+
+    rangeInputs.forEach((input) => {
+      input.addEventListener('input', calculateProgressPosition);
+    });
+
+    return () => {
+      rangeInputs.forEach((input) => {
+        input.removeEventListener('input', calculateProgressPosition);
+      });
+    };
+  }, [sliderValue, messageMin, messageMax]);
+
+  const reconfirm = () => {
+    if (sliderValue[1] < sliderValue[0]) {
+      setSliderValue([sliderValue[0], sliderValue[0]]);
+      return fnFilter([sliderValue[0], sliderValue[0]]);
+    }
+    fnFilter(sliderValue);
   };
 
   const resetPrice = () => {
     setSliderValue([min, max]);
     fnFilter([min, max]);
-  };
 
-  useEffect(() => {
-    const rangeInputs = document.querySelectorAll('.range-input input');
-    const progress = document.querySelector('.progress');
-    progress.style.left = (sliderValue[0] / rangeInputs[0].max) * 100 + '%';
-    progress.style.right = 100 - (sliderValue[1] / rangeInputs[1].max) * 100 + '%';
-  }, [sliderValue]);
+    setMessageMax(false);
 
-  useEffect(() => {
-    const rangeInputs = document.querySelectorAll('.range-input input');
-    const progress = document.querySelector('.progress');
-
-    let priceGap = 500;
-    rangeInputs.forEach((input) => {
-      input.addEventListener('input', (e) => {
-        let minVal = parseInt(sliderValue[0]);
-        let maxVal = parseInt(sliderValue[1]);
-
-        progress.style.left = (minVal / rangeInputs[0].max) * 100 + '%';
-        progress.style.right = 100 - (maxVal / rangeInputs[1].max) * 100 + '%';
-      });
-    });
-  }, [sliderValue]);
-
-  const reconfirm = () => {
-    fnFilter(sliderValue);
+    setMessageMin(false);
   };
 
   return (
@@ -106,20 +120,30 @@ export const PriceInput = ({ data, fnFilter, min, max }) => {
       </WrapperPrice>
       <Wrapper>
         <Field>
+          <Message
+            text={`мін. ${min}`}
+            status={messageMin}
+          />
           <InputMin
             type="text"
             name="min"
             value={sliderValue[0]}
             onChange={handleSliderChange}
+            status={messageMin}
           />
         </Field>
 
         <Field>
+          <Message
+            text={`мaкс. ${max}`}
+            status={messageMax}
+          />
           <InputMax
             type="text"
             name="max"
             value={sliderValue[1]}
             onChange={handleSliderChange}
+            status={messageMax}
           />
         </Field>
 
@@ -138,16 +162,16 @@ export const PriceInput = ({ data, fnFilter, min, max }) => {
           className="range-min"
           type="range"
           name="min"
-          min="0"
-          max={sliderValueMax}
+          min={min}
+          max={max}
           value={sliderValue[0]}
           onChange={handleSliderChange}
         />
         <RangeMax
           type="range"
           name="max"
-          min="0"
-          max={sliderValueMax}
+          min={min}
+          max={max}
           value={sliderValue[1]}
           onChange={handleSliderChange}
         />

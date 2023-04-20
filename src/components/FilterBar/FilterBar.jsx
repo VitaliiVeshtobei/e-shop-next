@@ -1,6 +1,9 @@
 import { selectCategories } from '@/redux/products/selectors';
 
 import { useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
+
 import {
   Button,
   Container,
@@ -14,32 +17,35 @@ import {
   TextNumber,
   Wrapper,
 } from './FilterBar.styled';
-import { useEffect, useState } from 'react';
 import { PriceInput } from './PriceInput/PriceInput';
-import { useRouter } from 'next/router';
 
 export const FilterBar = ({ data, setSliderValue, setFilterStatus }) => {
   const router = useRouter();
   const { category } = router.query;
 
   const categoriesList = useSelector(selectCategories);
-  const [selectedCategory, setSelectedCategory] = useState('all');
-  const [selectedAvailable, setSelectedAvailable] = useState('');
-  const [status, setStatus] = useState(false);
-  const [categories, setCategories] = useState([]);
 
+  const [selectedAvailable, setSelectedAvailable] = useState('');
+  const [categories, setCategories] = useState([]);
   const [priceMin, setPriceMin] = useState(0);
   const [priceMax, setPriceMax] = useState(0);
+
+  const [previousQuery, setPreviousQuery] = useState(category);
 
   useEffect(() => {
     const localCategories = typeof window !== 'undefined' ? window.localStorage.getItem('categories') : null;
     const categoriesLocal = localCategories ? JSON.parse(localCategories) : categoriesList;
+
     setCategories(categoriesLocal);
+    if (previousQuery !== category) {
+      setFilterStatus('');
+      setSelectedAvailable('');
+    }
+    setPreviousQuery(category);
     if (category === 'all') {
       setFilterStatus('');
-      setSelectedCategory(category);
     }
-  }, [categoriesList, category, setFilterStatus]);
+  }, [categoriesList, category, previousQuery, setFilterStatus]);
 
   const [available, setAvailable] = useState(0);
   const [waiting, setWaiting] = useState(0);
@@ -64,59 +70,41 @@ export const FilterBar = ({ data, setSliderValue, setFilterStatus }) => {
     setWaiting(waiting);
     setAvailable(available);
     setNotAvailable(notAvailable);
-  }, [data, selectedCategory]);
+  }, [data, category]);
 
   const hendleClickCategories = (event) => {
-    const { id, value } = event.target;
-    const ctatusId = id === 'all' ? id : +id;
-    setStatus(true);
+    const { id } = event.target;
+
+    if (id === 'all' && 'all' === category) return;
+
     setFilterStatus('');
     setSelectedAvailable('');
 
-    if (+id === selectedCategory) {
-      setFilterStatus('');
+    if (id === category) {
       router.push({
         pathname: '/products',
         query: { category: 'all' },
       });
-      return setSelectedCategory('all');
     }
-
-    if (value === 'all') {
-      router.push({
-        pathname: '/products',
-        query: { category: 'all' },
-      });
-
-      return setSelectedCategory('all');
-    }
-    setSelectedCategory(ctatusId);
     router.push({
       pathname: '/products',
       query: { category: id },
     });
   };
 
-  useEffect(() => {
-    if (category !== 'undefined' && !status && selectedCategory === 'all') {
-      if (category === 'all') {
-        return setSelectedCategory(category);
-      }
-      return setSelectedCategory(+category);
-    }
-  }, [category, selectedCategory, setFilterStatus, status]);
-
   const hendleClickIcon = (event) => {
     setSelectedAvailable('');
-    if (event === selectedCategory) {
+
+    if (event === 'all' && 'all' === category) return;
+
+    if (event === +category) {
       setFilterStatus('');
       router.push({
         pathname: '/products',
         query: { category: 'all' },
       });
-      return setSelectedCategory('all');
     }
-    setSelectedCategory(event);
+
     router.push({
       pathname: '/products',
       query: { category: event },
@@ -125,12 +113,13 @@ export const FilterBar = ({ data, setSliderValue, setFilterStatus }) => {
 
   const hendleClickAvailable = (event) => {
     const { value } = event.target;
+
     if (value === selectedAvailable) {
       setFilterStatus('');
       return setSelectedAvailable('');
     }
     setSelectedAvailable(value);
-    setFilterStatus(event);
+    setFilterStatus(value);
   };
 
   const hendleClickAvailableIcon = (event) => {
@@ -145,8 +134,7 @@ export const FilterBar = ({ data, setSliderValue, setFilterStatus }) => {
   const resetInput = () => {
     setFilterStatus('');
     setSelectedAvailable('');
-    setSelectedCategory('all');
-    setStatus(true);
+
     router.push({
       pathname: '/products',
       query: { category: 'all' },
@@ -183,7 +171,7 @@ export const FilterBar = ({ data, setSliderValue, setFilterStatus }) => {
             style={{ marginRight: '12px' }}
             type="radio"
             value={'all'}
-            checked={selectedCategory === 'all'}
+            checked={category === 'all'}
             onChange={hendleClickCategories}
             onClick={hendleClickCategories}
           />
@@ -200,7 +188,7 @@ export const FilterBar = ({ data, setSliderValue, setFilterStatus }) => {
                   style={{ marginRight: '12px' }}
                   type="radio"
                   value={name_multilang.uk}
-                  checked={selectedCategory === id}
+                  checked={+category === id}
                   onChange={hendleClickCategories}
                   onClick={hendleClickCategories}
                 />

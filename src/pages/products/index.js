@@ -41,25 +41,33 @@ function Products({ data, query }) {
   }, [data, dispatch]);
 
   useEffect(() => {
-    const res = products.filter((item) =>
-      filterStatus !== ''
-        ? item.price >= sliderValue[0] && item.price <= sliderValue[1] && item.presence === filterStatus
-        : item.price >= sliderValue[0] && item.price <= sliderValue[1]
-    );
+    let res;
+    if (sliderValue[0] === sliderValue[1]) {
+      res = products.filter((item) =>
+        filterStatus !== ''
+          ? item.price === sliderValue[0] && item.presence === filterStatus
+          : item.price === sliderValue[0]
+      );
+    }
+    if (sliderValue[0] < sliderValue[1]) {
+      res = products.filter((item) =>
+        filterStatus !== ''
+          ? item.price >= sliderValue[0] && item.price <= sliderValue[1] && item.presence === filterStatus
+          : item.price >= sliderValue[0] && item.price <= sliderValue[1]
+      );
+    }
     setProductsFilter(res);
   }, [filterStatus, products, sliderValue]);
-
-  const listProducts = productsFilter.length !== 0 ? productsFilter : products;
 
   const itemsPerPage = 6;
   const endOffset = itemOffset + itemsPerPage;
 
-  const currentItems = listProducts.slice(itemOffset, endOffset);
-  const pageCount = Math.ceil(listProducts.length / itemsPerPage);
+  const currentItems = productsFilter.slice(itemOffset, endOffset);
+  const pageCount = Math.ceil(productsFilter.length / itemsPerPage);
 
   const handlePageClick = (event) => {
     setCurrentPage(event.selected);
-    const newOffset = (event.selected * itemsPerPage) % listProducts.length;
+    const newOffset = (event.selected * itemsPerPage) % productsFilter.length;
     setItemOffset(newOffset);
     window.scrollTo({
       top: 0,

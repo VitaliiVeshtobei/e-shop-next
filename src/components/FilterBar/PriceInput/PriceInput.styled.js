@@ -17,6 +17,7 @@ export const WrapperPrice = styled.div`
 export const Field = styled.div`
   display: flex;
   align-items: center;
+  position: relative;
 `;
 
 export const Button = styled.button`
@@ -72,7 +73,8 @@ export const InputMin = styled.input`
   height: 30px;
   border-radius: 8px;
   outline: none;
-  border: 1px solid ${(p) => p.theme.colors.border};
+  transition: border ${(p) => p.theme.transition};
+  border: 1px solid ${(p) => (!p.status ? p.theme.colors.border : p.theme.colors.warning)};
   text-align: center;
   font-family: 'Mulish';
   font-style: normal;
@@ -88,7 +90,8 @@ export const InputMax = styled.input`
   height: 30px;
   border-radius: 8px;
   outline: none;
-  border: 1px solid ${(p) => p.theme.colors.border};
+  transition: border ${(p) => p.theme.transition};
+  border: 1px solid ${(p) => (!p.status ? p.theme.colors.border : p.theme.colors.warning)};
   text-align: center;
   font-family: 'Mulish';
   font-style: normal;
@@ -129,8 +132,9 @@ export const RangeMin = styled.input`
   pointer-events: none;
 
   &[type='range']::-webkit-slider-thumb {
-    height: 15px;
-    width: 15px;
+    height: 20px;
+    width: 20px;
+    margin-left: -10px;
     border-radius: 50%;
     background-color: ${(p) => p.theme.colors.smoke};
     -webkit-appearance: none;
@@ -157,9 +161,10 @@ export const RangeMax = styled.input`
   pointer-events: none;
 
   &[type='range']::-webkit-slider-thumb {
-    height: 15px;
-    width: 15px;
+    height: 20px;
+    width: 20px;
     border-radius: 50%;
+    margin-left: 10px;
     background-color: ${(p) => p.theme.colors.smoke};
     -webkit-appearance: none;
     pointer-events: auto;
