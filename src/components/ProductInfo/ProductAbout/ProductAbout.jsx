@@ -29,8 +29,9 @@ const ProductAbout = () => {
     if (!cartLocal) return;
     const productInCart = cartLocal.find((product) => product.id === id);
     if (productInCart) {
-      setInCart(true);
+      return setInCart(true);
     }
+    setInCart(false);
   }, [id]);
 
   const onInCartBtnClick = () => {

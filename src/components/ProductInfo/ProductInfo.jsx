@@ -4,7 +4,7 @@ import ProductImages from './ProductImages/ProductImages';
 
 const ProductInfo = () => {
   return (
-    <div>
+    <div style={{ maxWidth: '1300px', marginLeft: 'auto', marginRight: 'auto' }}>
       <div style={{ display: 'flex', justifyContent: 'space-around' }}>
         <ProductImages />
         <ProductAbout />

@@ -18,4 +18,10 @@ export const DescriptionWrap = styled.div`
   border: 1px solid ${(p) => p.theme.colors.border};
   border-radius: 20px;
   color: ${(p) => p.theme.colors.darkText};
+
+  p {
+    &:not(:last-child) {
+      margin-bottom: 15px;
+    }
+  }
 `;
