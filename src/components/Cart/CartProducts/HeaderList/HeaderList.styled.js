@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import DEVICE from '../../../../constants/deviceSize';
 
 export const ListStyled = styled('ul')`
   display: flex;
@@ -7,10 +8,22 @@ export const ListStyled = styled('ul')`
   height: 60px;
   background-color: ${(p) => p.theme.colors.accentBg};
   color: ${(p) => p.theme.colors.lightText};
-  li:first-child {
-    flex-basis: 40%;
+
+  @media ${DEVICE.mobile} {
+    li:not(:first-child) {
+      display: none;
+    }
+    li:first-child {
+      flex-basis: 100%;
+    }
   }
-  li:not(:first-child) {
-    flex-basis: 20%;
+  @media ${DEVICE.tablet} {
+    li:not(:first-child) {
+      display: block;
+      flex-basis: 20%;
+    }
+    li:first-child {
+      flex-basis: 40%;
+    }
   }
 `;

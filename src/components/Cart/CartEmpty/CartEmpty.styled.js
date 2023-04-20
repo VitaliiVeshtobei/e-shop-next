@@ -1,23 +1,69 @@
 import styled from 'styled-components';
+import DEVICE from '../../../constants/deviceSize';
 
 export const Container = styled('div')`
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  @media ${DEVICE.mobile} {
+    display: block;
+    img {
+      width: 250px;
+      height: 200px;
+      margin: 0 auto;
+    }
+  }
+  @media ${DEVICE.tablet} {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    img {
+      width: 400px;
+      height: 250px;
+      margin: 0 auto;
+    }
+  }
+  @media ${DEVICE.laptop} {
+    img {
+      width: 600px;
+      height: 300px;
+      margin: 0 auto;
+    }
+  }
 `;
 
 export const TextContainer = styled('div')`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 70px;
+
+  @media ${DEVICE.mobile} {
+    gap: 35px;
+  }
+  @media ${DEVICE.tablet} {
+    gap: 45px;
+  }
+  @media ${DEVICE.laptop} {
+    gap: 70px;
+  }
 `;
 
 export const Text = styled('h2')`
-  font-weight: 700;
-  font-size: 43px;
-  line-height: 54px;
   color: ${(p) => p.theme.colors.darkText};
+  @media ${DEVICE.mobile} {
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 34px;
+    text-align: center;
+  }
+  @media ${DEVICE.tablet} {
+    font-weight: 600;
+    font-size: 32px;
+    line-height: 44px;
+    text-align: center;
+  }
+  @media ${DEVICE.laptop} {
+    font-weight: 700;
+    font-size: 43px;
+    line-height: 54px;
+  }
 `;
 
 export const Btn = styled('button')`

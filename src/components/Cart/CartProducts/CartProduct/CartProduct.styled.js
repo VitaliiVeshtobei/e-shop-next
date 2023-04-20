@@ -1,9 +1,7 @@
 import styled from 'styled-components';
-import { AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai';
+import DEVICE from '../../../../constants/deviceSize';
+
 export const Container = styled('div')`
-  display: flex;
-  align-items: center;
-  text-align: center;
   padding: 25px 0;
   &::before {
     position: absolute;
@@ -13,6 +11,14 @@ export const Container = styled('div')`
     height: 1px;
     width: 100%;
     background-color: #c3c3c3;
+  }
+  @media ${DEVICE.mobile} {
+    display: block;
+  }
+  @media ${DEVICE.tablet} {
+    display: flex;
+    align-items: center;
+    text-align: center;
   }
 `;
 
@@ -27,15 +33,21 @@ export const ProductContainer = styled('div')`
   }
 `;
 export const Price = styled('p')`
-  flex-basis: 20%;
+  flex-basis: 33%;
   color: #2f2f2f;
+  @media ${DEVICE.mobile} {
+    display: none;
+  }
+  @media ${DEVICE.tablet} {
+    display: block;
+  }
 `;
 export const QuantityContainer = styled('div')`
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
-  flex-basis: 20%;
+  flex-basis: 33%;
 `;
 
 export const Quantity = styled('div')`
@@ -45,8 +57,14 @@ export const Quantity = styled('div')`
   color: #2f2f2f;
 `;
 export const Sum = styled('p')`
-  flex-basis: 20%;
   color: #2f2f2f;
+  @media ${DEVICE.mobile} {
+    margin-left: 25px;
+  }
+  @media ${DEVICE.tablet} {
+    margin-left: 0px;
+    flex-basis: 33%;
+  }
 `;
 export const CloseBtn = styled('button')`
   position: absolute;
@@ -90,5 +108,18 @@ export const MinusBtn = styled('button')`
     fill: ${(p) => (p.quantity === 1 ? '#d2d2d2' : '#3e77aa')};
     width: 24px;
     height: 24px;
+  }
+`;
+
+export const PriceContainer = styled('div')`
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  flex-grow: 1;
+  @media ${DEVICE.mobile} {
+    margin-top: 25px;
+  }
+  @media ${DEVICE.tablet} {
+    margin-top: 0px;
   }
 `;
