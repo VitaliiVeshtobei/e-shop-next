@@ -18,7 +18,7 @@ const CartWrapper = () => {
       {cartProducts.length ? (
         <Container>
           <CartProducts />
-          <CartTotal />
+          {/* <CartTotal /> */}
         </Container>
       ) : (
         <CartEmpty />

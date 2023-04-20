@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import DEVICE from '../../../../constants/deviceSize';
 
 export const ListStyled = styled('ul')`
   display: flex;
@@ -12,5 +13,21 @@ export const ListStyled = styled('ul')`
   }
   li:not(:first-child) {
     flex-basis: 20%;
+  }
+  @media ${DEVICE.mobile} {
+    li:not(:first-child) {
+      display: none;
+    }
+    li:first-child {
+      flex-basis: 100%;
+    }
+  }
+  @media ${DEVICE.tablet} {
+    li:not(:first-child) {
+      display: block;
+    }
+    li:first-child {
+      flex-basis: 40%;
+    }
   }
 `;
