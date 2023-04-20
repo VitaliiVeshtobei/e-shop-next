@@ -19,13 +19,15 @@ export const CartProducts = () => {
     <Container>
       <HeaderList />
       <ul>
-        {products.map((item) => {
-          return (
-            <ProductItem key={item.id}>
-              <CartProduct product={item} />
-            </ProductItem>
-          );
-        })}
+        {products
+          .map((item) => {
+            return (
+              <ProductItem key={item.id}>
+                <CartProduct product={item} />
+              </ProductItem>
+            );
+          })
+          .reverse()}
       </ul>
       <CartBtns />
     </Container>
