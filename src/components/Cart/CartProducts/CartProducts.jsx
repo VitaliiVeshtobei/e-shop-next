@@ -27,7 +27,7 @@ export const CartProducts = () => {
           );
         })}
       </ul>
-      {/* <CartBtns /> */}
+      <CartBtns />
     </Container>
   );
 };

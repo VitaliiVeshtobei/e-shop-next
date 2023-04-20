@@ -2,9 +2,6 @@ import styled from 'styled-components';
 import DEVICE from '../../../../constants/deviceSize';
 
 export const Container = styled('div')`
-  display: flex;
-  align-items: center;
-  text-align: center;
   padding: 25px 0;
   &::before {
     position: absolute;
@@ -20,6 +17,8 @@ export const Container = styled('div')`
   }
   @media ${DEVICE.tablet} {
     display: flex;
+    align-items: center;
+    text-align: center;
   }
 `;
 

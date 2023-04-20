@@ -8,12 +8,7 @@ export const ListStyled = styled('ul')`
   height: 60px;
   background-color: ${(p) => p.theme.colors.accentBg};
   color: ${(p) => p.theme.colors.lightText};
-  li:first-child {
-    flex-basis: 40%;
-  }
-  li:not(:first-child) {
-    flex-basis: 20%;
-  }
+
   @media ${DEVICE.mobile} {
     li:not(:first-child) {
       display: none;
@@ -25,6 +20,7 @@ export const ListStyled = styled('ul')`
   @media ${DEVICE.tablet} {
     li:not(:first-child) {
       display: block;
+      flex-basis: 20%;
     }
     li:first-child {
       flex-basis: 40%;
