@@ -1,12 +1,17 @@
-import Link from "next/link";
-import styled from "styled-components";
+import Link from 'next/link';
+import styled from 'styled-components';
 
-export const Container = styled("div")`
+export const Container = styled('ul')`
   height: 76px;
   display: flex;
   align-items: center;
   gap: 24px;
   padding: 0 63px;
+  li {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
   svg {
     width: 24px;
     height: 24px;

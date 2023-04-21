@@ -8,31 +8,45 @@ import { useSelector } from 'react-redux';
 import { selectCategories } from '@/redux/products/selectors';
 
 export const Navigation = () => {
-  const [name, setName] = useState('');
-  const categories = useSelector(selectCategories);
+  const [names, setNames] = useState([]);
+  const [categories, setCategories] = useState([]);
+
+  const dataCategories = useSelector(selectCategories);
+
   const router = useRouter();
 
-  useEffect(() => {
-    const categoryName = categories.find((item) => router.asPath.includes(item.id));
+  const categoryName = categories.find((item) => router.asPath.includes(item.id));
+  const nav = navigation.find((item) => item.path === router.asPath);
 
-    if (categoryName) {
-      setName(categoryName.name_multilang.uk);
-      return;
-    }
-    const nav = navigation.find((item) => item.path === router.asPath);
+  useEffect(() => {
+    setCategories(dataCategories);
+  }, [dataCategories]);
+
+  useEffect(() => {
     if (nav) {
-      setName(nav.category);
+      setNames([navigation[0], nav]);
       return;
     }
-    setName('Корзина');
-  }, [categories, router.asPath]);
+    if (categoryName) {
+      setNames([navigation[0], { id: categoryName.id, path: router.asPath, category: categoryName.name_multilang.uk }]);
+      return;
+    }
+    if (router.asPath === '/cart') {
+      setNames([navigation[0], { id: 2, path: router.asPath, category: 'Корзина' }]);
+      return;
+    }
+  }, [categoryName, nav, router.asPath]);
 
   return (
     <Container>
-      <LinkStyled href={'/'}>Головна</LinkStyled>
-
-      <IoIosArrowForward />
-      <LinkStyled href={router.asPath}>{name}</LinkStyled>
+      {names.map((item, idx) => {
+        return (
+          <li key={item.id}>
+            <LinkStyled href={item.path}>{item.category}</LinkStyled>
+            {!idx && <IoIosArrowForward />}
+          </li>
+        );
+      })}
     </Container>
   );
 };
