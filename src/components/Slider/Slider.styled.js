@@ -20,10 +20,7 @@ export const Wrapper = styled.section`
     height: 200px;
   }
 
-  @media screen and (max-width: 450px) {
-    height: 120px;
-  }
-  @media screen and (max-width: 320px) {
+  @media screen and (max-width: 767px) {
     display: none;
   }
 
