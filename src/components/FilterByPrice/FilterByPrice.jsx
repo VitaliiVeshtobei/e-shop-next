@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { BtnStyled, Container, ListBtn } from './FilterByPrice.styled';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectProductsByCategory } from '@/redux/products/selectors';
 import { getProductsByCategory } from '@/redux/products/slice';
+import { useRouter } from 'next/router';
 
 export const FilterByPrice = () => {
   const [activeCheapBtn, setActiveCheapBtn] = useState(false);
@@ -11,6 +12,13 @@ export const FilterByPrice = () => {
 
   const dispatch = useDispatch();
   const products = useSelector(selectProductsByCategory);
+  const router = useRouter();
+
+  useEffect(() => {
+    setActiveNewestBtn(true);
+    setActiveCheapBtn(false);
+    setActiveExpensiveBtn(false);
+  }, [router.asPath]);
 
   const handleClick = (e) => {
     const buttonName = e.target.name;

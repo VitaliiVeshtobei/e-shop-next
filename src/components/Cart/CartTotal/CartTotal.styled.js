@@ -1,7 +1,15 @@
 import styled from 'styled-components';
+import DEVICE from '@/constants/deviceSize';
 
 export const Container = styled('div')`
-  width: 424px;
+  @media ${DEVICE.mobile} {
+    width: 100%;
+    margin-top: 25px;
+  }
+  @media ${DEVICE.laptop} {
+    flex-basis: 30%;
+    margin-top: 0px;
+  }
 `;
 export const HeadContainer = styled('div')`
   display: flex;
@@ -40,7 +48,7 @@ export const OrderBtn = styled('button')`
   margin: 40px auto 0 auto;
   display: block;
   border: none;
-  border-radius: 32px;
+  border-radius: 8px;
   padding: 13px 72px;
   background-color: ${(p) => p.theme.colors.accent};
   color: ${(p) => p.theme.colors.lightText};

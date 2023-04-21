@@ -25,14 +25,13 @@ export async function getServerSideProps({ query }) {
 }
 
 function Products({ data, query }) {
-  const products = useSelector(selectProductsByCategory);
-
   const [itemOffset, setItemOffset] = useState(0);
   const [currentPage, setCurrentPage] = useState(0);
   const [sliderValue, setSliderValue] = useState([2500, 7500]);
   const [productsFilter, setProductsFilter] = useState([]);
   const [filterStatus, setFilterStatus] = useState('');
 
+  const products = useSelector(selectProductsByCategory);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getProductsByCategory(data));
@@ -59,7 +58,9 @@ function Products({ data, query }) {
     setProductsFilter(res);
   }, [filterStatus, products, sliderValue]);
 
-  const itemsPerPage = 6;
+  const listProducts = productsFilter.length !== 0 ? productsFilter : products;
+
+  const itemsPerPage = 20;
   const endOffset = itemOffset + itemsPerPage;
 
   const currentItems = productsFilter.slice(itemOffset, endOffset);

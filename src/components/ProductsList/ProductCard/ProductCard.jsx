@@ -19,7 +19,6 @@ import { addCart } from '@/redux/products/slice';
 import { useEffect, useState } from 'react';
 import { getCartLocal } from '@/localStorage/localStorage';
 
-
 const ProductCard = ({ image, article, name, price, id, discount, presence }) => {
   const renderSwitch = (param) => {
     switch (param) {
@@ -53,45 +52,42 @@ const ProductCard = ({ image, article, name, price, id, discount, presence }) =>
   };
 
   return (
-  <>
-    <Wrapper href={{ pathname: `/products/${id}` }}>
-      <div>
-        
+    <>
+      <Wrapper href={{ pathname: `/products/${id}` }}>
+        <div>
+          {discount && (
+            <DiscountPercent>
+              <p>-{Math.ceil((discount.value / price) * 100)}%</p>
+            </DiscountPercent>
+          )}
 
-        {discount && (
-          <DiscountPercent>
-            <p>-{Math.ceil((discount.value / price) * 100)}%</p>
-          </DiscountPercent>
-        )}
-
-        <ProductImage
-          src={image}
-          alt={name}
-          width={200}
-          height={200}
-        />
-        <Article>Код: {article}</Article>
-        <ProductName>{name}</ProductName>
-      </div>
-      <div>
-        <ProductStatus status={presence}>{renderSwitch(presence)}</ProductStatus>
-        {discount ? (
-          <DiscountWrap>
-            <DiscountPrice>{price - discount.value} грн</DiscountPrice> <Price type="old">{price} грн </Price>
-          </DiscountWrap>
-        ) : (
-          <Price>{price} грн</Price>
-        )}
-      </div>
-    </Wrapper>
-    <Cart
+          <ProductImage
+            src={image}
+            alt={name}
+            width={200}
+            height={200}
+          />
+          <Article>Код: {article}</Article>
+          <ProductName>{name}</ProductName>
+        </div>
+        <div>
+          <ProductStatus status={presence}>{renderSwitch(presence)}</ProductStatus>
+          {discount ? (
+            <DiscountWrap>
+              <DiscountPrice>{price - discount.value} грн</DiscountPrice> <Price type="old">{price} грн </Price>
+            </DiscountWrap>
+          ) : (
+            <Price>{price} грн</Price>
+          )}
+        </div>
+      </Wrapper>
+      <Cart
         onClick={cartClick}
         inCart={inCart}
       >
         <IoCartOutline />
       </Cart>
-     </>
-
+    </>
   );
 };
 
