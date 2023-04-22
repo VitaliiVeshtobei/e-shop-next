@@ -81,8 +81,26 @@ function Products({ data, query }) {
     setStatusFilter(!statusFilter);
   };
 
+  const handleBackdropClick = (e) => {
+    if (e.target === e.currentTarget) {
+      setStatusFilter(false);
+    }
+  };
+
+  const handlerKeydown = (e) => {
+    if (e.code === 'Escape') {
+      setStatusFilter(false);
+    }
+  };
+  useEffect(() => {
+    window.addEventListener('keydown', handlerKeydown);
+    return () => {
+      window.removeEventListener('keydown', handlerKeydown);
+    };
+  });
+
   return (
-    <>
+    <div onClick={handleBackdropClick}>
       <div style={{ marginBottom: '35px', marginTop: '-30px' }}>
         <FilterByPrice>
           <Button
@@ -110,7 +128,7 @@ function Products({ data, query }) {
         handlePageClick={handlePageClick}
         currentPage={currentPage}
       />
-    </>
+    </div>
   );
 }
 

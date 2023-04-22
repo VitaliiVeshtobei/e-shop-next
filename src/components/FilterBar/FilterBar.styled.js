@@ -9,7 +9,7 @@ export const Wrapper = styled.section`
 
   @media ${DEVICE.laptopMax} {
     position: absolute;
-    top: -34px;
+    top: -25px;
     left: 0;
     background-color: ${(p) => p.theme.colors.navbar};
     z-index: 10;
