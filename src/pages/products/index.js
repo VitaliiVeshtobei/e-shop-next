@@ -9,6 +9,7 @@ import ProductsList from '@/components/ProductsList/ProductsList';
 import { FilterBar } from '@/components/FilterBar/FilterBar';
 import { FilterByPrice } from '@/components/FilterByPrice/FilterByPrice';
 import Pagination from '@/components/ProductsList/Pagination/Pagination';
+import { Button, Container, Icon } from '@/_app/producrts.styled';
 
 export async function getServerSideProps({ query }) {
   const category = query.category;
@@ -30,6 +31,7 @@ function Products({ data, query }) {
   const [sliderValue, setSliderValue] = useState([2500, 7500]);
   const [productsFilter, setProductsFilter] = useState([]);
   const [filterStatus, setFilterStatus] = useState('');
+  const [statusFilter, setStatusFilter] = useState(false);
 
   const products = useSelector(selectProductsByCategory);
   const dispatch = useDispatch();
@@ -58,8 +60,6 @@ function Products({ data, query }) {
     setProductsFilter(res);
   }, [filterStatus, products, sliderValue]);
 
-  const listProducts = productsFilter.length !== 0 ? productsFilter : products;
-
   const itemsPerPage = 20;
   const endOffset = itemOffset + itemsPerPage;
 
@@ -77,19 +77,34 @@ function Products({ data, query }) {
     });
   };
 
+  const openFilter = () => {
+    setStatusFilter(!statusFilter);
+  };
+
   return (
     <>
       <div style={{ marginBottom: '35px', marginTop: '-30px' }}>
-        <FilterByPrice />
+        <FilterByPrice>
+          <Button
+            type="button"
+            onClick={openFilter}
+          >
+            <Icon />
+            Фільтр
+          </Button>
+        </FilterByPrice>
       </div>
-      <div style={{ gap: ' 16px', display: 'flex' }}>
+
+      <Container>
         <FilterBar
+          statusContainerFilter={statusFilter}
           data={data}
           setSliderValue={setSliderValue}
           setFilterStatus={setFilterStatus}
         />
+
         <ProductsList currentItems={currentItems} />
-      </div>
+      </Container>
       <Pagination
         pageCount={pageCount}
         handlePageClick={handlePageClick}

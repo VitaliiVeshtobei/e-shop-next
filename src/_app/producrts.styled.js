@@ -1,42 +1,49 @@
-import styled from 'styled-components';
 import DEVICE from '@/constants/deviceSize';
+import styled from 'styled-components';
+import { BsFilterSquare } from 'react-icons/bs';
 
-export const Container = styled('div')`
+export const Container = styled.div`
   display: flex;
-  height: 30px;
-  align-items: center;
-  justify-content: center;
+  position: relative;
+  gap: 20px;
 
   @media ${DEVICE.laptopMax} {
-    justify-content: space-evenly;
+    display: inline-flex;
+    gap: 16px;
   }
 `;
-export const ListBtn = styled('ul')`
+
+export const Button = styled.button`
   display: flex;
-  background-color: #d4dde1;
+  align-items: center;
+  gap: 10px;
   border: 1px solid #b6b6b6;
-  border-radius: 8px;
-`;
-export const BtnStyled = styled('button')`
   padding: 6px 14px;
-  border: none;
   border-radius: 8px;
   background-color: #d4dde1;
   color: rgba(98, 148, 148, 0.85);
   cursor: pointer;
   transition: background-color ${(p) => p.theme.transition}, color ${(p) => p.theme.transition};
 
-  ${(p) =>
-    p.activeBtn
-      ? `background-color: rgba(98, 148, 148, 0.85);
-    color: #ffffff;`
-      : `&:hover {
+  &:hover {
     background-color: rgba(98, 148, 148, 0.5);
     color: #ffffff;
-  }`}
+  }
+
+  @media ${DEVICE.laptop} {
+    display: none;
+  }
 
   @media ${DEVICE.mobileMax} {
     padding: 6px 5px;
-    font-size: 11px;
+    font-size: 12px;
+  }
+`;
+
+export const Icon = styled(BsFilterSquare)`
+  height: 15px;
+  width: 15px;
+  @media ${DEVICE.tabletMax} {
+    display: none;
   }
 `;

@@ -1,21 +1,56 @@
 import styled from 'styled-components';
 import { BsCheckLg } from 'react-icons/bs';
+import DEVICE from '@/constants/deviceSize';
 
 export const Wrapper = styled.section`
   min-width: 314px;
-  /* gap: 20px; */
   display: flex;
   flex-direction: column;
 
-  .price-slider-container {
-    /* background-color: rgba(0, 0, 0, 0.1); */
-    /* height: 400px; */
+  @media ${DEVICE.laptopMax} {
+    position: absolute;
+    top: -34px;
+    left: 0;
+    background-color: ${(p) => p.theme.colors.navbar};
+    z-index: 10;
+    padding: 15px 20px 30px;
+    border-radius: 3px;
+    box-shadow: 0px 3px 26px -1px ${(p) => p.theme.colors.darkHover};
+
+    ${(p) =>
+      !p.status
+        ? `position: absolute;
+ width: 1px;
+ height: 1px;   
+margin: -1px;   
+border: 0;   
+padding: 0;   
+white-space: nowrap;   
+clip-path: inset(100%);   
+clip: rect(0 0 0 0);   
+overflow: hidden;`
+        : ''}
+  }
+  @media ${DEVICE.mobileMax} {
+    left: -15px;
+  }
+
+  @media screen and (min-width: 1280px) and (max-width: 1360px) {
+    min-width: 239px;
   }
 `;
 
-export const Header = styled.header`
+export const Div = styled.div`
   display: flex;
   justify-content: space-between;
+  padding-top: 20px;
+
+  ${(p) =>
+    p.status
+      ? `
+  border-bottom: 1px solid #b6b6b6;
+  padding-bottom: 20px;`
+      : ''}
 `;
 
 export const Text = styled.p`
@@ -88,15 +123,19 @@ export const Label = styled.label`
   cursor: pointer;
   width: 100%;
   height: 100%;
-  display: block;
+  display: flex;
+  align-items: center;
   font-family: 'Mulish';
   font-style: normal;
   font-weight: 400;
   font-size: 15px;
   line-height: 20px;
-  padding-left: 40px;
+  padding-left: 35px;
   color: ${(p) => p.theme.colors.darkHover};
   transition: transform ${(p) => p.theme.transition};
+  @media screen and (min-width: 1280px) and (max-width: 1360px) {
+    font-size: 13px;
+  }
 
   ::after {
     content: '';
@@ -127,6 +166,20 @@ export const Container = styled.ul`
   padding-top: 20px;
   padding-bottom: 20px;
   border-bottom: 1px solid #b6b6b6;
+
+  ${(p) =>
+    p.status
+      ? `position: absolute;
+ width: 1px;
+ height: 1px;   
+margin: -1px;   
+border: 0;   
+padding: 0;   
+white-space: nowrap;   
+clip-path: inset(100%);   
+clip: rect(0 0 0 0);   
+overflow: hidden; `
+      : ''}
 `;
 
 export const ContainerPrice = styled.div`

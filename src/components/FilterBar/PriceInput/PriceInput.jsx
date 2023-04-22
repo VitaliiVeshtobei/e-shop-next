@@ -55,6 +55,10 @@ export const PriceInput = ({ data, fnFilter, min, max }) => {
       return;
     }
 
+    if (name === 'max' && intValue <= sliderValue[0]) {
+      return setSliderValue([sliderValue[0], sliderValue[0]]);
+    }
+
     let newPosition;
     if (name === 'min') {
       newPosition = [intValue, sliderValue[1]];
@@ -73,8 +77,8 @@ export const PriceInput = ({ data, fnFilter, min, max }) => {
       const minValuePercentage = ((minVal - rangeInputs[0].min) / (rangeInputs[0].max - rangeInputs[0].min)) * 100;
       const maxValuePercentage = ((maxVal - rangeInputs[1].min) / (rangeInputs[1].max - rangeInputs[1].min)) * 100;
 
-      progress.style.left = minValuePercentage <= 0 ? '0%' : `${minValuePercentage - 3}%`;
-      progress.style.right = maxValuePercentage > 100 ? '100%' : `${100 - maxValuePercentage - 3}%`;
+      progress.style.left = minValuePercentage <= 0 ? '0%' : `${minValuePercentage - 2}%`;
+      progress.style.right = maxValuePercentage > 100 ? '100%' : `${100 - maxValuePercentage - 2}%`;
     };
 
     calculateProgressPosition();

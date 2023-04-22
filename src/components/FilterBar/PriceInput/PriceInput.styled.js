@@ -82,6 +82,9 @@ export const InputMin = styled.input`
   font-size: 14px;
   line-height: 18px;
   color: #2d3033;
+  @media screen and (min-width: 1280px) and (max-width: 1360px) {
+    width: 75px;
+  }
 `;
 
 export const InputMax = styled.input`
@@ -99,6 +102,10 @@ export const InputMax = styled.input`
   font-size: 14px;
   line-height: 18px;
   color: #2d3033;
+
+  @media screen and (min-width: 1280px) and (max-width: 1340px) {
+    width: 75px;
+  }
 `;
 
 export const Slider = styled.div`
