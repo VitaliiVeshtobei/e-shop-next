@@ -38,6 +38,10 @@ export const Button = styled.button`
     padding: 6px 5px;
     font-size: 12px;
   }
+
+  @media ${DEVICE.tablet} {
+    ${(p) => (p.list <= 2 ? `display: none;` : '')}
+  }
 `;
 
 export const Icon = styled(BsFilterSquare)`

@@ -163,6 +163,7 @@ export const FilterBar = ({ data, setSliderValue, setFilterStatus, statusContain
         <Text>Категорії</Text>
         {statusBtnCategory ? (
           <Button
+            list={list}
             type="button"
             onClick={() => {
               clickStatusContainer('Категорії');
@@ -172,6 +173,7 @@ export const FilterBar = ({ data, setSliderValue, setFilterStatus, statusContain
           </Button>
         ) : (
           <Button
+            list={list}
             type="button"
             onClick={() => {
               clickStatusContainer('Категорії');
@@ -221,6 +223,7 @@ export const FilterBar = ({ data, setSliderValue, setFilterStatus, statusContain
         <Text>Статус товару</Text>
         {statusBtnAvailable ? (
           <Button
+            list={list}
             type="button"
             onClick={() => {
               clickStatusContainer('Статус товару');
@@ -230,6 +233,7 @@ export const FilterBar = ({ data, setSliderValue, setFilterStatus, statusContain
           </Button>
         ) : (
           <Button
+            list={list}
             type="button"
             onClick={() => {
               clickStatusContainer('Статус товару');

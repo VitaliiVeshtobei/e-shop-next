@@ -39,6 +39,12 @@ function Products({ data, query }) {
     dispatch(getProductsByCategory(data));
     setCurrentPage(0);
     setItemOffset(0);
+
+    if (data.length <= 2) {
+      setStatusFilter(true);
+    } else {
+      setStatusFilter(false);
+    }
   }, [data, dispatch]);
 
   useEffect(() => {
@@ -104,6 +110,7 @@ function Products({ data, query }) {
       <div style={{ marginBottom: '35px', marginTop: '-30px' }}>
         <FilterByPrice>
           <Button
+            list={currentItems.length}
             type="button"
             onClick={openFilter}
           >

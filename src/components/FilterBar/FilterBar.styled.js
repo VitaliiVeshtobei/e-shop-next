@@ -7,42 +7,52 @@ export const Wrapper = styled.section`
   display: flex;
   flex-direction: column;
 
-  ${(p) =>
-    p.list >= 2
-      ? `
- @media ${DEVICE.laptopMax} {
+  @media ${DEVICE.laptopMax} {
     position: absolute;
     top: -25px;
     left: 0;
-    background-color:  ${p.theme.colors.navbar};
+    background-color: ${(p) => p.theme.colors.navbar};
     z-index: 10;
     padding: 15px 20px 30px;
     border-radius: 3px;
-    box-shadow: 0px 3px 26px -1px ${p.theme.colors.darkHover};
+    box-shadow: 0px 3px 26px -1px ${(p) => p.theme.colors.darkHover};
 
-    ${
+    ${(p) =>
       !p.status
         ? `position: absolute;
- width: 1px;
- height: 1px;   
-margin: -1px;   
-border: 0;   
-padding: 0;   
-white-space: nowrap;   
-clip-path: inset(100%);   
-clip: rect(0 0 0 0);   
-overflow: hidden;`
-        : ''
-    }
+    width: 1px;
+    height: 1px;   
+    margin: -1px;   
+    border: 0;   
+    padding: 0;   
+    white-space: nowrap;   
+    clip-path: inset(100%);   
+    clip: rect(0 0 0 0);   
+    overflow: hidden;`
+        : ''}
   }
+
+  @media ${DEVICE.tablet} {
+    ${(p) =>
+      p.list <= 2
+        ? `
+        position:static;
+        box-shadow:none; 
+        padding:0;
+        background-color:transparent;
+        z-index:0;
+        border-radius:0;
+         `
+        : ''}
+  }
+
   @media ${DEVICE.mobileMax} {
     left: -15px;
   }
 
   @media screen and (min-width: 1280px) and (max-width: 1360px) {
     min-width: 239px;
-  }`
-      : ''}
+  }
 `;
 
 export const Div = styled.div`
@@ -90,6 +100,22 @@ export const Button = styled.button`
   transition: transform ${(p) => p.theme.transition};
   :hover {
     transform: scale(1.1);
+  }
+
+  @media ${DEVICE.tablet} {
+    ${(p) =>
+      p.list <= 2
+        ? `position: absolute;
+ width: 1px;
+ height: 1px;   
+margin: -1px;   
+border: 0;   
+padding: 0;   
+white-space: nowrap;   
+clip-path: inset(100%);   
+clip: rect(0 0 0 0);   
+overflow: hidden;`
+        : ''}
   }
 `;
 
