@@ -115,6 +115,7 @@ function Products({ data, query }) {
 
       <Container>
         <FilterBar
+          list={currentItems.length}
           statusContainerFilter={statusFilter}
           data={data}
           setSliderValue={setSliderValue}

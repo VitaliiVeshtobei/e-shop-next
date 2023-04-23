@@ -21,7 +21,7 @@ import {
 } from './FilterBar.styled';
 import { PriceInput } from './PriceInput/PriceInput';
 
-export const FilterBar = ({ data, setSliderValue, setFilterStatus, statusContainerFilter }) => {
+export const FilterBar = ({ data, setSliderValue, setFilterStatus, statusContainerFilter, list }) => {
   const router = useRouter();
   const { category } = router.query;
 
@@ -155,7 +155,10 @@ export const FilterBar = ({ data, setSliderValue, setFilterStatus, statusContain
   };
 
   return (
-    <Wrapper status={statusContainerFilter}>
+    <Wrapper
+      status={statusContainerFilter}
+      list={list}
+    >
       <Div status={statusBtnCategory}>
         <Text>Категорії</Text>
         {statusBtnCategory ? (

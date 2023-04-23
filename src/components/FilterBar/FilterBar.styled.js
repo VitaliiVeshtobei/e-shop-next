@@ -7,17 +7,20 @@ export const Wrapper = styled.section`
   display: flex;
   flex-direction: column;
 
-  @media ${DEVICE.laptopMax} {
+  ${(p) =>
+    p.list >= 2
+      ? `
+ @media ${DEVICE.laptopMax} {
     position: absolute;
     top: -25px;
     left: 0;
-    background-color: ${(p) => p.theme.colors.navbar};
+    background-color:  ${p.theme.colors.navbar};
     z-index: 10;
     padding: 15px 20px 30px;
     border-radius: 3px;
-    box-shadow: 0px 3px 26px -1px ${(p) => p.theme.colors.darkHover};
+    box-shadow: 0px 3px 26px -1px ${p.theme.colors.darkHover};
 
-    ${(p) =>
+    ${
       !p.status
         ? `position: absolute;
  width: 1px;
@@ -29,7 +32,8 @@ white-space: nowrap;
 clip-path: inset(100%);   
 clip: rect(0 0 0 0);   
 overflow: hidden;`
-        : ''}
+        : ''
+    }
   }
   @media ${DEVICE.mobileMax} {
     left: -15px;
@@ -37,7 +41,8 @@ overflow: hidden;`
 
   @media screen and (min-width: 1280px) and (max-width: 1360px) {
     min-width: 239px;
-  }
+  }`
+      : ''}
 `;
 
 export const Div = styled.div`
