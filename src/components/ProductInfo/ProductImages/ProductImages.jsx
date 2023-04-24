@@ -15,7 +15,7 @@ const ProductImages = () => {
   const { main_image, images, name, discount, price } = useSelector(selectProductInfo);
 
   useEffect(() => {
-    const newImg = main_image?.replace(/200/gi, '640');
+    const newImg = main_image?.replace(/w200/gi, 'w640').replace(/h200/gi, 'h640');
     setImage(newImg);
     setTitle(name);
     setDiscountPrice(discount);
@@ -107,7 +107,7 @@ const ProductImages = () => {
   );
 
   const onSliderImgClick = (img) => {
-    setImage(img.replace(/200/gi, '640'));
+    setImage(img.replace(/w200/gi, 'w640').replace(/h200/gi, 'h640'));
   };
 
   const settings = {

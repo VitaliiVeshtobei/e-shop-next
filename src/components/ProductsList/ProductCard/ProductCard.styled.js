@@ -19,7 +19,7 @@ export const Wrapper = styled(Link)`
 export const DiscountPercent = styled.div`
   position: absolute;
   top: 33px;
-  left: 13%;
+  left: 16%;
   height: 30px;
   width: 45px;
   padding: 2px;
@@ -31,7 +31,15 @@ export const DiscountPercent = styled.div`
   border-radius: 25px;
   background-color: ${(p) => p.theme.colors.accent};
   color: ${(p) => p.theme.colors.lightText};
-  @media screen and (min-width: 370px) {
+
+  /* @media screen and (min-width: 370px) {
+    top: 33px;
+    left: 60px;
+    height: 30px;
+    width: 45px;
+  } */
+
+  @media ${tablet} {
     top: 33px;
     left: 60px;
     height: 30px;
@@ -70,7 +78,14 @@ export const Cart = styled.button`
     transform: scale(1.1);
   }
 
-  @media screen and (min-width: 370px) {
+  /* @media screen and (min-width: 370px) {
+    left: 247px;
+
+    top: 12px;
+    width: 30px;
+    height: 30px;
+  } */
+  @media ${tablet} {
     left: 267px;
 
     top: 12px;
