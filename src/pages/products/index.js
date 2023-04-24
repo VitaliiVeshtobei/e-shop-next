@@ -9,7 +9,7 @@ import ProductsList from '@/components/ProductsList/ProductsList';
 import { FilterBar } from '@/components/FilterBar/FilterBar';
 import { FilterByPrice } from '@/components/FilterByPrice/FilterByPrice';
 import Pagination from '@/components/ProductsList/Pagination/Pagination';
-import { Button, Container, Icon } from '@/_app/producrts.styled';
+import { Button, Container, Icon } from '@/_app/products.styled';
 
 export async function getServerSideProps({ query }) {
   const category = query.category;
