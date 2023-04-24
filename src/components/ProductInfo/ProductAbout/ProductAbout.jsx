@@ -42,6 +42,10 @@ const ProductAbout = () => {
 
   const onBuyBtnClick = () => {
     const priceProduct = discount ? price - discount.value : price;
+    if (inCart) {
+      router.push('/cart');
+      return;
+    }
     dispatch(addCart({ image: main_image, name: name.uk, price: priceProduct, id }));
     setInCart((prev) => !prev);
     router.push('/cart');

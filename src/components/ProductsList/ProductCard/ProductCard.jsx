@@ -20,19 +20,8 @@ import { useEffect, useState } from 'react';
 import { getCartLocal } from '@/localStorage/localStorage';
 
 const ProductCard = ({ image, article, name, price, id, discount, presence }) => {
-  const renderSwitch = (param) => {
-    switch (param) {
-      case 'available':
-        return 'В наявності';
-      case 'not_available':
-        return 'Немає в наявності';
-      case 'waiting':
-        return 'Очікується';
-      default:
-        return '';
-    }
-  };
   const [inCart, setInCart] = useState(false);
+  const [inStock, setInStock] = useState('available');
 
   const dispatch = useDispatch();
 
@@ -49,6 +38,19 @@ const ProductCard = ({ image, article, name, price, id, discount, presence }) =>
     const priceProduct = discount ? price - discount.value : price;
     dispatch(addCart({ image, name, price: priceProduct, id }));
     setInCart((prev) => !prev);
+  };
+
+  const renderSwitch = (param) => {
+    switch (param) {
+      case 'available':
+        return 'В наявності';
+      case 'not_available':
+        return 'Немає в наявності';
+      case 'waiting':
+        return 'Очікується';
+      default:
+        return '';
+    }
   };
 
   return (
@@ -84,6 +86,7 @@ const ProductCard = ({ image, article, name, price, id, discount, presence }) =>
       <Cart
         onClick={cartClick}
         inCart={inCart}
+        inStock={presence}
       >
         <IoCartOutline />
       </Cart>

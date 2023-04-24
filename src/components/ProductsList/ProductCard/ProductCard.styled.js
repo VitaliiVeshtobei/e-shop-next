@@ -55,7 +55,12 @@ export const Cart = styled.button`
   border: none;
   cursor: pointer;
 
-  display: flex;
+  display: ${(p) => {
+    if (p.inStock !== 'available') {
+      return ' none';
+    }
+    return 'flex';
+  }};
   justify-content: center;
   align-items: center;
   transition: transform ${(p) => p.theme.transition};
