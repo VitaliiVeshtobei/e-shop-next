@@ -107,18 +107,16 @@ function Products({ data, query }) {
 
   return (
     <div onClick={handleBackdropClick}>
-      <div style={{ marginBottom: '35px', marginTop: '-30px' }}>
-        <FilterByPrice>
-          <Button
-            list={currentItems.length}
-            type="button"
-            onClick={openFilter}
-          >
-            <Icon />
-            Фільтр
-          </Button>
-        </FilterByPrice>
-      </div>
+      <FilterByPrice>
+        <Button
+          list={currentItems.length}
+          type="button"
+          onClick={openFilter}
+        >
+          <Icon />
+          Фільтр
+        </Button>
+      </FilterByPrice>
 
       <Container>
         <FilterBar

@@ -6,6 +6,7 @@ export const Container = styled('div')`
   height: 30px;
   align-items: center;
   justify-content: center;
+  margin-bottom: 40px;
 
   @media ${DEVICE.laptopMax} {
     justify-content: space-evenly;
