@@ -103,7 +103,7 @@ export const InputMax = styled.input`
   line-height: 18px;
   color: #2d3033;
 
-  @media screen and (min-width: 1280px) and (max-width: 1340px) {
+  @media screen and (min-width: 1280px) and (max-width: 1360px) {
     width: 75px;
   }
 `;
