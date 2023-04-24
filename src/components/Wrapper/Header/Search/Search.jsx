@@ -13,7 +13,7 @@ import {
   LogoContainer,
   IconContainer,
 } from './SearchStyled';
-import logo from '../../../../../public/images/logo 1.png';
+
 import { useSelector } from 'react-redux';
 import { selectCart } from '@/redux/products/selectors';
 
@@ -31,7 +31,9 @@ const Search = () => {
     <Container>
       <LogoContainer>
         <Image
-          src={logo}
+          src="/images/logo/logo.png"
+          width={200}
+          height={200}
           alt="logo"
         />
       </LogoContainer>

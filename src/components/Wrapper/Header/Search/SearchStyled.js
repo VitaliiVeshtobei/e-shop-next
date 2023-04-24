@@ -14,7 +14,10 @@ export const LogoContainer = styled('div')`
     display: none;
   }
   @media ${DEVICE.tablet} {
-    display: block;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 `;
 
