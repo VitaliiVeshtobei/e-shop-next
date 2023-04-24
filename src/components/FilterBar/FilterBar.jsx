@@ -4,11 +4,13 @@ import { useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 
+import { BsChevronDown, BsChevronUp } from 'react-icons/bs';
+
 import {
   Button,
   Container,
   ContainerPrice,
-  Header,
+  Div,
   Icon,
   InputContainer,
   Item,
@@ -19,7 +21,7 @@ import {
 } from './FilterBar.styled';
 import { PriceInput } from './PriceInput/PriceInput';
 
-export const FilterBar = ({ data, setSliderValue, setFilterStatus }) => {
+export const FilterBar = ({ data, setSliderValue, setFilterStatus, statusContainerFilter, list }) => {
   const router = useRouter();
   const { category } = router.query;
 
@@ -31,6 +33,8 @@ export const FilterBar = ({ data, setSliderValue, setFilterStatus }) => {
   const [priceMax, setPriceMax] = useState(0);
 
   const [previousQuery, setPreviousQuery] = useState(category);
+  const [statusBtnCategory, setStatusBtnCategory] = useState(false);
+  const [statusBtnAvailable, setStatusBtnAvailable] = useState(false);
 
   useEffect(() => {
     const localCategories = typeof window !== 'undefined' ? window.localStorage.getItem('categories') : null;
@@ -131,16 +135,6 @@ export const FilterBar = ({ data, setSliderValue, setFilterStatus }) => {
     setFilterStatus(event);
   };
 
-  const resetInput = () => {
-    setFilterStatus('');
-    setSelectedAvailable('');
-
-    router.push({
-      pathname: '/products',
-      query: { category: 'all' },
-    });
-  };
-
   useEffect(() => {
     const price = data.map(({ price }) => price);
     const min = Math.min.apply(null, price);
@@ -152,18 +146,42 @@ export const FilterBar = ({ data, setSliderValue, setFilterStatus }) => {
     setSliderValue([+min, +max]);
   }, [data, setSliderValue]);
 
+  const clickStatusContainer = (e) => {
+    if (e === 'Категорії') {
+      setStatusBtnCategory(!statusBtnCategory);
+    } else {
+      setStatusBtnAvailable(!statusBtnAvailable);
+    }
+  };
+
   return (
-    <Wrapper>
-      <Header>
+    <Wrapper
+      status={statusContainerFilter}
+      list={list}
+    >
+      <Div status={statusBtnCategory}>
         <Text>Категорії</Text>
-        <Button
-          type="button"
-          onClick={resetInput}
-        >
-          Скасувати
-        </Button>
-      </Header>
-      <Container>
+        {statusBtnCategory ? (
+          <Button
+            type="button"
+            onClick={() => {
+              clickStatusContainer('Категорії');
+            }}
+          >
+            <BsChevronDown />
+          </Button>
+        ) : (
+          <Button
+            type="button"
+            onClick={() => {
+              clickStatusContainer('Категорії');
+            }}
+          >
+            <BsChevronUp />
+          </Button>
+        )}
+      </Div>
+      <Container status={statusBtnCategory}>
         <Item key="all">
           <InputContainer
             name="categories"
@@ -198,8 +216,30 @@ export const FilterBar = ({ data, setSliderValue, setFilterStatus }) => {
             );
           })}
       </Container>
-      <Container>
+
+      <Div status={statusBtnAvailable}>
         <Text>Статус товару</Text>
+        {statusBtnAvailable ? (
+          <Button
+            type="button"
+            onClick={() => {
+              clickStatusContainer('Статус товару');
+            }}
+          >
+            <BsChevronDown />
+          </Button>
+        ) : (
+          <Button
+            type="button"
+            onClick={() => {
+              clickStatusContainer('Статус товару');
+            }}
+          >
+            <BsChevronUp />
+          </Button>
+        )}
+      </Div>
+      <Container status={statusBtnAvailable}>
         <Item key="available">
           <InputContainer
             id="available"

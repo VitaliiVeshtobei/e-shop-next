@@ -5,7 +5,7 @@ import { selectProductsByCategory } from '@/redux/products/selectors';
 import { getProductsByCategory } from '@/redux/products/slice';
 import { useRouter } from 'next/router';
 
-export const FilterByPrice = () => {
+export const FilterByPrice = ({ children }) => {
   const [activeCheapBtn, setActiveCheapBtn] = useState(false);
   const [activeExpensiveBtn, setActiveExpensiveBtn] = useState(false);
   const [activeNewestBtn, setActiveNewestBtn] = useState(true);
@@ -50,6 +50,7 @@ export const FilterByPrice = () => {
   };
   return (
     <Container>
+      {children}
       <ListBtn>
         <li>
           <BtnStyled

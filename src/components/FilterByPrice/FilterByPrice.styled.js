@@ -1,10 +1,15 @@
 import styled from 'styled-components';
+import DEVICE from '@/constants/deviceSize';
 
 export const Container = styled('div')`
   display: flex;
   height: 30px;
   align-items: center;
   justify-content: center;
+
+  @media ${DEVICE.laptopMax} {
+    justify-content: space-evenly;
+  }
 `;
 export const ListBtn = styled('ul')`
   display: flex;
@@ -29,4 +34,9 @@ export const BtnStyled = styled('button')`
     background-color: rgba(98, 148, 148, 0.5);
     color: #ffffff;
   }`}
+
+  @media ${DEVICE.mobileMax} {
+    padding: 6px 5px;
+    font-size: 11px;
+  }
 `;
