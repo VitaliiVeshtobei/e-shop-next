@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { AiOutlineLeft, AiOutlineRight } from 'react-icons/ai';
 
 import { selectProductInfo } from '@/redux/products/selectors';
+import ImageModal from './ImageModal/ImageModal';
 
 import { MainImageWrap, DiscountPercent, Slide, Container, PrevArrow, NextArrow } from './ProductImages.styled';
 
@@ -12,6 +13,7 @@ const ProductImages = () => {
   const [title, setTitle] = useState('');
   const [discountPrice, setDiscountPrice] = useState('');
   const [pictures, setPictures] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const { main_image, images, name, discount, price } = useSelector(selectProductInfo);
 
   useEffect(() => {
@@ -110,6 +112,10 @@ const ProductImages = () => {
     setImage(img.replace(/w200/gi, 'w640').replace(/h200/gi, 'h640'));
   };
 
+  const onMainImageClick = () => {
+    setIsModalOpen(!isModalOpen);
+  };
+
   const settings = {
     dots: true,
     infinite: true,
@@ -137,37 +143,47 @@ const ProductImages = () => {
   };
 
   return (
-    <Container>
-      <MainImageWrap>
+    <>
+      <Container>
+        <MainImageWrap>
+          <div>
+            {discountPrice && (
+              <DiscountPercent>
+                <p>-{Math.ceil((discount.value / price) * 100)}%</p>
+              </DiscountPercent>
+            )}
+          </div>
+          <Image
+            src={image ? image : '/images/placeholder.jpg'}
+            fill={true}
+            alt={title}
+            sizes="100%, 100%"
+            onClick={onMainImageClick}
+          />
+        </MainImageWrap>
         <div>
-          {discountPrice && (
-            <DiscountPercent>
-              <p>-{Math.ceil((discount.value / price) * 100)}%</p>
-            </DiscountPercent>
-          )}
+          <Slide {...settings}>
+            {pictures.map((img, index) => (
+              <div key={index}>
+                <Image
+                  src={img ? img.url : '/images/placeholder.jpg'}
+                  alt={img.id}
+                  width={100}
+                  height={100}
+                  onClick={() => onSliderImgClick(img?.url)}
+                />
+              </div>
+            ))}
+          </Slide>
         </div>
-        <Image
-          src={image ? image : '/images/placeholder.jpg'}
-          fill={true}
-          alt={title}
+      </Container>
+      {isModalOpen && (
+        <ImageModal
+          onClose={onMainImageClick}
+          img={image}
         />
-      </MainImageWrap>
-      <div>
-        <Slide {...settings}>
-          {pictures.map((img, index) => (
-            <div key={index}>
-              <Image
-                src={img ? img.url : '/images/placeholder.jpg'}
-                alt={img.id}
-                width={100}
-                height={100}
-                onClick={() => onSliderImgClick(img?.url)}
-              />
-            </div>
-          ))}
-        </Slide>
-      </div>
-    </Container>
+      )}
+    </>
   );
 };
 

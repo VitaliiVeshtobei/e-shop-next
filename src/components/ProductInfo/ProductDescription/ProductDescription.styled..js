@@ -36,6 +36,21 @@ export const DescriptionWrap = styled.div`
     }
   }
 
+  iframe {
+    margin-top: 15px;
+    width: 250px;
+    height: 150px;
+
+    @media screen and (min-width: 410px) {
+      width: 350px;
+      height: 200px;
+    }
+    @media ${tablet} {
+      width: 650px;
+      height: 350px;
+    }
+  }
+
   @media ${tablet} {
     padding: 26px 36px;
   }
