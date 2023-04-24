@@ -44,7 +44,7 @@ export const CartProduct = ({ product }) => {
   };
   return (
     <Container>
-      <ProductContainer>
+      <ProductContainer href={{ pathname: `/products/${product.id}` }}>
         <Image
           src={product.image}
           alt={product.name}

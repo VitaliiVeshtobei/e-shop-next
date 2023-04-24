@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import DEVICE from '../../../../constants/deviceSize';
+import Link from 'next/link';
 
 export const Container = styled('div')`
   padding: 25px 0;
@@ -22,7 +23,7 @@ export const Container = styled('div')`
   }
 `;
 
-export const ProductContainer = styled('div')`
+export const ProductContainer = styled(Link)`
   display: flex;
   gap: 10px;
   flex-basis: 40%;
