@@ -44,7 +44,12 @@ export default class MyDocument extends Document {
   render() {
     return (
       <Html lang="ua">
-        <Head />
+        <Head>
+          <link
+            rel="icon"
+            href="/favicon.ico"
+          />
+        </Head>
         <body>
           <Main />
           <NextScript />

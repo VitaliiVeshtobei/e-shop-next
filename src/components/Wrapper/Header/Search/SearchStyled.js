@@ -19,6 +19,10 @@ export const LogoContainer = styled('div')`
     align-items: center;
     justify-content: center;
   }
+  p {
+    font-size: 28px;
+    color: ${(p) => p.theme.colors.lightText};
+  }
 `;
 
 export const FormStyled = styled('form')`

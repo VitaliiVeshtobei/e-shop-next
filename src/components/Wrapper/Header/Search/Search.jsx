@@ -31,11 +31,12 @@ const Search = () => {
     <Container>
       <LogoContainer>
         <Image
-          src="/images/logo/logo.png"
-          width={200}
-          height={200}
+          src="/images/logo/logo-victar.svg"
+          width={70}
+          height={70}
           alt="logo"
         />
+        <p>VicTar</p>
       </LogoContainer>
       <FormStyled onSubmit={handlerSubmit}>
         <InputStyled

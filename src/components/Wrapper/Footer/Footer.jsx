@@ -18,6 +18,7 @@ import {
   CategoriesLink,
   LogoText,
   CategoriesItem,
+  Logo,
 } from './FooterStyled';
 import navigation from '../../../../public/bd/navigation.json';
 
@@ -28,13 +29,16 @@ const Footer = () => {
     <FooterContainer>
       <Container>
         <LogoContainer>
-          <Image
-            src="/images/logo-footer.png"
-            alt="logo-footer"
-            width={140}
-            height={39}
-          />
-          <LogoText>Privat-auto — Інтернет магазин автозапчастин та аксессуарів</LogoText>
+          <Logo>
+            <Image
+              src="/images/logo/logo-victar.svg"
+              alt="logo-footer"
+              width={70}
+              height={70}
+            />
+            <p>VicTar</p>
+          </Logo>
+          <LogoText>Victar — Інтернет магазин автозапчастин та аксессуарів</LogoText>
         </LogoContainer>
 
         <CategoriesContainer>

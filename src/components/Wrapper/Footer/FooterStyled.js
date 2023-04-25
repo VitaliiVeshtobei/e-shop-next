@@ -29,10 +29,13 @@ export const Container = styled.div`
   }
 `;
 
-export const LogoContainer = styled.div`
-  img {
-    margin-bottom: 40px;
-  }
+export const LogoContainer = styled.div``;
+export const Logo = styled.div`
+  display: flex;
+  align-items: center;
+  margin-bottom: 40px;
+  font-size: 28px;
+  color: ${(p) => p.theme.colors.lightText};
 `;
 
 export const LogoText = styled.p`
