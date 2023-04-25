@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import DEVICE from '@/constants/deviceSize';
 
 export const Title = styled('h2')`
   text-align: center;
@@ -8,6 +9,7 @@ export const Title = styled('h2')`
 
 export const ListText = styled('ul')`
   display: flex;
+  flex-direction: column;
   gap: 30px;
   font-size: 14px;
   font-weight: 400px;
@@ -18,6 +20,11 @@ export const ListText = styled('ul')`
   }
   ul > li:not(:last-child) {
     margin-bottom: 10px;
+  }
+  @media ${DEVICE.tablet} {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
   }
 `;
 
