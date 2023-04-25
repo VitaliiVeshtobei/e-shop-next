@@ -4,7 +4,6 @@ import Link from 'next/link';
 
 export const ListCategoriesContainer = styled('div')`
   position: absolute;
-  /* z-index: 2; */
   top: 0;
   overflow: hidden;
   box-sizing: border-box;
@@ -79,7 +78,7 @@ export const LinkStyled = styled(Link)`
 `;
 
 export const Backdrop = styled.div`
-  z-index: 1;
+  z-index: 999;
   position: absolute;
   left: 0;
   height: 100vh;

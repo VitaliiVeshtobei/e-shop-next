@@ -2,7 +2,7 @@
 import React from 'react';
 import { ListItem, ListText, Title } from './DeliveryAndPayment.styled';
 import { TbTruckDelivery } from 'react-icons/tb';
-import { MdPayment } from 'react-icons/md';
+import { GiTakeMyMoney } from 'react-icons/gi';
 
 export const DeliveryAndPayment = () => {
   return (
@@ -33,7 +33,7 @@ export const DeliveryAndPayment = () => {
             </ul>
           </ListItem>
           <ListItem>
-            <MdPayment />
+            <GiTakeMyMoney />
             <h3>Способи оплати: </h3>
             <ul>
               <li>
