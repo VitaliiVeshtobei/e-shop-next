@@ -26,10 +26,9 @@ export const MainImageWrap = styled.div`
     border: 1px solid ${(p) => p.theme.colors.border};
     border-radius: 20px;
     overflow: hidden;
-    /* object-fit: cover; */
-    width: 100%;
-    width: 100%;
-    /* position: relative; */
+    cursor: pointer;
+    /* width: 100%;
+    width: 100%; */
   }
 `;
 export const DiscountPercent = styled.div`

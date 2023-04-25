@@ -1,15 +1,17 @@
 import styled from 'styled-components';
+import DEVICE from '@/constants/deviceSize';
+const { tablet } = DEVICE;
 
 export const List = styled.ul`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  margin-right: -16px;
+  margin-right: -15px;
 `;
 
 export const Item = styled.li`
   position: relative;
-  width: 310px;
+  width: 285px;
   border: 1px solid ${(p) => p.theme.colors.border};
   border-radius: 20px;
   margin-right: 16px;
@@ -22,5 +24,9 @@ export const Item = styled.li`
     transform: scale(1.05);
     box-shadow: 0px 3px 26px -1px ${(p) => p.theme.colors.darkHover};
     outline: transparent;
+  }
+
+  @media ${tablet} {
+    width: 310px;
   }
 `;
