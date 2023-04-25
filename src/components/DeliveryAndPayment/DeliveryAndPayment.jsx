@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import React from 'react';
 import { ListItem, ListText, Title } from './DeliveryAndPayment.styled';
 import { TbTruckDelivery } from 'react-icons/tb';
