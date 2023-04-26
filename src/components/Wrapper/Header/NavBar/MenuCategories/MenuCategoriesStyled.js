@@ -3,12 +3,12 @@ import DEVICE from '../../../../../constants/deviceSize';
 import Link from 'next/link';
 
 export const ListCategoriesContainer = styled('div')`
+  z-index: 1000;
   position: absolute;
-  top: 0;
+  top: 70px;
   overflow: hidden;
   box-sizing: border-box;
 
-  width: 375px;
   animation-name: categories;
   animation-duration: 300ms;
   animation-timing-function: linear;
@@ -23,15 +23,12 @@ export const ListCategoriesContainer = styled('div')`
     }
   }
   @media ${DEVICE.mobile} {
-    margin: 0;
-    width: 100%;
+    min-width: 320px;
   }
   @media ${DEVICE.tablet} {
-    margin-left: 63px;
     width: 375px;
   }
   @media ${DEVICE.laptop} {
-    margin-left: 63px;
     width: 375px;
   }
 `;
@@ -74,29 +71,5 @@ export const LinkStyled = styled(Link)`
   }
   &:focus::after {
     width: ${(p) => p.theme.lineHover.width};
-  }
-`;
-
-export const Backdrop = styled.div`
-  z-index: 999;
-  position: absolute;
-  left: 0;
-  height: 100vh;
-  width: 100%;
-
-  background-color: rgba(0, 0, 0, 0.4);
-
-  animation-name: backdrop;
-  animation-duration: 300ms;
-  animation-timing-function: linear;
-  animation-fill-mode: forwards;
-
-  @keyframes backdrop {
-    0% {
-      opacity: 0;
-    }
-    100% {
-      opacity: 1;
-    }
   }
 `;

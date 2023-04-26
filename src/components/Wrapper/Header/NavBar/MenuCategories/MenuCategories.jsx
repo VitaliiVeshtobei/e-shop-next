@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Backdrop, ItemCategories, ListCategories, ListCategoriesContainer, LinkStyled } from './MenuCategoriesStyled';
+import { ItemCategories, ListCategories, ListCategoriesContainer, LinkStyled } from './MenuCategoriesStyled';
 
 const MenuCategories = ({ handleClick, data, nameButton }) => {
   useEffect(() => {
@@ -26,21 +26,19 @@ const MenuCategories = ({ handleClick, data, nameButton }) => {
   };
   return (
     <>
-      <Backdrop onClick={handleClick}>
-        <ListCategoriesContainer>
-          <ListCategories>
-            {data.map((item) => (
-              <ItemCategories key={item.id}>
-                <LinkStyled
-                  href={nameButton === 'Menu' ? item.path : { pathname: '/products', query: { category: item.id } }}
-                >
-                  {nameButton === 'Menu' ? item.category : item.name_multilang.uk}
-                </LinkStyled>
-              </ItemCategories>
-            ))}
-          </ListCategories>
-        </ListCategoriesContainer>
-      </Backdrop>
+      <ListCategoriesContainer>
+        <ListCategories>
+          {data.map((item) => (
+            <ItemCategories key={item.id}>
+              <LinkStyled
+                href={nameButton === 'Menu' ? item.path : { pathname: '/products', query: { category: item.id } }}
+              >
+                {nameButton === 'Menu' ? item.category : item.name_multilang.uk}
+              </LinkStyled>
+            </ItemCategories>
+          ))}
+        </ListCategories>
+      </ListCategoriesContainer>
     </>
   );
 };

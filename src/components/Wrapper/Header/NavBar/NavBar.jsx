@@ -5,7 +5,7 @@ import { selectCategories } from '../../../../redux/products/selectors';
 import MenuCategories from './MenuCategories/MenuCategories';
 import navigation from '../../../../../public/bd/navigation.json';
 
-import { ButtonCategories, Container, ListContainer, ItemContainer, LinkStyled } from './NavBarStyled';
+import { ButtonCategories, Container, ListContainer, ItemContainer, LinkStyled, Backdrop } from './NavBarStyled';
 
 const NavBar = () => {
   const [showCategories, setShowCategories] = useState(false);
@@ -41,13 +41,22 @@ const NavBar = () => {
     <>
       <div style={{ position: 'relative' }}>
         <Container>
-          <ButtonCategories
-            name="Categories"
-            type="button"
-            onClick={handleClick}
-          >
-            Каталог товарів
-          </ButtonCategories>
+          <div>
+            <ButtonCategories
+              name="Categories"
+              type="button"
+              onClick={handleClick}
+            >
+              Каталог товарів
+            </ButtonCategories>
+            {showCategories && (
+              <MenuCategories
+                handleClick={handleClick}
+                data={nameButton === 'Menu' ? navigation : categories}
+                nameButton={nameButton}
+              />
+            )}
+          </div>
           <ButtonCategories
             name="Menu"
             type="button"
@@ -68,13 +77,7 @@ const NavBar = () => {
             ))}
           </ListContainer>
         </Container>
-        {showCategories && (
-          <MenuCategories
-            handleClick={handleClick}
-            data={nameButton === 'Menu' ? navigation : categories}
-            nameButton={nameButton}
-          />
-        )}
+        {showCategories && <Backdrop onClick={handleClick}></Backdrop>}
       </div>
     </>
   );
