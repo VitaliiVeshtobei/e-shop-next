@@ -7,8 +7,8 @@ export const Logo = () => {
     <LogoContainer>
       <Image
         src="/images/logo/logo-victar.svg"
-        width={70}
-        height={70}
+        width={40}
+        height={40}
         alt="logo"
       />
       <p>VicTar</p>

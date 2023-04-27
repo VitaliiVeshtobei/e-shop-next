@@ -3,7 +3,7 @@ import { ItemCategories, ListCategories, ListCategoriesContainer, LinkStyled, Ba
 import { selectCategories } from '@/redux/products/selectors';
 import { useSelector } from 'react-redux';
 
-export const MenuCategories = ({ handleClick }) => {
+export const MenuCategories = ({ handleClickCatalog }) => {
   const [categories, setCategories] = useState([]);
 
   const data = useSelector(selectCategories);
@@ -30,11 +30,11 @@ export const MenuCategories = ({ handleClick }) => {
 
   const onKeyDown = (e) => {
     if (e.code === 'Escape') {
-      handleClick();
+      handleClickCatalog();
     }
   };
   return (
-    <Backdrop onClick={handleClick}>
+    <Backdrop onClick={handleClickCatalog}>
       <ListCategoriesContainer>
         <ListCategories>
           {categories.map((item) => (

@@ -33,8 +33,8 @@ const Footer = () => {
             <Image
               src="/images/logo/logo-victar.svg"
               alt="logo-footer"
-              width={70}
-              height={70}
+              width={40}
+              height={40}
             />
             <p>VicTar</p>
           </Logo>

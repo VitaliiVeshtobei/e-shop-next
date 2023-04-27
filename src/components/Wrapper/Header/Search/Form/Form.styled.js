@@ -43,9 +43,10 @@ export const ButtonStyled = styled('button')`
     box-shadow: 0px 3px 26px -1px ${(p) => p.theme.colors.darkHover};
   }
   @media ${DEVICE.mobile} {
-    width: 70px;
+    display: none;
   }
   @media ${DEVICE.tablet} {
+    display: inline;
     width: 100px;
   }
   @media ${DEVICE.laptop} {

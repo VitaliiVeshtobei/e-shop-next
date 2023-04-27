@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import { ButtonCategories } from './Catalog.styled';
 
-export const Catalog = ({ handleClick }) => {
+export const Catalog = ({ handleClickCatalog }) => {
   return (
     <ButtonCategories
       name="Categories"
       type="button"
-      onClick={handleClick}
+      onClick={handleClickCatalog}
     >
       Каталог товарів
     </ButtonCategories>

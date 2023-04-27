@@ -1,6 +1,8 @@
+import DEVICE from '@/constants/deviceSize';
 import styled from 'styled-components';
 
 export const ButtonCategories = styled('button')`
+  display: none;
   border: none;
   border-radius: 8px;
   height: 40px;
@@ -17,5 +19,8 @@ export const ButtonCategories = styled('button')`
   }
   &:focus {
     box-shadow: 0px 3px 26px -1px ${(p) => p.theme.colors.darkHover};
+  }
+  @media ${DEVICE.tablet} {
+    display: block;
   }
 `;

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import DEVICE from '../../../../../../constants/deviceSize';
+import DEVICE from '../../../../../constants/deviceSize';
 import Link from 'next/link';
 
 export const ListCategoriesContainer = styled('div')`

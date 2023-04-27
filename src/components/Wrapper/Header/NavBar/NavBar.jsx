@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { useSelector } from 'react-redux';
 import { selectCategories } from '../../../../redux/products/selectors';
-import MenuCategories from '../Search/Catalog/MenuCategories/MenuCategories';
+import MenuCategories from '../Search/MenuCategories/MenuCategories';
 import navigation from '../../../../../public/bd/navigation.json';
 
 import { ButtonCategories, Container, ListContainer, ItemContainer, LinkStyled, Backdrop } from './NavBarStyled';
