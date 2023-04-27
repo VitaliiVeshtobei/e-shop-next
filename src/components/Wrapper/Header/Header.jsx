@@ -11,7 +11,7 @@ const Header = () => {
     <header>
       <Location />
       <Search />
-      <NavBar />
+      {/* <NavBar /> */}
       {router.pathname !== '/' && <Navigation />}
     </header>
   );

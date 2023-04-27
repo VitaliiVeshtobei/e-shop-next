@@ -1,60 +1,37 @@
-import React, { useEffect, useState } from 'react';
-import Image from 'next/image';
+import React, { useState } from 'react';
 
-import { IoCartOutline } from 'react-icons/io5';
-import {
-  ButtonStyled,
-  Container,
-  FormStyled,
-  InputStyled,
-  CartContainer,
-  LinkStyled,
-  CartCount,
-  LogoContainer,
-  IconContainer,
-} from './SearchStyled';
+import { Container } from './SearchStyled';
 
-import { useSelector } from 'react-redux';
-import { selectCart } from '@/redux/products/selectors';
+import { Cart } from './Cart/Cart';
+import { Form } from './Form/Form';
+import { Logo } from './Logo/Logo';
+import { Catalog } from './Catalog/Catalog';
+import { MenuCategories } from './MenuCategories/MenuCategories';
+import { Burger } from './Burger/Burger';
+import { BurgerMenu } from './BurgerMenu/BurgerMenu';
 
 const Search = () => {
-  const [quantity, setQuantity] = useState(0);
-  const cartProducts = useSelector(selectCart);
-  useEffect(() => {
-    setQuantity(cartProducts.length);
-  }, [cartProducts.length]);
+  const [showCategories, setShowCategories] = useState(false);
+  const [showBurgerMenu, setShowBurgerMenu] = useState(false);
 
-  const handlerSubmit = (evt) => {
-    evt.preventDefault();
+  const handleClickCatalog = () => {
+    setShowCategories((prev) => !prev);
+  };
+  const handleClickBurger = () => {
+    setShowBurgerMenu((prev) => !prev);
   };
   return (
-    <Container>
-      <LogoContainer>
-        <Image
-          src="/images/logo/logo-victar.svg"
-          width={70}
-          height={70}
-          alt="logo"
-        />
-        <p>VicTar</p>
-      </LogoContainer>
-      <FormStyled onSubmit={handlerSubmit}>
-        <InputStyled
-          type="text"
-          placeholder="Я шукаю..."
-        />
-        <ButtonStyled type="submit">Знайти</ButtonStyled>
-      </FormStyled>
-      <CartContainer>
-        <LinkStyled href={'/cart'}>
-          <IconContainer>
-            <IoCartOutline />
-            <CartCount quantity={quantity}>{quantity}</CartCount>
-          </IconContainer>
-          <p>Корзина</p>
-        </LinkStyled>
-      </CartContainer>
-    </Container>
+    <>
+      <Container>
+        <Burger handleClickBurger={handleClickBurger} />
+        <Logo />
+        <Catalog handleClickCatalog={handleClickCatalog} />
+        <Form />
+        <Cart />
+      </Container>
+      {showCategories && <MenuCategories handleClickCatalog={handleClickCatalog} />}
+      {showBurgerMenu && <BurgerMenu handleClickBurger={handleClickBurger} />}
+    </>
   );
 };
 

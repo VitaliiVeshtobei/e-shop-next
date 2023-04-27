@@ -32,6 +32,7 @@ export const Container = styled.div`
 export const LogoContainer = styled.div``;
 export const Logo = styled.div`
   display: flex;
+  gap: 8px;
   align-items: center;
   margin-bottom: 40px;
   font-size: 28px;
