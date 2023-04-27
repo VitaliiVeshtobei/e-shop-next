@@ -1,7 +1,16 @@
-import React, { useEffect } from 'react';
-import { ItemCategories, ListCategories, ListCategoriesContainer, LinkStyled } from './MenuCategoriesStyled';
+import React, { useEffect, useState } from 'react';
+import { ItemCategories, ListCategories, ListCategoriesContainer, LinkStyled, Backdrop } from './MenuCategoriesStyled';
+import { selectCategories } from '@/redux/products/selectors';
+import { useSelector } from 'react-redux';
 
-const MenuCategories = ({ handleClick, data, nameButton }) => {
+export const MenuCategories = ({ handleClick }) => {
+  const [categories, setCategories] = useState([]);
+
+  const data = useSelector(selectCategories);
+  useEffect(() => {
+    setCategories(data);
+  }, [data]);
+
   useEffect(() => {
     window.addEventListener('wheel', noScroll, { passive: false });
     window.addEventListener('keydown', onKeyDown);
@@ -25,22 +34,18 @@ const MenuCategories = ({ handleClick, data, nameButton }) => {
     }
   };
   return (
-    <>
+    <Backdrop onClick={handleClick}>
       <ListCategoriesContainer>
         <ListCategories>
-          {data.map((item) => (
+          {categories.map((item) => (
             <ItemCategories key={item.id}>
-              <LinkStyled
-                href={nameButton === 'Menu' ? item.path : { pathname: '/products', query: { category: item.id } }}
-              >
-                {nameButton === 'Menu' ? item.category : item.name_multilang.uk}
+              <LinkStyled href={{ pathname: '/products', query: { category: item.id } }}>
+                {item.name_multilang.uk}
               </LinkStyled>
             </ItemCategories>
           ))}
         </ListCategories>
       </ListCategoriesContainer>
-    </>
+    </Backdrop>
   );
 };
-
-export default MenuCategories;

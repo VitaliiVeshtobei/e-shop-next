@@ -2,40 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { useSelector } from 'react-redux';
 import { selectCategories } from '../../../../redux/products/selectors';
-import MenuCategories from './MenuCategories/MenuCategories';
+import MenuCategories from '../Search/Catalog/MenuCategories/MenuCategories';
 import navigation from '../../../../../public/bd/navigation.json';
 
 import { ButtonCategories, Container, ListContainer, ItemContainer, LinkStyled, Backdrop } from './NavBarStyled';
 
 const NavBar = () => {
-  const [showCategories, setShowCategories] = useState(false);
-  const [nameButton, setNameButton] = useState(null);
-  const [categories, setCategories] = useState([]);
-
   const router = useRouter();
   const path = router.asPath;
-
-  const data = useSelector(selectCategories);
-  useEffect(() => {
-    setCategories(data);
-  }, [data]);
-
-  const handleClick = (e) => {
-    if (!e) {
-      setShowCategories((prev) => !prev);
-      return;
-    }
-    const btn = e.target.name;
-
-    if (!btn || !e) {
-      setShowCategories((prev) => !prev);
-      return;
-    }
-
-    if (showCategories && btn !== nameButton) return;
-    setNameButton(btn);
-    setShowCategories((prev) => !prev);
-  };
 
   return (
     <>
@@ -77,7 +51,7 @@ const NavBar = () => {
             ))}
           </ListContainer>
         </Container>
-        {showCategories && <Backdrop onClick={handleClick}></Backdrop>}
+        {/* {showCategories && } */}
       </div>
     </>
   );
