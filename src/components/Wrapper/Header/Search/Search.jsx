@@ -15,9 +15,11 @@ const Search = () => {
   const [showBurgerMenu, setShowBurgerMenu] = useState(false);
 
   const handleClickCatalog = () => {
+    if (showBurgerMenu) handleClickBurger();
     setShowCategories((prev) => !prev);
   };
   const handleClickBurger = () => {
+    if (showCategories) handleClickCatalog();
     setShowBurgerMenu((prev) => !prev);
   };
   return (
@@ -30,7 +32,12 @@ const Search = () => {
         <Cart />
       </Container>
       {showCategories && <MenuCategories handleClickCatalog={handleClickCatalog} />}
-      {showBurgerMenu && <BurgerMenu handleClickBurger={handleClickBurger} />}
+      {showBurgerMenu && (
+        <BurgerMenu
+          handleClickBurger={handleClickBurger}
+          handleClickCatalog={handleClickCatalog}
+        />
+      )}
     </>
   );
 };
