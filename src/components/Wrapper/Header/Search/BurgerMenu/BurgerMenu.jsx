@@ -1,7 +1,25 @@
 import React, { useEffect } from 'react';
-import { Backdrop } from './BurgerMenu.styled';
+import { useRouter } from 'next/router';
+import {
+  Backdrop,
+  Container,
+  ContainerSvg,
+  MainList,
+  MainListItem,
+  ContainerText,
+  InfoList,
+  InfoListItem,
+  LinkStyled,
+} from './BurgerMenu.styled';
+import { IoPersonOutline, IoCartOutline, IoAppsOutline, IoHomeOutline } from 'react-icons/io5';
 
-export const BurgerMenu = ({ handleClickBurger }) => {
+import { TbCategory } from 'react-icons/tb';
+import navigation from '../../../../../../public/bd/navigation.json';
+
+export const BurgerMenu = ({ handleClickBurger, handleClickCatalog }) => {
+  const router = useRouter();
+  const path = router.asPath;
+
   useEffect(() => {
     window.addEventListener('wheel', noScroll, { passive: false });
     window.addEventListener('keydown', onKeyDown);
@@ -24,5 +42,75 @@ export const BurgerMenu = ({ handleClickBurger }) => {
       handleClickBurger();
     }
   };
-  return <Backdrop onClick={handleClickBurger}></Backdrop>;
+
+  const handleClick = () => {
+    handleClickBurger();
+    handleClickCatalog();
+  };
+  return (
+    <Backdrop onClick={handleClickBurger}>
+      <Container>
+        <MainList>
+          <MainListItem>
+            <button>
+              <ContainerSvg>
+                <IoPersonOutline />
+              </ContainerSvg>
+              Авторизація
+            </button>
+          </MainListItem>
+          <MainListItem>
+            <button onClick={() => router.push('/')}>
+              <ContainerSvg>
+                <IoHomeOutline />
+              </ContainerSvg>
+              Головна сторінка
+            </button>
+          </MainListItem>
+          <MainListItem>
+            <button onClick={handleClick}>
+              <ContainerSvg>
+                <TbCategory />
+              </ContainerSvg>
+              Каталог товарів
+            </button>
+          </MainListItem>
+          <MainListItem>
+            <button onClick={() => router.push('/products?category=all')}>
+              <ContainerSvg>
+                <IoAppsOutline />
+              </ContainerSvg>
+              Всі товари
+            </button>
+          </MainListItem>
+          <MainListItem>
+            <button onClick={() => router.push('/cart')}>
+              <ContainerSvg>
+                <IoCartOutline />
+              </ContainerSvg>
+              Корзина
+            </button>
+          </MainListItem>
+        </MainList>
+        <ContainerText>
+          <h3>Інформація о компанії</h3>
+        </ContainerText>
+        <InfoList>
+          {navigation.map((item, idx) => {
+            if (idx < 2) return;
+            return (
+              <InfoListItem key={item.id}>
+                <LinkStyled
+                  href={item.path}
+                  path={path}
+                >
+                  {item.category}
+                </LinkStyled>
+              </InfoListItem>
+            );
+          })}
+        </InfoList>
+      </Container>
+    </Backdrop>
+  );
 };
