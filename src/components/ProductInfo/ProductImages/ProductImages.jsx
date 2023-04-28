@@ -24,72 +24,6 @@ const ProductImages = () => {
     setPictures(images);
   }, [main_image, name, discount, images, pictures]);
 
-  // const settings = {
-  //   customPaging: function (i) {
-  //     return (
-  //       <div>
-  //         <a>
-  //           <Image
-  //             src={pictures[i].url}
-  //             alt={pictures[i].id}
-  //             width={100}
-  //             height={100}
-  //           />
-  //         </a>
-  //       </div>
-  //     );
-  //   },
-  //   dots: true,
-  //   dotsClass: 'slick-dots',
-  //   infinite: true,
-  //   speed: 500,
-  //   slidesToShow: 1,
-  //   slidesToScroll: 1,
-  //   // vertical: true,
-
-  //   // adaptiveHeight: true,
-  //   arrows: false,
-  // };
-
-  // return (
-  //   <div>
-  //     {/* <MainImageWrap>
-  //       <div>
-  //         {discountPrice && (
-  //           <DiscountPercent>
-  //             <p>-{Math.ceil((discount.value / price) * 100)}%</p>
-  //           </DiscountPercent>
-  //         )}
-  //       </div>
-  //       <Image
-  //         src={image ? image : '/images/placeholder.jpg'}
-  //         width={360}
-  //         height={360}
-  //         alt={title}
-  //       />
-  //     </MainImageWrap> */}
-  //     <div style={{ width: '360px' }}>
-  //       <Slide {...settings}>
-  //         {pictures.map((img, index) => (
-  //           <MainImageWrap key={index}>
-  //             {discountPrice && (
-  //               <DiscountPercent>
-  //                 <p>-{Math.ceil((discount.value / price) * 100)}%</p>
-  //               </DiscountPercent>
-  //             )}
-  //             <Image
-  //               src={img ? img.url.replace(/200/gi, '640') : '/images/placeholder.jpg'}
-  //               alt={img.id}
-  //               width={360}
-  //               height={360}
-  //             />
-  //           </MainImageWrap>
-  //         ))}
-  //       </Slide>
-  //     </div>
-  //   </div>
-  // );
-
   const CustomPrevArrow = ({ onClick }) => (
     <PrevArrow
       type="button"
@@ -119,8 +53,8 @@ const ProductImages = () => {
   const settings = {
     dots: true,
     infinite: true,
-    autoplay: true,
-    autoplaySpeed: 5000,
+    // autoplay: true,
+    // autoplaySpeed: 5000,
     speed: 500,
     cssEase: 'linear',
     slidesToShow: 3,

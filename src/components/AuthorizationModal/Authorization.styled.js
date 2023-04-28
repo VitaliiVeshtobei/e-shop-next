@@ -7,13 +7,13 @@ export const Container = styled.div`
   width: 100%;
   height: 100%;
   background-color: ${(p) => p.theme.colors.lightText};
-  padding: 35px 20px;
+  padding: 25px 20px;
 
   @media ${tablet} {
     height: ${(p) => {
       if (p.modalType === 'login') {
         return '387px';
-      } else return '640px';
+      } else return '600px';
     }};
     width: 640px;
     border-radius: 8px;
@@ -25,6 +25,7 @@ export const CloseBtn = styled.button`
   position: absolute;
   top: 10px;
   right: 10px;
+  z-index: 2;
 
   display: flex;
   justify-content: center;

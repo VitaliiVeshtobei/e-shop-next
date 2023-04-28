@@ -41,7 +41,14 @@ export const UserBtn = styled.button`
   svg {
     height: 24px;
     width: 24px;
-    /* margin-right: 12px; */
+    margin-right: 12px;
+  }
+
+  span {
+    display: none;
+    @media ${DEVICE.tablet} {
+      display: block;
+    }
   }
 
   &::after {

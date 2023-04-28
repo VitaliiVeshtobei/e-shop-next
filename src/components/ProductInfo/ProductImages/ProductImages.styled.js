@@ -49,41 +49,17 @@ export const DiscountPercent = styled.div`
   color: ${(p) => p.theme.colors.lightText};
 `;
 
-// export const Slide = styled(Slider)`
-//   position: relative;
-//   .slick-arrow {
-//     background-color: black;
-//   }
-
-//   .slick-dots {
-//     position: absolute;
-//     top: 0;
-//     left: 100%;
-//     /* text-align: left; */
-
-//     li {
-//       display: block;
-//       margin-bottom: 85px;
-//       /* &:not(:last-child) {
-//         margin-right: 85px;
-//       } */
-//     }
-//     img {
-//       border: 1px solid ${(p) => p.theme.colors.border};
-//       border-radius: 20px;
-//       overflow: hidden;
-//     }
-//   }
-// `;
-
 export const Slide = styled(Slider)`
   width: 280px;
   margin-right: -13px;
-  /* position: relative; */
-  /* display: flex;
-  justify-content: center;
-  align-items: center; */
   margin-bottom: 50px;
+
+  div {
+    &:focus-visible {
+      border: none;
+      outline: none;
+    }
+  }
 
   img {
     border: 1px solid ${(p) => p.theme.colors.border};
@@ -92,10 +68,6 @@ export const Slide = styled(Slider)`
     cursor: pointer;
     height: 80px;
     width: 80px;
-    /* &:focus {
-      outline: none;
-      border: transparent;
-    } */
 
     @media screen and (min-width: 410px) {
       height: 100px;

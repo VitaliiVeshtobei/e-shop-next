@@ -86,8 +86,17 @@ export const Btn = styled.button`
   &:hover {
     background-color: ${(p) => p.theme.colors.accent};
   }
+
+  @media ${tablet} {
+    margin-top: ${(p) => {
+      if (p.place === 'register') {
+        return '10px';
+      }
+      return '0px';
+    }};
+  }
 `;
-export const RegisterBtn = styled.button`
+export const SwitchBtn = styled.button`
   display: block;
   font-size: 16px;
   margin-left: auto;
@@ -102,7 +111,12 @@ export const RegisterBtn = styled.button`
   }
   @media ${tablet} {
     text-align: start;
-    margin-left: 100px;
+    margin-left: ${(p) => {
+      if (p.place === 'register') {
+        return '60px';
+      }
+      return '100px';
+    }};
     margin-bottom: 0;
   }
 `;
@@ -123,9 +137,19 @@ export const OrLine = styled.p`
     bottom: 40%;
     left: 0;
     @media ${tablet} {
-      height: 125px;
+      height: ${(p) => {
+        if (p.place === 'register') {
+          return '230px';
+        }
+        return '125px';
+      }};
       width: 1px;
-      top: -125px;
+      top: ${(p) => {
+        if (p.place === 'register') {
+          return '-230px';
+        }
+        return '-125px';
+      }};
       left: 10px;
     }
   }
@@ -139,7 +163,12 @@ export const OrLine = styled.p`
     bottom: 40%;
     right: 0;
     @media ${tablet} {
-      height: 135px;
+      height: ${(p) => {
+        if (p.place === 'register') {
+          return '230px';
+        }
+        return '135px';
+      }};
       width: 1px;
       top: 20px;
 
@@ -163,7 +192,12 @@ export const ScndText = styled.p`
   @media ${tablet} {
     position: absolute;
     right: 60px;
-    top: 145px;
+    top: ${(p) => {
+      if (p.place === 'register') {
+        return '255px';
+      }
+      return '145px';
+    }};
   }
 `;
 
@@ -194,6 +228,11 @@ export const GoogleBtn = styled.button`
     width: 200px;
     position: absolute;
     right: 40px;
-    top: 180px;
+    top: ${(p) => {
+      if (p.place === 'register') {
+        return '285px';
+      }
+      return '180px';
+    }};
   }
 `;

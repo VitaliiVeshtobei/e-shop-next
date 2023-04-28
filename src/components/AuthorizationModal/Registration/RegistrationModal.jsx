@@ -3,11 +3,11 @@ import { useState } from 'react';
 import { IoEyeOutline, IoEyeOffOutline } from 'react-icons/io5';
 import { FcGoogle } from 'react-icons/fc';
 
-import { Form, Input, Label, Title, EyeBtn, Btn, OrLine, ScndText, GoogleBtn } from '../LogIn/LoginModal.styled';
-import { LoginBtn } from './RegistrationModal.styled';
+import { Form, Input, Label, Title, EyeBtn, Btn, OrLine, ScndText, GoogleBtn, SwitchBtn } from '../AuthModals.styled';
 
 const RegistrationModal = ({ modalChange }) => {
   const [showPassword, setShowPassword] = useState(false);
+  const [phoneNumber, setPhoneNumber] = useState('');
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -15,6 +15,19 @@ const RegistrationModal = ({ modalChange }) => {
 
   const onLoginClick = () => {
     modalChange('login');
+  };
+
+  const handleChange = (event) => {
+    const rawPhoneNumber = event.target.value;
+    const formattedPhoneNumber = rawPhoneNumber
+      .replace(/\D/g, '')
+      .match(/(\d{0,2})(\d{0,3})(\d{0,3})(\d{0,2})(\d{0,2})/);
+    const formattedPhoneNumberString = !formattedPhoneNumber[2]
+      ? '+38'
+      : `+38 ${formattedPhoneNumber[2]}${formattedPhoneNumber[3] ? ` ${formattedPhoneNumber[3]}` : ''}${
+          formattedPhoneNumber[4] ? ` ${formattedPhoneNumber[4]}` : ''
+        }${formattedPhoneNumber[5] ? ` ${formattedPhoneNumber[5]}` : ''}`;
+    setPhoneNumber(formattedPhoneNumberString);
   };
   return (
     <>
@@ -34,7 +47,9 @@ const RegistrationModal = ({ modalChange }) => {
         <Input
           type="tel"
           id="phone"
-          pattern="[0-9]{10}"
+          value={phoneNumber}
+          placeholder="+38 "
+          onChange={handleChange}
         />
         <Label htmlFor="email">Email</Label>
         <Input
@@ -54,17 +69,18 @@ const RegistrationModal = ({ modalChange }) => {
             {showPassword ? <IoEyeOffOutline /> : <IoEyeOutline />}
           </EyeBtn>
         </div>
-        <Btn>Зареєструватися</Btn>
+        <Btn place="register">Зареєструватися</Btn>
       </Form>
-      <LoginBtn
+      <SwitchBtn
         type="button"
         onClick={onLoginClick}
+        place="register"
       >
         Вже зареєстровані? Увійти
-      </LoginBtn>
-      <OrLine>або</OrLine>
-      <ScndText>Увійти як користувач</ScndText>
-      <GoogleBtn>
+      </SwitchBtn>
+      <OrLine place="register">або</OrLine>
+      <ScndText place="register">Увійти як користувач</ScndText>
+      <GoogleBtn place="register">
         <FcGoogle />
         Goolge
       </GoogleBtn>

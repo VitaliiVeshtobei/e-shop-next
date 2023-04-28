@@ -9,13 +9,13 @@ import {
   Label,
   Input,
   Btn,
-  RegisterBtn,
+  SwitchBtn,
   GoogleBtn,
   ForgetPassword,
   EyeBtn,
   ScndText,
   OrLine,
-} from './LoginModal.styled';
+} from '../AuthModals.styled';
 
 const LoginModal = ({ modalChange }) => {
   const [showPassword, setShowPassword] = useState(false);
@@ -54,12 +54,12 @@ const LoginModal = ({ modalChange }) => {
         <ForgetPassword>Забули пароль? </ForgetPassword>
         <Btn>Увійти</Btn>
       </Form>
-      <RegisterBtn
+      <SwitchBtn
         type="button"
         onClick={onRegisterClick}
       >
         Зареєструватися
-      </RegisterBtn>
+      </SwitchBtn>
       <OrLine>або</OrLine>
       <ScndText>Увійти як користувач</ScndText>
       <GoogleBtn>

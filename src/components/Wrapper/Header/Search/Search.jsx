@@ -36,7 +36,7 @@ const Search = () => {
         <Catalog handleClickCatalog={handleClickCatalog} />
         <Form />
         <UserBtn onClick={onUserClick}>
-          <IoPersonOutline />
+          <IoPersonOutline /> <span>Увійти</span>
         </UserBtn>
         <Cart />
       </Container>
