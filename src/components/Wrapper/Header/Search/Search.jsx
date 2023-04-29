@@ -33,7 +33,10 @@ const Search = () => {
   return (
     <>
       <Container>
-        <Burger handleClickBurger={handleClickBurger} />
+        <Burger
+          handleClickBurger={handleClickBurger}
+          showBurgerMenu={showBurgerMenu}
+        />
         <Logo />
         <Catalog handleClickCatalog={handleClickCatalog} />
         <Form />
