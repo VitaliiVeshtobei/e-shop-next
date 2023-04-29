@@ -19,9 +19,11 @@ const Search = () => {
   const [modalOpen, setModalOpen] = useState(false);
 
   const handleClickCatalog = () => {
+    if (showBurgerMenu) handleClickBurger();
     setShowCategories((prev) => !prev);
   };
   const handleClickBurger = () => {
+    if (showCategories) handleClickCatalog();
     setShowBurgerMenu((prev) => !prev);
   };
 
@@ -41,8 +43,13 @@ const Search = () => {
         <Cart />
       </Container>
       {showCategories && <MenuCategories handleClickCatalog={handleClickCatalog} />}
-      {showBurgerMenu && <BurgerMenu handleClickBurger={handleClickBurger} />}
       {modalOpen && <Authorization onClose={onUserClick} />}
+      {showBurgerMenu && (
+        <BurgerMenu
+          handleClickBurger={handleClickBurger}
+          handleClickCatalog={handleClickCatalog}
+        />
+      )}
     </>
   );
 };
