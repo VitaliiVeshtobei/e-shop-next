@@ -1,3 +1,4 @@
+import DEVICE from '@/constants/deviceSize';
 import Link from 'next/link';
 import styled from 'styled-components';
 
@@ -27,13 +28,24 @@ export const Backdrop = styled.div`
 export const Container = styled('div')`
   width: 320px;
   background-color: ${(p) => p.theme.colors.navbar};
-  padding: 8px 0;
+
+  @media ${DEVICE.mobile} {
+    padding: 8px 8px;
+  }
+  @media ${DEVICE.tablet} {
+    padding: 12px 16px;
+  }
+  @media ${DEVICE.laptop} {
+    padding: 16px 32px;
+  }
 `;
-export const MainList = styled('ul')``;
+export const MainList = styled('ul')`
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+`;
 
 export const MainListItem = styled('li')`
-  padding: 12px 32px;
-
   button {
     color: ${(p) => p.theme.colors.darkText};
     font-weight: 500;
@@ -62,7 +74,6 @@ export const ContainerSvg = styled('div')`
     width: 24px;
     height: 24px;
     stroke: ${(p) => p.theme.colors.accent};
-    /* fill: ${(p) => p.theme.colors.accent}; */
   }
 `;
 export const ContainerText = styled('div')`
@@ -71,17 +82,28 @@ export const ContainerText = styled('div')`
   align-items: center;
 
   height: 40px;
-  padding-left: 8px;
-  padding-right: 8px;
+
   border-top: 1px solid #e9e9e9;
   h3 {
     font-size: 14px;
     color: #797878;
   }
+  @media ${DEVICE.mobile} {
+    margin-top: 8px;
+  }
+  @media ${DEVICE.tablet} {
+    margin-top: 12px;
+  }
+  @media ${DEVICE.laptop} {
+    margin-top: 16px;
+  }
 `;
-export const InfoList = styled('ul')``;
+export const InfoList = styled('ul')`
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+`;
 export const InfoListItem = styled('li')`
-  padding: 12px 32px;
   font-size: 14px;
   transition: transform ${(p) => p.theme.transition};
   &:hover,
