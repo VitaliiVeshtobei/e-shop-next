@@ -57,8 +57,8 @@ export default function Home({ data }) {
         <>
           <Slider />
           <Categories />
-          <Benefits />
-          <SliderFeedbacks />
+          {/* <Benefits />
+          <SliderFeedbacks /> */}
         </>
       }
     </>
