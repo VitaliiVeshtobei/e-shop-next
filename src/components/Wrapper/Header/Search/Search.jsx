@@ -46,6 +46,7 @@ const Search = () => {
       {modalOpen && <Authorization onClose={onUserClick} />}
       {showBurgerMenu && (
         <BurgerMenu
+          onUserClick={onUserClick}
           handleClickBurger={handleClickBurger}
           handleClickCatalog={handleClickCatalog}
         />

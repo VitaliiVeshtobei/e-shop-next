@@ -16,7 +16,7 @@ import { IoPersonOutline, IoCartOutline, IoAppsOutline, IoHomeOutline } from 're
 import { TbCategory } from 'react-icons/tb';
 import navigation from '../../../../../../public/bd/navigation.json';
 
-export const BurgerMenu = ({ handleClickBurger, handleClickCatalog }) => {
+export const BurgerMenu = ({ handleClickBurger, handleClickCatalog, onUserClick }) => {
   const router = useRouter();
   const path = router.asPath;
 
@@ -52,7 +52,10 @@ export const BurgerMenu = ({ handleClickBurger, handleClickCatalog }) => {
       <Container>
         <MainList>
           <MainListItem>
-            <button>
+            <button
+              type="button"
+              onClick={onUserClick}
+            >
               <ContainerSvg>
                 <IoPersonOutline />
               </ContainerSvg>
@@ -60,7 +63,10 @@ export const BurgerMenu = ({ handleClickBurger, handleClickCatalog }) => {
             </button>
           </MainListItem>
           <MainListItem>
-            <button onClick={() => router.push('/')}>
+            <button
+              type="button"
+              onClick={() => router.push('/')}
+            >
               <ContainerSvg>
                 <IoHomeOutline />
               </ContainerSvg>
@@ -68,7 +74,10 @@ export const BurgerMenu = ({ handleClickBurger, handleClickCatalog }) => {
             </button>
           </MainListItem>
           <MainListItem>
-            <button onClick={handleClick}>
+            <button
+              type="button"
+              onClick={handleClick}
+            >
               <ContainerSvg>
                 <TbCategory />
               </ContainerSvg>
@@ -76,7 +85,10 @@ export const BurgerMenu = ({ handleClickBurger, handleClickCatalog }) => {
             </button>
           </MainListItem>
           <MainListItem>
-            <button onClick={() => router.push('/products?category=all')}>
+            <button
+              type="button"
+              onClick={() => router.push('/products?category=all')}
+            >
               <ContainerSvg>
                 <IoAppsOutline />
               </ContainerSvg>
@@ -84,7 +96,10 @@ export const BurgerMenu = ({ handleClickBurger, handleClickCatalog }) => {
             </button>
           </MainListItem>
           <MainListItem>
-            <button onClick={() => router.push('/cart')}>
+            <button
+              type="button"
+              onClick={() => router.push('/cart')}
+            >
               <ContainerSvg>
                 <IoCartOutline />
               </ContainerSvg>
