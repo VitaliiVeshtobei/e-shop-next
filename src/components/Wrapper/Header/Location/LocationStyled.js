@@ -18,7 +18,10 @@ export const Container = styled('div')`
     padding: 0 50px;
     height: 50px;
   }
-  p span {
+  a {
+    color: ${(p) => p.theme.colors.darkText};
+  }
+  a span {
     @media ${DEVICE.mobile} {
       display: none;
     }

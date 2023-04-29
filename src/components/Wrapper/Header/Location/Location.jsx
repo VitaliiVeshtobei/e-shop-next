@@ -20,9 +20,10 @@ const Location = () => {
 
   return (
     <Container>
-      <p>
+      <a href="tel:+380666125324">
         <span>Потрібна допомога? Зателефонуйте: </span>+380 (66) 612-53-24
-      </p>
+      </a>
+
       <ListLocation>
         <ItemLocation>
           <LocationBtn
