@@ -37,6 +37,7 @@ export const Logo = styled.div`
   margin-bottom: 40px;
   font-size: 28px;
   color: ${(p) => p.theme.colors.lightText};
+  cursor: pointer;
 `;
 
 export const LogoText = styled.p`

@@ -2,9 +2,11 @@ import React from 'react';
 import Image from 'next/image';
 
 import { LogoContainer } from './Logo.styled';
+import { useRouter } from 'next/router';
 export const Logo = () => {
+  const router = useRouter();
   return (
-    <LogoContainer>
+    <LogoContainer onClick={() => router.push('/')}>
       <Image
         src="/images/logo/logo-victar.svg"
         width={40}

@@ -29,7 +29,7 @@ const Footer = () => {
     <FooterContainer>
       <Container>
         <LogoContainer>
-          <Logo>
+          <Logo onClick={() => router.push('/')}>
             <Image
               src="/images/logo/logo-victar.svg"
               alt="logo-footer"

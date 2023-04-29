@@ -7,6 +7,7 @@ export const LogoContainer = styled('div')`
   gap: 8px;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
 
   p {
     font-size: 28px;
