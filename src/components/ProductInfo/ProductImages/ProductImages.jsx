@@ -1,12 +1,20 @@
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import Image from 'next/image';
-import { AiOutlineLeft, AiOutlineRight } from 'react-icons/ai';
+import { AiOutlineLeft, AiOutlineRight, AiOutlineZoomIn } from 'react-icons/ai';
 
 import { selectProductInfo } from '@/redux/products/selectors';
 import ImageModal from './ImageModal/ImageModal';
 
-import { MainImageWrap, DiscountPercent, Slide, Container, PrevArrow, NextArrow } from './ProductImages.styled';
+import {
+  MainImageWrap,
+  DiscountPercent,
+  Slide,
+  Container,
+  PrevArrow,
+  NextArrow,
+  ZoomIcon,
+} from './ProductImages.styled';
 
 const ProductImages = () => {
   const [image, setImage] = useState('');
@@ -53,8 +61,8 @@ const ProductImages = () => {
   const settings = {
     dots: true,
     infinite: true,
-    // autoplay: true,
-    // autoplaySpeed: 5000,
+    autoplay: true,
+    autoplaySpeed: 5000,
     speed: 500,
     cssEase: 'linear',
     slidesToShow: 3,
@@ -87,6 +95,9 @@ const ProductImages = () => {
               </DiscountPercent>
             )}
           </div>
+          <ZoomIcon onClick={onMainImageClick}>
+            <AiOutlineZoomIn />
+          </ZoomIcon>
           <Image
             src={image ? image : '/images/placeholder.jpg'}
             fill={true}

@@ -49,6 +49,19 @@ export const DiscountPercent = styled.div`
   color: ${(p) => p.theme.colors.lightText};
 `;
 
+export const ZoomIcon = styled.button`
+  cursor: pointer;
+  position: absolute;
+  z-index: 1;
+  right: 15px;
+  top: 15px;
+  svg {
+    width: 24px;
+    height: 24px;
+    color: ${(p) => p.theme.colors.greyText};
+  }
+`;
+
 export const Slide = styled(Slider)`
   width: 280px;
   margin-right: -13px;

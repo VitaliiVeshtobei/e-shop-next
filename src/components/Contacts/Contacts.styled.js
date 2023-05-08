@@ -25,7 +25,7 @@ export const Title = styled.p`
   line-height: 1.6;
   color: ${(p) => p.theme.colors.scndDarkText};
   @media ${tablet} {
-    font-size: 22px;
+    font-size: 20px;
   }
 `;
 export const Text = styled.p`
@@ -33,10 +33,11 @@ export const Text = styled.p`
   line-height: 1.6;
   color: ${(p) => p.theme.colors.darkText};
   @media ${tablet} {
-    font-size: 22px;
+    font-size: 20px;
   }
 `;
-export const Phone = styled.a`
+export const Link = styled.a`
+  display: block;
   font-family: inherit;
   font-weight: 700;
   font-size: 16px;
@@ -44,7 +45,7 @@ export const Phone = styled.a`
   color: ${(p) => p.theme.colors.accent};
   transition: color ${(p) => p.theme.transition};
   @media ${tablet} {
-    font-size: 22px;
+    font-size: 20px;
   }
 
   &:hover {

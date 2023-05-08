@@ -1,4 +1,4 @@
-import { Phone, Info, Name, Container, Title, Text, Map } from './Contacts.styled';
+import { Link, Info, Name, Container, Title, Text, Map } from './Contacts.styled';
 
 const Contacts = () => {
   return (
@@ -10,16 +10,18 @@ const Contacts = () => {
             <Title>Україна, м. Київ, вул. Вишгородська 30 </Title>
           </Info>
           <Info>
-            <Title>Графік роботи:</Title>
-            <Text>Пн-Нд: 10:00 - 18:00</Text>
+            <Title>Графік роботи кол-центру:</Title>
+            <Text>Пн-Нд: 08:00 – 20:00</Text>
           </Info>
           <Info>
             <Title>Графік роботи пункту самовивізу:</Title>
-            <Text>Пн-Нд: 10:00 - 18:00</Text>
+            <Text>Пн-Нд: 9:00 – 18:00</Text>
+            <Text>Попередити за годину до приїзду</Text>
           </Info>
           <Info>
-            <Phone href="tel:+380666125324">+380 (66) 612-53-24</Phone>
-            <Text>Тарас</Text>
+            <Link href="tel:+380666125324">+380 (66) 612-53-24</Link>
+
+            <Link href="mailto:victar@gmail.com">victar@gmail.com</Link>
           </Info>
           <Title>Замовлення приймаються цілодобово. </Title>
           <Title>Все буде Україна!</Title>
@@ -31,9 +33,9 @@ const Contacts = () => {
               width="100%"
               height="100%"
               style={{ border: 0 }}
-              allowfullscreen=""
+              allowFullScreen=""
               loading="lazy"
-              referrerpolicy="no-referrer-when-downgrade"
+              referrerPolicy="no-referrer-when-downgrade"
             ></iframe>
           </Map>
         </div>
