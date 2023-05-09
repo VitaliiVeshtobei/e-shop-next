@@ -86,13 +86,10 @@ export const ImgContainer = styled.div`
 export const Article = styled.p`
   margin-bottom: 4px;
   height: 30px;
-  font-size: 10px;
+  font-size: 12px;
   line-height: 1.2;
   color: ${(p) => p.theme.colors.greyText};
   overflow: hidden;
-  @media ${laptop} {
-    font-size: 12px;
-  }
 `;
 
 export const ProductStatus = styled.p`
