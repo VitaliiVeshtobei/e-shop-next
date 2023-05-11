@@ -2,9 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { Container, HeadContainer, OrderBtn, TotalSum } from './CartTotal.styled';
 import { useSelector } from 'react-redux';
 import { selectCart } from '@/redux/products/selectors';
+import { useRouter } from 'next/router';
 
 export const CartTotal = () => {
   const [products, setProducts] = useState([]);
+  const router = useRouter();
 
   const cart = useSelector(selectCart);
 
@@ -25,7 +27,12 @@ export const CartTotal = () => {
         <p>Загальна сума</p>
         <p>{`${sum} ₴`}</p>
       </TotalSum>
-      <OrderBtn type="button">Оформити замовлення</OrderBtn>
+      <OrderBtn
+        type="button"
+        onClick={() => router.push('/order')}
+      >
+        Оформити замовлення
+      </OrderBtn>
     </Container>
   );
 };

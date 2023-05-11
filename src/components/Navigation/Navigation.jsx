@@ -37,6 +37,10 @@ export const Navigation = () => {
       setNames([navigation[0], { id: 2, path: router.asPath, category: 'Корзина' }]);
       return;
     }
+    if (router.asPath === '/order') {
+      setNames([navigation[0], { id: 3, path: router.asPath, category: 'Замовлення' }]);
+      return;
+    }
     setNames([
       navigation[0],
       {
