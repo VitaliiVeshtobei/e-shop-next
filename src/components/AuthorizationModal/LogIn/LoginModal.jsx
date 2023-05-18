@@ -16,8 +16,10 @@ import {
   ScndText,
   OrLine,
 } from '../AuthModals.styled';
+import { useRouter } from 'next/router';
 
 const LoginModal = ({ modalChange }) => {
+  const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
 
   const togglePasswordVisibility = () => {
@@ -26,6 +28,11 @@ const LoginModal = ({ modalChange }) => {
 
   const onRegisterClick = () => {
     modalChange('register');
+  };
+
+  const admin = (e) => {
+    e.preventDefault();
+    router.push('/admin');
   };
 
   return (
@@ -52,7 +59,7 @@ const LoginModal = ({ modalChange }) => {
           </EyeBtn>
         </div>
         <ForgetPassword>Забули пароль? </ForgetPassword>
-        <Btn>Увійти</Btn>
+        <Btn onClick={admin}>Увійти</Btn>
       </Form>
       <SwitchBtn
         type="button"
