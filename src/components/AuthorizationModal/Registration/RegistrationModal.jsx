@@ -7,7 +7,7 @@ import { Form, Input, Label, Title, EyeBtn, Btn, OrLine, ScndText, GoogleBtn, Sw
 import { useDispatch } from 'react-redux';
 import { register } from '@/redux/user/operations';
 
-const backUrlProd = process.env.BACK_URL_PROD;
+const backUrlProd = process.env.BACKEND_URL_PROD;
 
 const RegistrationModal = ({ modalChange }) => {
   const [showPassword, setShowPassword] = useState(false);

@@ -18,9 +18,9 @@ import {
 } from '../AuthModals.styled';
 import { useRouter } from 'next/router';
 import { useDispatch } from 'react-redux';
-import { google, login } from '@/redux/user/operations';
+import { login } from '@/redux/user/operations';
 
-const backUrlProd = process.env.BACK_URL_PROD;
+const backUrlProd = process.env.BACKEND_URL_PROD;
 
 const LoginModal = ({ modalChange, onClose }) => {
   const router = useRouter();

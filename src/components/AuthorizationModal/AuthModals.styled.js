@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import DEVICE from '@/constants/deviceSize';
+import Link from 'next/link';
 const { tablet } = DEVICE;
 
 export const Container = styled.div``;
@@ -201,7 +202,7 @@ export const ScndText = styled.p`
   }
 `;
 
-export const GoogleBtn = styled.a`
+export const GoogleBtn = styled(Link)`
   width: 100%;
   height: 45px;
   border-radius: 8px;
