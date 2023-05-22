@@ -7,6 +7,8 @@ import { Form, Input, Label, Title, EyeBtn, Btn, OrLine, ScndText, GoogleBtn, Sw
 import { useDispatch } from 'react-redux';
 import { register } from '@/redux/user/operations';
 
+const backUrlProd = process.env.BACK_URL_PROD;
+
 const RegistrationModal = ({ modalChange }) => {
   const [showPassword, setShowPassword] = useState(false);
   const [phoneNumber, setPhoneNumber] = useState('');
@@ -96,7 +98,7 @@ const RegistrationModal = ({ modalChange }) => {
       <ScndText place="register">Увійти як користувач</ScndText>
       <GoogleBtn
         place="register"
-        href="http://localhost:4444/api/auth/google"
+        href={`${backUrlProd}/api/auth/google`}
       >
         <FcGoogle />
         Goolge

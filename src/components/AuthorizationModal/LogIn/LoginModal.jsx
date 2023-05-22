@@ -20,6 +20,8 @@ import { useRouter } from 'next/router';
 import { useDispatch } from 'react-redux';
 import { google, login } from '@/redux/user/operations';
 
+const backUrlProd = process.env.BACK_URL_PROD;
+
 const LoginModal = ({ modalChange, onClose }) => {
   const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
@@ -86,7 +88,7 @@ const LoginModal = ({ modalChange, onClose }) => {
       </SwitchBtn>
       <OrLine>або</OrLine>
       <ScndText>Увійти як користувач</ScndText>
-      <GoogleBtn href="http://localhost:4444/api/auth/google">
+      <GoogleBtn href={`${backUrlProd}/api/auth/google`}>
         <FcGoogle />
         Goolge
       </GoogleBtn>
