@@ -8,6 +8,9 @@ import { Categories } from '@/components/Categories/Categories';
 import { instance } from '@/axios/axiosDefault';
 import { getCategories } from '@/redux/products/slice';
 import { Slider } from '@/components/Slider/Slider';
+import { useRouter } from 'next/router';
+import { refreshUser } from '@/redux/user/operations';
+import { setTokenAccess, setTokenRefresh } from '@/redux/user/slice';
 
 // export async function getServerSideProps() {
 //   const response = await instance('/groups/list');
@@ -35,10 +38,24 @@ export async function getServerSideProps() {
 
 export default function Home({ data }) {
   const dispatch = useDispatch();
+  const router = useRouter();
+
+  const accessToken = router.query.accessToken;
+  const refreshToken = router.query.refreshToken;
+
   useEffect(() => {
     dispatch(getCategories(data));
   }, [data, dispatch]);
 
+  useEffect(() => {
+    if (!accessToken && !refreshToken) {
+      return;
+    }
+
+    dispatch(setTokenAccess(accessToken));
+    dispatch(setTokenRefresh(refreshToken));
+    dispatch(refreshUser());
+  }, [accessToken, dispatch, refreshToken]);
   return (
     <>
       <Head>

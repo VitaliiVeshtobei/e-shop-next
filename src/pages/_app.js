@@ -2,6 +2,8 @@ import '@/styles/globals.css';
 import Router, { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
 import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react';
+import { persistStore } from 'redux-persist';
 import { ThemeProvider } from 'styled-components';
 import { theme } from '../../public/theme/theme';
 import { Loader } from '@/components/Loader/Loader';
@@ -13,8 +15,10 @@ import WrapperAdmin from '@/components/WrapperAdmin/WrapperAdmin';
 export default function App({ Component, pageProps }) {
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
+
+  let persistor = persistStore(store);
   const isAdminPage = router.pathname.includes('admin');
-  console.log(isAdminPage);
+
   useEffect(() => {
     Router.events.on('routeChangeStart', (url) => {
       setIsLoading(true);
@@ -32,19 +36,24 @@ export default function App({ Component, pageProps }) {
   return (
     <ThemeProvider theme={theme}>
       <Provider store={store}>
-        {isAdminPage ? (
-          <WrapperAdmin>
-            {isLoading && <Loader />}
-            <Component {...pageProps} />
-            <div id="root-backdrop"></div>
-          </WrapperAdmin>
-        ) : (
-          <Wrapper>
-            {isLoading && <Loader />}
-            <Component {...pageProps} />
-            <div id="root-backdrop"></div>
-          </Wrapper>
-        )}
+        <PersistGate
+          loading={null}
+          persistor={persistor}
+        >
+          {isAdminPage ? (
+            <WrapperAdmin>
+              {isLoading && <Loader />}
+              <Component {...pageProps} />
+              <div id="root-backdrop"></div>
+            </WrapperAdmin>
+          ) : (
+            <Wrapper>
+              {isLoading && <Loader />}
+              <Component {...pageProps} />
+              <div id="root-backdrop"></div>
+            </Wrapper>
+          )}
+        </PersistGate>
       </Provider>
     </ThemeProvider>
   );

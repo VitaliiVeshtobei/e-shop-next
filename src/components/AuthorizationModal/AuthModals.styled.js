@@ -201,7 +201,7 @@ export const ScndText = styled.p`
   }
 `;
 
-export const GoogleBtn = styled.button`
+export const GoogleBtn = styled.a`
   width: 100%;
   height: 45px;
   border-radius: 8px;

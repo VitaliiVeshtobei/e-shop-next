@@ -17,10 +17,14 @@ import {
   OrLine,
 } from '../AuthModals.styled';
 import { useRouter } from 'next/router';
+import { useDispatch } from 'react-redux';
+import { google, login } from '@/redux/user/operations';
 
-const LoginModal = ({ modalChange }) => {
+const LoginModal = ({ modalChange, onClose }) => {
   const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
+
+  const dispatch = useDispatch();
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -34,11 +38,20 @@ const LoginModal = ({ modalChange }) => {
     e.preventDefault();
     router.push('/admin');
   };
+  const handlerSubmit = (e) => {
+    e.preventDefault();
+    const data = {
+      email: e.target.email.value,
+      password: e.target.password.value,
+    };
+    dispatch(login(data));
+    onClose();
+  };
 
   return (
     <>
       <Title>Вхід</Title>
-      <Form>
+      <Form onSubmit={handlerSubmit}>
         <Label htmlFor="email">Email або номер телефону </Label>
         <Input
           id="email"
@@ -59,7 +72,11 @@ const LoginModal = ({ modalChange }) => {
           </EyeBtn>
         </div>
         <ForgetPassword>Забули пароль? </ForgetPassword>
-        <Btn onClick={admin}>Увійти</Btn>
+        <Btn
+        // onClick={admin}
+        >
+          Увійти
+        </Btn>
       </Form>
       <SwitchBtn
         type="button"
@@ -69,7 +86,7 @@ const LoginModal = ({ modalChange }) => {
       </SwitchBtn>
       <OrLine>або</OrLine>
       <ScndText>Увійти як користувач</ScndText>
-      <GoogleBtn>
+      <GoogleBtn href="http://localhost:4444/api/auth/google">
         <FcGoogle />
         Goolge
       </GoogleBtn>

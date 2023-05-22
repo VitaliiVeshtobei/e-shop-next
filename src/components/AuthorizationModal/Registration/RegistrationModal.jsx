@@ -4,11 +4,14 @@ import { IoEyeOutline, IoEyeOffOutline } from 'react-icons/io5';
 import { FcGoogle } from 'react-icons/fc';
 
 import { Form, Input, Label, Title, EyeBtn, Btn, OrLine, ScndText, GoogleBtn, SwitchBtn } from '../AuthModals.styled';
+import { useDispatch } from 'react-redux';
+import { register } from '@/redux/user/operations';
 
 const RegistrationModal = ({ modalChange }) => {
   const [showPassword, setShowPassword] = useState(false);
   const [phoneNumber, setPhoneNumber] = useState('');
 
+  const dispatch = useDispatch();
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
@@ -29,10 +32,21 @@ const RegistrationModal = ({ modalChange }) => {
         }${formattedPhoneNumber[5] ? ` ${formattedPhoneNumber[5]}` : ''}`;
     setPhoneNumber(formattedPhoneNumberString);
   };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const data = {
+      name: e.target.name.value,
+      lastName: e.target.surname.value,
+      phone: e.target.phone.value.split(' ').join(''),
+      email: e.target.email.value,
+      password: e.target.password.value,
+    };
+    dispatch(register(data));
+  };
   return (
     <>
       <Title>Реєстрація</Title>
-      <Form>
+      <Form onSubmit={handleSubmit}>
         <Label htmlFor="name">Ім&apos;я</Label>
         <Input
           id="name"
@@ -80,7 +94,10 @@ const RegistrationModal = ({ modalChange }) => {
       </SwitchBtn>
       <OrLine place="register">або</OrLine>
       <ScndText place="register">Увійти як користувач</ScndText>
-      <GoogleBtn place="register">
+      <GoogleBtn
+        place="register"
+        href="http://localhost:4444/api/auth/google"
+      >
         <FcGoogle />
         Goolge
       </GoogleBtn>

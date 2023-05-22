@@ -42,9 +42,15 @@ const Authorization = ({ onClose }) => {
           <IoCloseSharp />
         </CloseBtn>
         {modalType === 'login' ? (
-          <LoginModal modalChange={modalTypeChange} />
+          <LoginModal
+            modalChange={modalTypeChange}
+            onClose={onClose}
+          />
         ) : (
-          <RegistrationModal modalChange={modalTypeChange} />
+          <RegistrationModal
+            modalChange={modalTypeChange}
+            onClose={onClose}
+          />
         )}
       </Container>
     </Backdrop>,
