@@ -42,20 +42,23 @@ export default function Home({ data }) {
 
   const accessToken = router.query.accessToken;
   const refreshToken = router.query.refreshToken;
+  console.log(router);
+  // console.log(accessToken);
+  // console.log(refreshToken);
 
   useEffect(() => {
     dispatch(getCategories(data));
   }, [data, dispatch]);
 
-  useEffect(() => {
-    if (!accessToken && !refreshToken) {
-      return;
-    }
+  // useEffect(() => {
+  //   if (!accessToken && !refreshToken) {
+  //     return;
+  //   }
 
-    dispatch(setTokenAccess(accessToken));
-    dispatch(setTokenRefresh(refreshToken));
-    dispatch(refreshUser());
-  }, [accessToken, dispatch, refreshToken]);
+  //   dispatch(setTokenAccess(accessToken));
+  //   dispatch(setTokenRefresh(refreshToken));
+  //   dispatch(refreshUser());
+  // }, [accessToken, dispatch, refreshToken]);
   return (
     <>
       <Head>

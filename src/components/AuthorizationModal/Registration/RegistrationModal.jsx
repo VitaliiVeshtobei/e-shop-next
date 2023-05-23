@@ -8,6 +8,7 @@ import { useDispatch } from 'react-redux';
 import { register } from '@/redux/user/operations';
 
 const backUrlProd = process.env.BACKEND_URL_PROD;
+// const backUrl = process.env.BACKEND_URL;
 
 const RegistrationModal = ({ modalChange }) => {
   const [showPassword, setShowPassword] = useState(false);
