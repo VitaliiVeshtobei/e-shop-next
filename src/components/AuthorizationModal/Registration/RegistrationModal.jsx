@@ -99,7 +99,9 @@ const RegistrationModal = ({ modalChange }) => {
       <ScndText place="register">Увійти як користувач</ScndText>
       <GoogleBtn
         place="register"
-        href={`${backUrlProd}/api/auth/google`}
+        href={`${
+          process.env.NODE_ENV === 'development' ? process.env.BACKEND_URL_DEV : process.env.BACKEND_URL_PROD
+        }/api/auth/google`}
       >
         <FcGoogle />
         Goolge

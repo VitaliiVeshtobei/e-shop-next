@@ -4,6 +4,7 @@ const apiKey = process.env.API_KEY;
 const apiUrl = process.env.API_URL;
 // const backUrl = process.env.BACKEND_URL;
 const backUrlProd = process.env.BACKEND_URL_PROD;
+const backUrlDev = process.env.BACKEND_URL_DEV;
 
 export const instance = axios.create({
   baseURL: apiUrl,
@@ -13,7 +14,7 @@ export const instance = axios.create({
 });
 
 export const instanceNew = axios.create({
-  baseURL: backUrlProd,
+  baseURL: process.env.NODE_ENV === 'development' ? process.env.BACKEND_URL_DEV : process.env.BACKEND_URL_PROD,
   // headers: {
   //   Authorization: `Bearer ${apiKey}`,
   // },

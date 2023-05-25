@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import getConfig from 'next/config';
 
 import { FcGoogle } from 'react-icons/fc';
 import { IoEyeOutline, IoEyeOffOutline } from 'react-icons/io5';
@@ -19,8 +20,6 @@ import {
 import { useRouter } from 'next/router';
 import { useDispatch } from 'react-redux';
 import { login } from '@/redux/user/operations';
-
-const backUrlProd = process.env.BACKEND_URL_PROD;
 
 const LoginModal = ({ modalChange, onClose }) => {
   const router = useRouter();
@@ -88,7 +87,11 @@ const LoginModal = ({ modalChange, onClose }) => {
       </SwitchBtn>
       <OrLine>або</OrLine>
       <ScndText>Увійти як користувач</ScndText>
-      <GoogleBtn href={`${backUrlProd}/api/auth/google`}>
+      <GoogleBtn
+        href={`${
+          process.env.NODE_ENV === 'development' ? process.env.BACKEND_URL_DEV : process.env.BACKEND_URL_PROD
+        }/api/auth/google`}
+      >
         <FcGoogle />
         Goolge
       </GoogleBtn>
