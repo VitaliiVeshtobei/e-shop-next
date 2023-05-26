@@ -32,7 +32,7 @@ export const logOut = createAsyncThunk('user/logout', async (_, { rejectWithValu
 
 export const refreshUser = createAsyncThunk('user/refresh', async (_, { getState, rejectWithValue }) => {
   const state = getState();
-  const persistedToken = state.auth.accessToken;
+  const persistedToken = state.user.accessToken;
 
   if (persistedToken === null) {
     return rejectWithValue('Unable to fetch user');

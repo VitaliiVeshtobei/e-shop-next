@@ -70,7 +70,6 @@ const userSlice = createSlice({
         state.isLoading = false;
       })
       .addCase(refreshUser.rejected, (state, action) => {
-        console.log(action.payload);
         state.error = action.payload.message;
         state.isLoading = false;
       })
