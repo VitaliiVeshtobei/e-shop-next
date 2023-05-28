@@ -73,11 +73,7 @@ const LoginModal = ({ modalChange, onClose }) => {
           </EyeBtn>
         </div>
         <ForgetPassword>Забули пароль? </ForgetPassword>
-        <Btn
-        // onClick={admin}
-        >
-          Увійти
-        </Btn>
+        <Btn onClick={admin}>Увійти</Btn>
       </Form>
       <SwitchBtn
         type="button"

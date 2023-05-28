@@ -1,7 +1,9 @@
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
-import Navigation from './Navigation';
+import Navigation from './Navigation/Navigation';
+import { Container, Div, Section, Wrapper } from './WrapperAdmin.styled';
+import { Header } from './Header/Header';
 
 const WrapperAdmin = ({ children }) => {
   const [activeButtonIndex, setActiveButtonIndex] = useState('admin-panel');
@@ -25,33 +27,18 @@ const WrapperAdmin = ({ children }) => {
           content="width=device-width, initial-scale=1"
         />
       </Head>
-      <div style={{ height: '100vh', display: 'flex' }}>
-        <main
-          style={{
-            padding: '20px',
-            boxSizing: 'border-box',
-            position: 'fixed',
-            minHeight: '100%',
-            minWidth: '100%',
-          }}
-        >
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: '250px 1fr',
-              boxSizing: 'border-box',
-              gap: '10px',
-              height: 'calc(100vh - 40px)',
-            }}
-          >
+      <Wrapper>
+        <Container>
+          <Header />
+          <Section>
             <Navigation
               activeButtonIndex={activeButtonIndex}
               handleButtonClick={handleButtonClick}
             />
-            <div style={{ border: '1px solid #2121', overflow: 'auto' }}>{children}</div>
-          </div>
-        </main>
-      </div>
+            <Div>{children}</Div>
+          </Section>
+        </Container>
+      </Wrapper>
     </>
   );
 };
