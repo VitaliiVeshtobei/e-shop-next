@@ -3,7 +3,7 @@ import { clearAuthHeader } from '@/axios/axiosDefault';
 import { instanceNew } from '@/axios/axiosDefault';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-export const register = createAsyncThunk('user/create', async (credentials, { rejectWithValue }) => {
+export const registration = createAsyncThunk('user/create', async (credentials, { rejectWithValue }) => {
   try {
     await instanceNew.post('/api/user/create', credentials);
   } catch (error) {

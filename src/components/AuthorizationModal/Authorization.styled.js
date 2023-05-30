@@ -10,11 +10,12 @@ export const Container = styled.div`
   padding: 25px 20px;
 
   @media ${tablet} {
-    height: ${(p) => {
+    /* height: ${(p) => {
       if (p.modalType === 'login') {
         return '387px';
       } else return '600px';
-    }};
+    }}; */
+    height: auto;
     width: 640px;
     border-radius: 8px;
     padding: 20px 20px;

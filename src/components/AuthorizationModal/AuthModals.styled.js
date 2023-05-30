@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import DEVICE from '@/constants/deviceSize';
+import InputMask from 'react-input-mask';
 import Link from 'next/link';
 const { tablet } = DEVICE;
 
@@ -33,6 +34,20 @@ export const Label = styled.label`
   color: ${(p) => p.theme.colors.greyText};
 `;
 export const Input = styled.input`
+  width: 100%;
+  margin-bottom: 15px;
+  height: 40px;
+  border-radius: 8px;
+  outline: none;
+  border: 1px solid ${(p) => p.theme.colors.border};
+  padding: 0 10px;
+  margin-top: 4px;
+
+  @media ${tablet} {
+    width: 320px;
+  }
+`;
+export const InputMaskPhone = styled(InputMask)`
   width: 100%;
   margin-bottom: 15px;
   height: 40px;
@@ -236,4 +251,10 @@ export const GoogleBtn = styled(Link)`
       return '180px';
     }};
   }
+`;
+
+export const ErrorMessage = styled.p`
+  color: red;
+  font-size: 12px;
+  margin-bottom: 15px;
 `;
