@@ -3,16 +3,33 @@ import { useState } from 'react';
 import { IoEyeOutline, IoEyeOffOutline } from 'react-icons/io5';
 import { FcGoogle } from 'react-icons/fc';
 
-import { Form, Input, Label, Title, EyeBtn, Btn, OrLine, ScndText, GoogleBtn, SwitchBtn } from '../AuthModals.styled';
+import {
+  Form,
+  Input,
+  Label,
+  Title,
+  EyeBtn,
+  Btn,
+  OrLine,
+  ScndText,
+  GoogleBtn,
+  SwitchBtn,
+  ErrorMessage,
+  InputMaskPhone,
+} from '../AuthModals.styled';
 import { useDispatch } from 'react-redux';
-import { register } from '@/redux/user/operations';
-
-const backUrlProd = process.env.BACKEND_URL_PROD;
-// const backUrl = process.env.BACKEND_URL;
+import { registration } from '@/redux/user/operations';
+import { useForm } from 'react-hook-form';
 
 const RegistrationModal = ({ modalChange }) => {
   const [showPassword, setShowPassword] = useState(false);
-  const [phoneNumber, setPhoneNumber] = useState('');
+
+  const {
+    register,
+    handleSubmit,
+
+    formState: { errors },
+  } = useForm({ mode: 'onBlur' });
 
   const dispatch = useDispatch();
   const togglePasswordVisibility = () => {
@@ -23,62 +40,85 @@ const RegistrationModal = ({ modalChange }) => {
     modalChange('login');
   };
 
-  const handleChange = (event) => {
-    const rawPhoneNumber = event.target.value;
-    const formattedPhoneNumber = rawPhoneNumber
-      .replace(/\D/g, '')
-      .match(/(\d{0,2})(\d{0,3})(\d{0,3})(\d{0,2})(\d{0,2})/);
-    const formattedPhoneNumberString = !formattedPhoneNumber[2]
-      ? '+38'
-      : `+38 ${formattedPhoneNumber[2]}${formattedPhoneNumber[3] ? ` ${formattedPhoneNumber[3]}` : ''}${
-          formattedPhoneNumber[4] ? ` ${formattedPhoneNumber[4]}` : ''
-        }${formattedPhoneNumber[5] ? ` ${formattedPhoneNumber[5]}` : ''}`;
-    setPhoneNumber(formattedPhoneNumberString);
-  };
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const onSubmit = (value) => {
     const data = {
-      name: e.target.name.value,
-      lastName: e.target.surname.value,
-      phone: e.target.phone.value.split(' ').join(''),
-      email: e.target.email.value,
-      password: e.target.password.value,
+      name: value.name,
+      lastName: value.surname,
+      phone: `+${value.tel.replace(/\D/g, '')}`,
+      email: value.email,
+      password: value.password,
     };
-    dispatch(register(data));
+
+    dispatch(registration(data));
   };
   return (
     <>
       <Title>Реєстрація</Title>
-      <Form onSubmit={handleSubmit}>
+      <Form onSubmit={handleSubmit(onSubmit)}>
         <Label htmlFor="name">Ім&apos;я</Label>
         <Input
           id="name"
           type="text"
+          {...register('name', {
+            required: { value: true, message: "Необхідно вказати ім'я" },
+            pattern: { value: /^[A-Za-z]+$/, message: 'Імʼя має містити лише букви' },
+          })}
         />
+        {errors?.name && <ErrorMessage>{errors.name.message}</ErrorMessage>}
         <Label htmlFor="surname">Призвіще</Label>
         <Input
           id="surname"
           type="text"
+          {...register('surname', {
+            required: { value: true, message: "Прізвище обов'язкове" },
+            pattern: { value: /^[A-Za-z]+$/, message: 'Прізвище має містити лише букви' },
+          })}
         />
+        {errors?.surname && <ErrorMessage>{errors.surname.message}</ErrorMessage>}
         <Label htmlFor="phone">Номер телефону</Label>
-        <Input
-          type="tel"
+        <InputMaskPhone
+          mask="+380 (99) 999-99-99"
+          maskChar="_"
           id="phone"
-          value={phoneNumber}
-          placeholder="+38 "
-          onChange={handleChange}
+          type="tel"
+          name="phoneNumber"
+          placeholder="+380 (__) ___-__-__"
+          {...register('tel', {
+            required: { value: true, message: "Номер телефону обов'язковий" },
+            pattern: { value: /^\+380 \([0-9]{2}\) [0-9]{3}-[0-9]{2}-[0-9]{2}$/, message: 'Недійсний номер телефону' },
+          })}
         />
+        {errors?.tel && <ErrorMessage>{errors.tel.message}</ErrorMessage>}
+
         <Label htmlFor="email">Email</Label>
         <Input
           id="email"
           type="email"
+          {...register('email', {
+            required: { value: true, message: 'Потрібна електронна пошта' },
+            pattern: { value: /.+@.+/, message: 'Недійсна електронна адреса' },
+          })}
         />
+        {errors?.email && <ErrorMessage>{errors.email.message}</ErrorMessage>}
+
         <Label htmlFor="password">Придумайте пароль</Label>
         <div style={{ position: 'relative' }}>
           <Input
             id="password"
             type={showPassword ? 'text' : 'password'}
+            {...register('password', {
+              required: { value: true, message: 'Необхідно ввести пароль' },
+              pattern: {
+                value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/,
+                minLength: {
+                  value: 8,
+                  message: 'Пароль має бути не менше 8 символів',
+                },
+                message: 'Пароль має містити принаймні одну велику літеру, одну малу літеру та одну цифру',
+              },
+            })}
           />
+
           <EyeBtn
             type="button"
             onClick={togglePasswordVisibility}
@@ -86,6 +126,7 @@ const RegistrationModal = ({ modalChange }) => {
             {showPassword ? <IoEyeOffOutline /> : <IoEyeOutline />}
           </EyeBtn>
         </div>
+        {errors?.password && <ErrorMessage>{errors.password.message}</ErrorMessage>}
         <Btn place="register">Зареєструватися</Btn>
       </Form>
       <SwitchBtn

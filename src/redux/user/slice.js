@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { login, refreshUser, register } from './operations';
+import { login, refreshUser, registration } from './operations';
 
 const initialState = {
   name: '',
@@ -27,15 +27,15 @@ const userSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(register.fulfilled, (state, action) => {
+      .addCase(registration.fulfilled, (state, action) => {
         state.error = false;
         state.isLoading = false;
       })
-      .addCase(register.rejected, (state, action) => {
+      .addCase(registration.rejected, (state, action) => {
         state.error = action.payload.message;
         state.isLoading = false;
       })
-      .addCase(register.pending, (state) => {
+      .addCase(registration.pending, (state) => {
         state.isLoading = true;
       })
       .addCase(login.fulfilled, (state, action) => {
