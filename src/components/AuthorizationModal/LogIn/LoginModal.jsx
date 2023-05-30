@@ -33,7 +33,7 @@ const LoginModal = ({ modalChange, onClose }) => {
     register,
     handleSubmit,
 
-    formState: { errors },
+    formState: { errors, isDirty, isValid },
   } = useForm({ mode: 'onBlur' });
 
   const togglePasswordVisibility = () => {
@@ -99,7 +99,12 @@ const LoginModal = ({ modalChange, onClose }) => {
         </div>
         {errors?.password && <ErrorMessage>{errors.password.message}</ErrorMessage>}
         <ForgetPassword>Забули пароль? </ForgetPassword>
-        <Btn>Увійти</Btn>
+        <Btn
+          type="submit"
+          disabled={!isDirty || !isValid}
+        >
+          Увійти
+        </Btn>
       </Form>
       <SwitchBtn
         type="button"

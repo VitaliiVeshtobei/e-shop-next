@@ -28,7 +28,7 @@ const RegistrationModal = ({ modalChange }) => {
     register,
     handleSubmit,
 
-    formState: { errors },
+    formState: { errors, isDirty, isValid },
   } = useForm({ mode: 'onBlur' });
 
   const dispatch = useDispatch();
@@ -127,7 +127,13 @@ const RegistrationModal = ({ modalChange }) => {
           </EyeBtn>
         </div>
         {errors?.password && <ErrorMessage>{errors.password.message}</ErrorMessage>}
-        <Btn place="register">Зареєструватися</Btn>
+        <Btn
+          place="register"
+          type="submit"
+          disabled={!isDirty || !isValid}
+        >
+          Зареєструватися
+        </Btn>
       </Form>
       <SwitchBtn
         type="button"

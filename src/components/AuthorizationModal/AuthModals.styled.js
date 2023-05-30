@@ -95,12 +95,13 @@ export const Btn = styled.button`
   background-color: ${(p) => p.theme.colors.scndDarkText};
   border-radius: 8px;
   color: ${(p) => p.theme.colors.lightText};
+  opacity: ${(p) => (p.disabled ? 0.5 : 1)};
   font-size: 18px;
   transition: background-color ${(p) => p.theme.transition};
-  cursor: pointer;
+  cursor: ${(p) => (p.disabled ? 'not-allowed' : 'pointer')};
 
   &:hover {
-    background-color: ${(p) => p.theme.colors.accent};
+    background-color: ${(p) => (p.disabled ? p.theme.colors.scndDarkText : p.theme.colors.accent)};
   }
 
   @media ${tablet} {

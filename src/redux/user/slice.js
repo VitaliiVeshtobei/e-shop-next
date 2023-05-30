@@ -32,7 +32,7 @@ const userSlice = createSlice({
         state.isLoading = false;
       })
       .addCase(registration.rejected, (state, action) => {
-        state.error = action.payload.message;
+        state.error = action.payload?.message || action.error.message;
         state.isLoading = false;
       })
       .addCase(registration.pending, (state) => {
@@ -51,7 +51,7 @@ const userSlice = createSlice({
         state.isLoading = false;
       })
       .addCase(login.rejected, (state, action) => {
-        state.error = action.payload.message;
+        state.error = action.payload?.message || action.error.message;
         state.isLoading = false;
       })
       .addCase(login.pending, (state) => {
@@ -70,7 +70,7 @@ const userSlice = createSlice({
         state.isLoading = false;
       })
       .addCase(refreshUser.rejected, (state, action) => {
-        state.error = action.payload.message;
+        state.error = action.payload?.message || action.error.message;
         state.isLoading = false;
       })
       .addCase(refreshUser.pending, (state) => {
