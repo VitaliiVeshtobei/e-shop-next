@@ -61,7 +61,7 @@ const RegistrationModal = ({ modalChange }) => {
           type="text"
           {...register('name', {
             required: { value: true, message: "Необхідно вказати ім'я" },
-            pattern: { value: /^[A-Za-z]+$/, message: 'Імʼя має містити лише букви' },
+            pattern: { value: /^[\p{L}\s']+$/u, message: 'Імʼя має містити лише букви' },
           })}
         />
         {errors?.name && <ErrorMessage>{errors.name.message}</ErrorMessage>}
@@ -71,7 +71,7 @@ const RegistrationModal = ({ modalChange }) => {
           type="text"
           {...register('surname', {
             required: { value: true, message: "Прізвище обов'язкове" },
-            pattern: { value: /^[A-Za-z]+$/, message: 'Прізвище має містити лише букви' },
+            pattern: { value: /^[\p{L}\s']+$/u, message: 'Прізвище має містити лише букви' },
           })}
         />
         {errors?.surname && <ErrorMessage>{errors.surname.message}</ErrorMessage>}
