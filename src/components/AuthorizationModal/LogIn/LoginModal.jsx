@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import getConfig from 'next/config';
+import { useEffect, useState } from 'react';
+
 import { useForm } from 'react-hook-form';
 
 import { FcGoogle } from 'react-icons/fc';
@@ -19,15 +19,20 @@ import {
   OrLine,
   ErrorMessage,
 } from '../AuthModals.styled';
-import { useRouter } from 'next/router';
-import { useDispatch } from 'react-redux';
+
+import { useDispatch, useSelector } from 'react-redux';
 import { login } from '@/redux/user/operations';
+import { selectIsLoggedIn } from '@/redux/user/selectors';
 
 const LoginModal = ({ modalChange, onClose }) => {
   const [showPassword, setShowPassword] = useState(false);
 
-  const router = useRouter();
   const dispatch = useDispatch();
+  const isLogedIn = useSelector(selectIsLoggedIn);
+
+  useEffect(() => {
+    if (isLogedIn) onClose();
+  }, [isLogedIn, onClose]);
 
   const {
     register,
@@ -50,7 +55,6 @@ const LoginModal = ({ modalChange, onClose }) => {
       password: value.password,
     };
     dispatch(login(data));
-    onClose();
   };
 
   return (

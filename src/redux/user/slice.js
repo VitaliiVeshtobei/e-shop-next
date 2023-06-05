@@ -7,9 +7,10 @@ const initialState = {
   phone: '',
   email: '',
   role: '',
-  accessToken: '',
-  refreshToken: '',
+  accessToken: null,
+  refreshToken: null,
   isLoggedIn: false,
+  isRegister: false,
   error: false,
   isLoading: false,
 };
@@ -30,6 +31,7 @@ const userSlice = createSlice({
       .addCase(registration.fulfilled, (state, action) => {
         state.error = false;
         state.isLoading = false;
+        state.isRegister = true;
       })
       .addCase(registration.rejected, (state, action) => {
         state.error = action.payload?.message || action.error.message;

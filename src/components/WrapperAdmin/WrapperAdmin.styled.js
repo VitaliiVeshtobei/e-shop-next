@@ -20,8 +20,6 @@ export const Section = styled.section`
   box-sizing: border-box;
   gap: 10px;
   height: calc(100vh - 86px);
-
-  ${(p) => console.log(p.res)}
 `;
 
 export const Div = styled.div`

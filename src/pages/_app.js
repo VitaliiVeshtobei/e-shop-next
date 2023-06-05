@@ -3,7 +3,10 @@ import Router, { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
+import storage from 'redux-persist/lib/storage';
 import { persistStore } from 'redux-persist';
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify';
 import { ThemeProvider } from 'styled-components';
 import { theme } from '../../public/theme/theme';
 import { Loader } from '@/components/Loader/Loader';
@@ -11,6 +14,7 @@ import { Loader } from '@/components/Loader/Loader';
 import Wrapper from '@/components/Wrapper/Wrapper';
 import { wrapper } from '@/redux/store';
 import WrapperAdmin from '@/components/WrapperAdmin/WrapperAdmin';
+import { refreshUser } from '@/redux/user/operations';
 
 export default function App({ Component, ...rest }) {
   const { store, props } = wrapper.useWrappedStore(rest);
@@ -19,6 +23,23 @@ export default function App({ Component, ...rest }) {
 
   let persistor = persistStore(store);
   const isAdminPage = router.pathname.includes('admin');
+
+  const { dispatch } = store;
+
+  useEffect(() => {
+    async function getPersistedUserKeys() {
+      const keysPromise = storage.getItem('persist:user');
+      const keys = await keysPromise;
+
+      if (keys) {
+        const { accessToken, refreshToken } = JSON.parse(keys);
+        if (accessToken && refreshToken) {
+          dispatch(refreshUser());
+        }
+      }
+    }
+    getPersistedUserKeys();
+  }, [dispatch]);
 
   useEffect(() => {
     Router.events.on('routeChangeStart', (url) => {
@@ -45,12 +66,14 @@ export default function App({ Component, ...rest }) {
             <WrapperAdmin>
               {isLoading && <Loader />}
               <Component {...props.pageProps} />
+              <ToastContainer style={{ zIndex: 99999 }} />
               <div id="root-backdrop"></div>
             </WrapperAdmin>
           ) : (
             <Wrapper>
               {isLoading && <Loader />}
               <Component {...props.pageProps} />
+              <ToastContainer style={{ zIndex: 99999 }} />
               <div id="root-backdrop"></div>
             </Wrapper>
           )}

@@ -73,3 +73,53 @@ export const UserBtn = styled.button`
     transform: scale(1.05);
   }
 `;
+export const AdminBtn = styled.button`
+  position: relative;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: inherit;
+  font-size: 14px;
+  line-height: 21px;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  color: ${(p) => p.theme.colors.lightText};
+  transition: transform ${(p) => p.theme.transition};
+
+  svg {
+    height: 24px;
+    width: 24px;
+    margin-right: 12px;
+  }
+
+  span {
+    display: none;
+    @media ${DEVICE.tablet} {
+      display: block;
+    }
+  }
+
+  &::after {
+    content: '';
+    position: ${(p) => p.theme.line.position};
+    bottom: ${(p) => p.theme.line.bottom};
+    left: ${(p) => p.theme.line.left};
+    transition: ${(p) => p.theme.line.transition};
+    width: ${(p) => p.theme.line.width};
+    height: ${(p) => p.theme.line.height};
+    background-color: ${(p) => p.theme.line.bgColor};
+  }
+
+  &:hover::after {
+    width: ${(p) => p.theme.lineHover.width};
+  }
+  &:focus::after {
+    width: ${(p) => p.theme.lineHover.width};
+  }
+  &:hover,
+  &:focus {
+    transform: scale(1.05);
+  }
+`;

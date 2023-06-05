@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 
 import { IoPersonOutline } from 'react-icons/io5';
+import { MdAdminPanelSettings } from 'react-icons/md';
 
-import { Container, UserBtn } from './SearchStyled';
+import { Container, UserBtn, AdminBtn } from './SearchStyled';
 
 import { Cart } from './Cart/Cart';
 import { Form } from './Form/Form';
@@ -13,8 +14,9 @@ import { Burger } from './Burger/Burger';
 import { BurgerMenu } from './BurgerMenu/BurgerMenu';
 import Authorization from '@/components/AuthorizationModal/Authorization';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectIsLoggedIn } from '@/redux/user/selectors';
+import { selectIsLoggedIn, selectRole } from '@/redux/user/selectors';
 import { logOut } from '@/redux/user/operations';
+import { useRouter } from 'next/router';
 
 const Search = () => {
   const [showCategories, setShowCategories] = useState(false);
@@ -22,7 +24,9 @@ const Search = () => {
   const [modalOpen, setModalOpen] = useState(false);
 
   const isLoggedIn = useSelector(selectIsLoggedIn);
+  const role = useSelector(selectRole);
   const dispatch = useDispatch();
+  const router = useRouter();
 
   const handleClickCatalog = () => {
     if (showBurgerMenu) handleClickBurger();
@@ -50,6 +54,11 @@ const Search = () => {
         <Logo />
         <Catalog handleClickCatalog={handleClickCatalog} />
         <Form />
+        {role === 'ADMIN' && (
+          <AdminBtn onClick={() => router.push('/admin')}>
+            <MdAdminPanelSettings /> <span>{'Адмін'}</span>
+          </AdminBtn>
+        )}
         <UserBtn onClick={onUserClick}>
           <IoPersonOutline /> <span>{isLoggedIn ? 'Вийти' : 'Увійти'}</span>
         </UserBtn>

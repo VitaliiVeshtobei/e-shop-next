@@ -4,10 +4,17 @@ import { useState } from 'react';
 import Navigation from './Navigation/Navigation';
 import { Container, Div, Section, Wrapper } from './WrapperAdmin.styled';
 import { Header } from './Header/Header';
+import { useSelector } from 'react-redux';
+import { selectRole } from '@/redux/user/selectors';
 
 const WrapperAdmin = ({ children }) => {
   const [activeButtonIndex, setActiveButtonIndex] = useState('admin-panel');
   const router = useRouter();
+  const role = useSelector(selectRole);
+  if (role !== 'ADMIN') {
+    router.replace('/');
+    return;
+  }
 
   const handleButtonClick = (index, route) => {
     setActiveButtonIndex(index);

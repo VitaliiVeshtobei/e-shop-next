@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { IoEyeOutline, IoEyeOffOutline } from 'react-icons/io5';
 import { FcGoogle } from 'react-icons/fc';
@@ -17,12 +17,19 @@ import {
   ErrorMessage,
   InputMaskPhone,
 } from '../AuthModals.styled';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { registration } from '@/redux/user/operations';
 import { useForm } from 'react-hook-form';
+import { selectIsRegister } from '@/redux/user/selectors';
 
 const RegistrationModal = ({ modalChange, onClose }) => {
   const [showPassword, setShowPassword] = useState(false);
+
+  const isRegister = useSelector(selectIsRegister);
+
+  useEffect(() => {
+    if (isRegister) onClose();
+  }, [isRegister, onClose]);
 
   const {
     register,
@@ -32,6 +39,7 @@ const RegistrationModal = ({ modalChange, onClose }) => {
   } = useForm({ mode: 'onBlur' });
 
   const dispatch = useDispatch();
+
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
@@ -50,7 +58,6 @@ const RegistrationModal = ({ modalChange, onClose }) => {
     };
 
     dispatch(registration(data));
-    onClose();
   };
   return (
     <>
