@@ -1,4 +1,6 @@
 import axios from 'axios';
+import { store } from '@/redux/store';
+import { setTokenAccess, setTokenRefresh } from '@/redux/user/slice';
 
 const apiKey = process.env.API_KEY;
 const apiUrl = process.env.API_URL;
@@ -27,3 +29,31 @@ export const setAuthHeader = (token) => {
 export const clearAuthHeader = () => {
   instanceNew.defaults.headers.common.Authorization = '';
 };
+
+instanceNew.interceptors.response.use(
+  (config) => config,
+  async (error) => {
+    if (error.response.status === 401) {
+      const { refreshToken } = JSON.parse(localStorage.getItem('persist:user'));
+
+      try {
+        const { data } = await instanceNew.post('api/user/refresh', {
+          refreshToken: JSON.parse(refreshToken),
+        });
+
+        const { dispatch } = store;
+
+        dispatch(setTokenAccess(data.accessToken));
+        dispatch(setTokenRefresh(data.refreshToken));
+
+        error.config.headers.Authorization = `Bearer ${data.accessToken}`;
+        setAuthHeader(data.accessToken);
+
+        return instanceNew(error.config);
+      } catch (error) {
+        return Promise.reject(error);
+      }
+    }
+    return Promise.reject(error);
+  }
+);
