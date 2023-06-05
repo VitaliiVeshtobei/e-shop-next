@@ -9,10 +9,11 @@ import { theme } from '../../public/theme/theme';
 import { Loader } from '@/components/Loader/Loader';
 
 import Wrapper from '@/components/Wrapper/Wrapper';
-import { store } from '@/redux/store';
+import { wrapper } from '@/redux/store';
 import WrapperAdmin from '@/components/WrapperAdmin/WrapperAdmin';
 
-export default function App({ Component, pageProps }) {
+export default function App({ Component, ...rest }) {
+  const { store, props } = wrapper.useWrappedStore(rest);
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
 
@@ -43,13 +44,13 @@ export default function App({ Component, pageProps }) {
           {isAdminPage ? (
             <WrapperAdmin>
               {isLoading && <Loader />}
-              <Component {...pageProps} />
+              <Component {...props.pageProps} />
               <div id="root-backdrop"></div>
             </WrapperAdmin>
           ) : (
             <Wrapper>
               {isLoading && <Loader />}
-              <Component {...pageProps} />
+              <Component {...props.pageProps} />
               <div id="root-backdrop"></div>
             </Wrapper>
           )}
