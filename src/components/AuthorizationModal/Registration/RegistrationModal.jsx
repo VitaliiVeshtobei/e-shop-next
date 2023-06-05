@@ -21,7 +21,7 @@ import { useDispatch } from 'react-redux';
 import { registration } from '@/redux/user/operations';
 import { useForm } from 'react-hook-form';
 
-const RegistrationModal = ({ modalChange }) => {
+const RegistrationModal = ({ modalChange, onClose }) => {
   const [showPassword, setShowPassword] = useState(false);
 
   const {
@@ -50,6 +50,7 @@ const RegistrationModal = ({ modalChange }) => {
     };
 
     dispatch(registration(data));
+    onClose();
   };
   return (
     <>

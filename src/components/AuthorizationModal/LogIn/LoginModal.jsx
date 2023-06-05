@@ -44,18 +44,13 @@ const LoginModal = ({ modalChange, onClose }) => {
     modalChange('register');
   };
 
-  // const admin = (e) => {
-  //   e.preventDefault();
-  //   router.push('/admin');
-  // };
   const onSubmit = (value) => {
-    // e.preventDefault();
     const data = {
       email: value.email,
       password: value.password,
     };
     dispatch(login(data));
-    // onClose();
+    onClose();
   };
 
   return (

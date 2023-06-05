@@ -12,11 +12,17 @@ import { MenuCategories } from './MenuCategories/MenuCategories';
 import { Burger } from './Burger/Burger';
 import { BurgerMenu } from './BurgerMenu/BurgerMenu';
 import Authorization from '@/components/AuthorizationModal/Authorization';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectIsLoggedIn } from '@/redux/user/selectors';
+import { logOut } from '@/redux/user/operations';
 
 const Search = () => {
   const [showCategories, setShowCategories] = useState(false);
   const [showBurgerMenu, setShowBurgerMenu] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
+
+  const isLoggedIn = useSelector(selectIsLoggedIn);
+  const dispatch = useDispatch();
 
   const handleClickCatalog = () => {
     if (showBurgerMenu) handleClickBurger();
@@ -28,6 +34,10 @@ const Search = () => {
   };
 
   const onUserClick = () => {
+    if (isLoggedIn) {
+      dispatch(logOut());
+      return;
+    }
     setModalOpen(!modalOpen);
   };
   return (
@@ -41,12 +51,12 @@ const Search = () => {
         <Catalog handleClickCatalog={handleClickCatalog} />
         <Form />
         <UserBtn onClick={onUserClick}>
-          <IoPersonOutline /> <span>Увійти</span>
+          <IoPersonOutline /> <span>{isLoggedIn ? 'Вийти' : 'Увійти'}</span>
         </UserBtn>
         <Cart />
       </Container>
       {showCategories && <MenuCategories handleClickCatalog={handleClickCatalog} />}
-      {modalOpen && <Authorization onClose={onUserClick} />}
+      {modalOpen && <Authorization onClose={() => setModalOpen(!modalOpen)} />}
       {showBurgerMenu && (
         <BurgerMenu
           onUserClick={onUserClick}
