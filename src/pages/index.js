@@ -12,14 +12,6 @@ import { useRouter } from 'next/router';
 import { refreshUser } from '@/redux/user/operations';
 import { setTokenAccess, setTokenRefresh } from '@/redux/user/slice';
 
-// export async function getServerSideProps() {
-//   const response = await instance('/groups/list');
-//   const data = response.data.groups.slice(0, response.data.groups.length - 1);
-
-//   return {
-//     props: { data },
-//   };
-// }
 export async function getServerSideProps() {
   try {
     const response = await instance('/groups/list');
@@ -54,7 +46,8 @@ export default function Home({ data }) {
     dispatch(setTokenAccess(accessToken));
     dispatch(setTokenRefresh(refreshToken));
     dispatch(refreshUser());
-  }, [accessToken, dispatch, refreshToken]);
+    router.push('/');
+  }, [accessToken, dispatch, refreshToken, router]);
   return (
     <>
       <Head>
