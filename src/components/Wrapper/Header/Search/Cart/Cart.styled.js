@@ -8,13 +8,11 @@ export const CartContainer = styled('div')`
   &:focus {
     transform: scale(1.05);
   }
-  @media ${DEVICE.mobile} {
-    p {
-      display: none;
-    }
-  }
-  @media ${DEVICE.tablet} {
-    p {
+
+  p {
+    display: none;
+
+    @media ${DEVICE.version} {
       display: block;
     }
   }
