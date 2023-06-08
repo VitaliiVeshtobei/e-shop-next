@@ -13,7 +13,7 @@ import { Loader } from '@/components/Loader/Loader';
 
 import Wrapper from '@/components/Wrapper/Wrapper';
 import { wrapper } from '@/redux/store';
-import WrapperAdmin from '@/components/WrapperAdmin/WrapperAdmin';
+import WrapperAdmin from '@/components/ADMIN/WrapperAdmin/WrapperAdmin';
 import { refreshUser } from '@/redux/user/operations';
 
 export default function App({ Component, ...rest }) {

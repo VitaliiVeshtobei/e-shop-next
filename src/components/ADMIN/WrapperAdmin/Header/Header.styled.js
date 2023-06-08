@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { theme } from '../../../../public/theme/theme';
+import { theme } from '../../../../../public/theme/theme';
 
 export const Wrapper = styled.header`
   margin-bottom: 10px;

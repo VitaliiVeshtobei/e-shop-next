@@ -1,8 +1,16 @@
 import { MdOutlineManageAccounts, MdGroups, MdStorage, MdWifiProtectedSetup, MdAttribution } from 'react-icons/md';
+import { BiCategory } from 'react-icons/bi';
 import { Wrapper, Button, IconWrapper } from './Navigation.styled';
 
 export const Navigation = ({ activeButtonIndex, handleButtonClick }) => {
   const listBtn = [
+    {
+      id: 'category',
+      name: 'Категорії',
+      route: '/admin/category',
+      icon: <BiCategory />,
+    },
+
     {
       id: 'admin-panel',
       name: 'Адміністраторська панель',
