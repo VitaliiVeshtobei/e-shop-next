@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
-import { Div, Wrapper } from './Header.styled';
+import { Div, Menu, Wrapper } from './Header.styled';
 import { Logo } from '../Logo/Logo';
+import { Burger } from './Burger/Burger';
 
-export const Header = () => {
+export const Header = ({ handleClickBurger, showBurgerMenu }) => {
   const [currentDateTime, setCurrentDateTime] = useState(new Date());
 
   useEffect(() => {
@@ -36,15 +37,24 @@ export const Header = () => {
       <Logo />
       <Div>
         <p>
-          Час: <span>{formatTime(currentDateTime)}</span>
+          <span> Час: </span>
+          {formatTime(currentDateTime)}
         </p>
         <p>
-          День тижня: <span>{formatWeekday(currentDateTime)}</span>
+          <span> День тижня: </span>
+          {formatWeekday(currentDateTime)}
         </p>
         <p>
-          Дата: <span>{formatDate(currentDateTime)}</span>
+          <span> Дата: </span>
+          {formatDate(currentDateTime)}
         </p>
       </Div>
+      <Menu>
+        <Burger
+          handleClickBurger={handleClickBurger}
+          showBurgerMenu={showBurgerMenu}
+        />
+      </Menu>
     </Wrapper>
   );
 };

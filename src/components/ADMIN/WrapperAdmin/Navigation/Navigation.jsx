@@ -1,8 +1,8 @@
 import { MdOutlineManageAccounts, MdGroups, MdStorage, MdWifiProtectedSetup, MdAttribution } from 'react-icons/md';
 import { BiCategory } from 'react-icons/bi';
-import { Wrapper, Button, IconWrapper } from './Navigation.styled';
+import { Wrapper, Button, IconWrapper, Backdrop } from './Navigation.styled';
 
-export const Navigation = ({ activeButtonIndex, handleButtonClick }) => {
+export const Navigation = ({ activeButtonIndex, handleButtonClick, backdrop }) => {
   const listBtn = [
     {
       id: 'category',
@@ -28,7 +28,23 @@ export const Navigation = ({ activeButtonIndex, handleButtonClick }) => {
     { id: 'support', name: 'Підтримка', route: '/admin/support', icon: <MdAttribution /> },
   ];
 
-  return (
+  return backdrop ? (
+    <Backdrop>
+      <Wrapper>
+        {listBtn.map(({ id, name, route, icon }) => (
+          <Button
+            key={id}
+            id={id}
+            active={activeButtonIndex}
+            onClick={() => handleButtonClick(id, route)}
+          >
+            <IconWrapper>{icon}</IconWrapper>
+            {name}
+          </Button>
+        ))}
+      </Wrapper>
+    </Backdrop>
+  ) : (
     <Wrapper>
       {listBtn.map(({ id, name, route, icon }) => (
         <Button

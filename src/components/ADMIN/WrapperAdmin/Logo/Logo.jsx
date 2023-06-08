@@ -6,7 +6,7 @@ import { useRouter } from 'next/router';
 export const Logo = () => {
   const router = useRouter();
   return (
-    <LogoContainer onClick={() => router.push('/admin-panal')}>
+    <LogoContainer onClick={() => router.push('/')}>
       <Image
         src="/images/logo/logo-victar.svg"
         width={40}
