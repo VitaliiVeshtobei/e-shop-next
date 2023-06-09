@@ -1,12 +1,16 @@
 import styled from 'styled-components';
 import DEVICE from '@/constants/deviceSize';
-const { tablet } = DEVICE;
+const { tablet, tabletMax } = DEVICE;
 
 export const List = styled.ul`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   margin-right: -15px;
+
+  @media ${tabletMax} {
+    width: 100%;
+  }
 `;
 
 export const Item = styled.li`

@@ -1,4 +1,5 @@
-const { default: styled } = require('styled-components');
+import DEVICE from '@/constants/deviceSize';
+import styled from 'styled-components';
 
 export const Wrapper = styled.div`
   display: flex;
@@ -15,11 +16,16 @@ export const Container = styled.div`
 `;
 
 export const Section = styled.section`
+  position: relative;
   display: grid;
-  grid-template-columns: 250px 1fr;
   box-sizing: border-box;
   gap: 10px;
   height: calc(100vh - 86px);
+  overflow: hidden;
+
+  @media ${DEVICE.tablet} {
+    grid-template-columns: 250px 1fr;
+  }
 `;
 
 export const Div = styled.div`

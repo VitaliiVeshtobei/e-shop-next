@@ -46,7 +46,7 @@ export const UserBtn = styled.button`
 
   span {
     display: none;
-    @media ${DEVICE.tablet} {
+    @media ${DEVICE.version} {
       display: block;
     }
   }
@@ -96,7 +96,7 @@ export const AdminBtn = styled.button`
 
   span {
     display: none;
-    @media ${DEVICE.tablet} {
+    @media ${DEVICE.version} {
       display: block;
     }
   }

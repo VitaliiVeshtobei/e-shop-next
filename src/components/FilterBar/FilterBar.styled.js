@@ -1,13 +1,12 @@
 import styled from 'styled-components';
 import { BsCheckLg } from 'react-icons/bs';
-import DEVICE from '@/constants/deviceSize';
 
 export const Wrapper = styled.section`
   min-width: 314px;
   display: flex;
   flex-direction: column;
 
-  @media ${DEVICE.laptopMax} {
+  @media screen and (max-width: 767px) {
     position: absolute;
     top: -25px;
     left: 0;
@@ -30,28 +29,6 @@ export const Wrapper = styled.section`
     clip: rect(0 0 0 0);   
     overflow: hidden;`
         : ''}
-  }
-
-  @media ${DEVICE.tablet} {
-    ${(p) =>
-      p.list <= 2
-        ? `
-        position:static;
-        box-shadow:none; 
-        padding:0;
-        background-color:transparent;
-        z-index:0;
-        border-radius:0;
-         `
-        : ''}
-  }
-
-  @media ${DEVICE.mobileMax} {
-    left: -15px;
-  }
-
-  @media screen and (min-width: 1280px) and (max-width: 1360px) {
-    min-width: 239px;
   }
 `;
 
@@ -148,9 +125,6 @@ export const Label = styled.label`
   padding-left: 35px;
   color: ${(p) => p.theme.colors.darkHover};
   transition: transform ${(p) => p.theme.transition};
-  @media screen and (min-width: 1280px) and (max-width: 1360px) {
-    font-size: 13px;
-  }
 
   ::after {
     content: '';

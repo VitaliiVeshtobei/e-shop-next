@@ -6,11 +6,6 @@ export const Container = styled.div`
   display: flex;
   position: relative;
   gap: 20px;
-
-  @media ${DEVICE.laptopMax} {
-    display: inline-flex;
-    gap: 16px;
-  }
 `;
 
 export const Button = styled.button`
@@ -30,7 +25,7 @@ export const Button = styled.button`
     color: #ffffff;
   }
 
-  @media ${DEVICE.laptop} {
+  @media ${DEVICE.tablet} {
     display: none;
   }
 
@@ -38,16 +33,14 @@ export const Button = styled.button`
     padding: 6px 5px;
     font-size: 12px;
   }
-
-  @media ${DEVICE.tablet} {
-    ${(p) => (p.list <= 2 ? `display: none;` : '')}
-  }
 `;
 
 export const Icon = styled(BsFilterSquare)`
-  height: 15px;
-  width: 15px;
-  @media ${DEVICE.tabletMax} {
-    display: none;
+  display: none;
+
+  @media ${DEVICE.tablet} {
+    display: block;
+    height: 15px;
+    width: 15px;
   }
 `;

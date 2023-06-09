@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Navigation from './Navigation/Navigation';
 import { Container, Div, Section, Wrapper } from './WrapperAdmin.styled';
 import { Header } from './Header/Header';
@@ -9,6 +9,20 @@ import { selectRole } from '@/redux/user/selectors';
 
 const WrapperAdmin = ({ children }) => {
   const [activeButtonIndex, setActiveButtonIndex] = useState('admin-panel');
+  const [showBurgerMenu, setShowBurgerMenu] = useState(false);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
   const router = useRouter();
   const role = useSelector(selectRole);
   if (role !== 'ADMIN') {
@@ -19,6 +33,10 @@ const WrapperAdmin = ({ children }) => {
   const handleButtonClick = (index, route) => {
     setActiveButtonIndex(index);
     router.push(route, undefined, { shallow: true });
+  };
+
+  const handleClickBurger = () => {
+    setShowBurgerMenu((prev) => !prev);
   };
 
   return (
@@ -36,12 +54,26 @@ const WrapperAdmin = ({ children }) => {
       </Head>
       <Wrapper>
         <Container>
-          <Header />
+          <Header
+            handleClickBurger={handleClickBurger}
+            showBurgerMenu={showBurgerMenu}
+          />
           <Section>
-            <Navigation
-              activeButtonIndex={activeButtonIndex}
-              handleButtonClick={handleButtonClick}
-            />
+            {windowWidth <= 768 ? (
+              showBurgerMenu && (
+                <Navigation
+                  backdrop={windowWidth <= 768}
+                  activeButtonIndex={activeButtonIndex}
+                  handleButtonClick={handleButtonClick}
+                />
+              )
+            ) : (
+              <Navigation
+                backdrop={windowWidth <= 768}
+                activeButtonIndex={activeButtonIndex}
+                handleButtonClick={handleButtonClick}
+              />
+            )}
             <Div>{children}</Div>
           </Section>
         </Container>

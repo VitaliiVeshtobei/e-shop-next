@@ -1,9 +1,22 @@
 import styled from 'styled-components';
+import DEVICE from '../../../../constants/deviceSize';
 
 export const Wrapper = styled.div`
+  position: absolute;
+  top: -10px;
+  right: -20px;
   display: flex;
   flex-direction: column;
   gap: 10px;
+
+  background-color: ${(p) => p.theme.colors.scndDarkText};
+  padding: 10px;
+
+  @media ${DEVICE.tablet} {
+    position: static;
+    background-color: transparent;
+    padding: 0;
+  }
 `;
 
 export const Button = styled.button`
@@ -39,4 +52,10 @@ export const IconWrapper = styled.span`
     width: 20px;
     height: 20px;
   }
+`;
+export const Backdrop = styled.div`
+  width: calc(100vw - 40px);
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.2);
+  position: absolute;
 `;
