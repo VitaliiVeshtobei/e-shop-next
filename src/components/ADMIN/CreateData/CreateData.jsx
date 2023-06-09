@@ -2,7 +2,7 @@ import { ErrorMessage } from '@/components/AuthorizationModal/AuthModals.styled'
 import React from 'react';
 import { useForm } from 'react-hook-form';
 
-const CreateCategory = () => {
+export const CreateData = () => {
   const {
     register,
     handleSubmit,
@@ -34,5 +34,3 @@ const CreateCategory = () => {
     </form>
   );
 };
-
-export default CreateCategory;

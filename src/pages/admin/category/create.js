@@ -1,8 +1,8 @@
-import CreateCategory from '@/components/ADMIN/CategoryAdmin/CreateCategory/CreateCategory';
+import { CreateData } from '@/components/ADMIN/CreateData/CreateData';
 import React from 'react';
 
 const Create = () => {
-  return <CreateCategory />;
+  return <CreateData />;
 };
 
 export default Create;
