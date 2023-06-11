@@ -26,7 +26,16 @@ export const Step = styled.span`
   font-size: 12px;
   font-weight: 600;
   color: ${(p) => p.theme.colors.lightText};
-  background-color: ${(p) => p.theme.colors.accent};
+  background-color: ${(p) => {
+    switch (p.done) {
+      case false:
+        return p.theme.colors.accent;
+      case true:
+        return p.theme.colors.available;
+      default:
+        return p.theme.colors.accent;
+    }
+  }};
   width: 20px;
   height: 20px;
   border-radius: 50%;
@@ -34,6 +43,10 @@ export const Step = styled.span`
   justify-content: center;
   align-items: center;
   margin-right: 10px;
+  svg {
+    width: 16px;
+    height: 16px;
+  }
 `;
 export const Title = styled.h2`
   font-weight: 500;

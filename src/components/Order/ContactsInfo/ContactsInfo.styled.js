@@ -48,6 +48,10 @@ export const Step = styled.span`
   justify-content: center;
   align-items: center;
   margin-right: 10px;
+  svg {
+    width: 16px;
+    height: 16px;
+  }
 `;
 export const Title = styled.h2`
   font-weight: 500;

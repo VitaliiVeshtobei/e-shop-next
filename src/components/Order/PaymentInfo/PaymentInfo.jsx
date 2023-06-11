@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { IoWalletOutline } from 'react-icons/io5';
+import { IoWalletOutline, IoCheckmarkOutline } from 'react-icons/io5';
 
 import { addOrderPayment } from '@/redux/products/slice';
 
@@ -24,7 +24,8 @@ const PaymentInfo = () => {
   return (
     <Container done={done}>
       <StepWrapper>
-        <Step>3</Step>
+        <Step done={done}>{done ? <IoCheckmarkOutline /> : 3}</Step>
+
         <Title>
           Оплата<span>*</span>
         </Title>

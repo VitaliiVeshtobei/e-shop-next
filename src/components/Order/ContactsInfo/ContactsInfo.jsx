@@ -25,8 +25,6 @@ const ContactsInfo = () => {
       setContactsCorrect(true);
     } else if (isSurnameCorrect !== true || isNameCorrect !== true || isPhoneCorrect !== true) {
       setContactsCorrect(false);
-    } else {
-      setContactsCorrect(null);
     }
   }, [isSurnameCorrect, isNameCorrect, isPhoneCorrect]);
 
@@ -99,7 +97,7 @@ const ContactsInfo = () => {
             required
             type="text"
             value={name}
-            name="surname"
+            name="name"
             onChange={onNameChange}
             placeholder="Введіть ваше ім'я"
             pattern="[A-Za-z]{2,}"
