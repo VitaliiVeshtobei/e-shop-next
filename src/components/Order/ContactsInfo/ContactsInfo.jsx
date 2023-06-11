@@ -63,7 +63,7 @@ const ContactsInfo = () => {
     if (isSurnameCorrect && isNameCorrect && isPhoneCorrect) {
       setContactsCorrect(true);
       setDone(true);
-      dispatch(addOrderContacts({ number: phoneNumber, name: name, surname: surname }));
+      dispatch(addOrderContacts({ phone: phoneNumber, name: name, surname: surname }));
       return;
     }
     setContactsCorrect(false);

@@ -3,7 +3,17 @@ import styled from 'styled-components';
 export const Container = styled.div`
   width: 100%;
   margin-bottom: 40px;
-  border: 1px solid ${(p) => p.theme.colors.border};
+  border: 1px solid
+    ${(p) => {
+      switch (p.done) {
+        case false:
+          return p.theme.colors.border;
+        case true:
+          return p.theme.colors.available;
+        default:
+          return p.theme.colors.border;
+      }
+    }};
   border-radius: 8px;
   padding: 15px;
 `;

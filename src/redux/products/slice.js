@@ -13,7 +13,7 @@ const initialState = {
   productsByCategory: [],
   cart: getCartLocal() ?? [],
   productInfo: {},
-  order: {},
+  order: { name: '', surname: '', phone: '', payment: '' },
 };
 
 const productsSlice = createSlice({
@@ -72,7 +72,12 @@ const productsSlice = createSlice({
       quantityLocal(state.cart);
     },
     addOrderContacts(state, action) {
-      state.order = action.payload;
+      state.order.name = action.payload.name;
+      state.order.surname = action.payload.surname;
+      state.order.phone = action.payload.phone;
+    },
+    addOrderPayment(state, action) {
+      state.order.payment = action.payload.payment;
     },
   },
 });
@@ -88,4 +93,5 @@ export const {
   quantityCartMinus,
   getProductInfo,
   addOrderContacts,
+  addOrderPayment,
 } = productsSlice.actions;
