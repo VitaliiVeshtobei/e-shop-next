@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: true,
+  reactStrictMode: false,
   env: {
     API_KEY: process.env.API_KEY,
     API_URL: process.env.API_URL,
@@ -14,7 +14,7 @@ const nextConfig = {
   },
 
   images: {
-    domains: ['images.prom.ua'],
+    domains: ['images.prom.ua', 'e-shop-victar.s3.eu-north-1.amazonaws.com'],
   },
 };
 

@@ -2,8 +2,12 @@ import React from 'react';
 import { ListButtonsStyled, OptionBtnStyled } from './ListButtons.styled';
 import { useRouter } from 'next/router';
 
-export const ListButtons = () => {
+export const ListButtons = ({ deleteCheckedDate }) => {
   const router = useRouter();
+
+  const handleDelete = async () => {
+    deleteCheckedDate();
+  };
   return (
     <ListButtonsStyled>
       <li>
@@ -18,7 +22,12 @@ export const ListButtons = () => {
         <OptionBtnStyled type="button">Редагувати</OptionBtnStyled>
       </li>
       <li>
-        <OptionBtnStyled type="button">Видалити</OptionBtnStyled>
+        <OptionBtnStyled
+          onClick={handleDelete}
+          type="button"
+        >
+          Видалити
+        </OptionBtnStyled>
       </li>
     </ListButtonsStyled>
   );

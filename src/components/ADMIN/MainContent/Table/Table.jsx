@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import {
   ImageStyled,
@@ -9,9 +9,7 @@ import {
   AiOutlineCheckStyled,
 } from './Table.styled';
 
-export const Table = ({ data }) => {
-  const [checkedData, setCheckedData] = useState([]);
-
+export const Table = ({ data, setCheckedData, checkedData }) => {
   const handleChange = (id) => {
     const checkedIdx = checkedData.findIndex((item) => item === id);
 
