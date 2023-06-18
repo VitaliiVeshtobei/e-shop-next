@@ -2,12 +2,12 @@ import Head from 'next/head';
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { Benefits } from '@/components/Benefits/Benefits';
-import { SliderFeedbacks } from '@/components/SliderFeedbacks/SliderFeedbacks';
-import { Categories } from '@/components/Categories/Categories';
+import { Benefits } from '@/components/client/Benefits/Benefits';
+import { SliderFeedbacks } from '@/components/client/SliderFeedbacks/SliderFeedbacks';
+import { Categories } from '@/components/client/Categories/Categories';
 import { instance } from '@/axios/axiosDefault';
 import { getCategories } from '@/redux/products/slice';
-import { Slider } from '@/components/Slider/Slider';
+import { Slider } from '@/components/client/Slider/Slider';
 import { useRouter } from 'next/router';
 import { refreshUser } from '@/redux/user/operations';
 import { setTokenAccess, setTokenRefresh } from '@/redux/user/slice';

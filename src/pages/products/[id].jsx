@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 
 import { instance } from '@/axios/axiosDefault';
 import { getProductInfo } from '@/redux/products/slice';
-import ProductInfo from '@/components/ProductInfo/ProductInfo';
+import ProductInfo from '@/components/client/ProductInfo/ProductInfo';
 import { setRecentlyViewed } from '@/localStorage/localStorage';
 
 export async function getServerSideProps(context) {

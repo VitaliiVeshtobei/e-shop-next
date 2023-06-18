@@ -1,5 +1,5 @@
 import React from 'react';
-import CartWrapper from '@/components/Cart/CartWrapper';
+import CartWrapper from '@/components/client/Cart/CartWrapper';
 
 const Cart = () => {
   return <CartWrapper />;
