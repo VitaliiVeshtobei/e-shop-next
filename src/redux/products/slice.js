@@ -13,6 +13,17 @@ const initialState = {
   productsByCategory: [],
   cart: getCartLocal() ?? [],
   productInfo: {},
+  order: {
+    name: '',
+    surname: '',
+    phone: '',
+    payment: '',
+    delivery: '',
+    deliveryType: '',
+    deliveryCity: '',
+    deliveryOffice: '',
+    price: '',
+  },
 };
 
 const productsSlice = createSlice({
@@ -70,6 +81,23 @@ const productsSlice = createSlice({
       });
       quantityLocal(state.cart);
     },
+    addOrderContacts(state, action) {
+      state.order.name = action.payload.name;
+      state.order.surname = action.payload.surname;
+      state.order.phone = action.payload.phone;
+    },
+    addOrderPayment(state, action) {
+      state.order.payment = action.payload.payment;
+    },
+    addOrderDelivery(state, action) {
+      state.order.delivery = action.payload.delivery;
+      state.order.deliveryType = action.payload.deliveryType;
+      state.order.deliveryCity = action.payload.deliveryCity;
+      state.order.deliveryOffice = action.payload.deliveryOffice;
+    },
+    addOrderPrice(state, action) {
+      state.order.price = action.payload.price;
+    },
   },
 });
 
@@ -83,4 +111,8 @@ export const {
   quantityCartPlus,
   quantityCartMinus,
   getProductInfo,
+  addOrderContacts,
+  addOrderPayment,
+  addOrderDelivery,
+  addOrderPrice,
 } = productsSlice.actions;
