@@ -8,10 +8,6 @@ export const Wrapper = styled.section`
   height: 307px;
   overflow: hidden;
 
-  &:last-child {
-    margin-left: 0;
-  }
-
   @media ${mobileMax} {
     height: 568px;
   }
