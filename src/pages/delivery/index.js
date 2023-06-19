@@ -1,4 +1,4 @@
-import { DeliveryAndPayment } from '@/components/DeliveryAndPayment/DeliveryAndPayment';
+import { DeliveryAndPayment } from '@/components/USER/DeliveryAndPayment/DeliveryAndPayment';
 import React from 'react';
 
 const Delivery = () => {

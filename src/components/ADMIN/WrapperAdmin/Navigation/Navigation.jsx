@@ -18,9 +18,9 @@ export const Navigation = ({ activeButtonIndex, handleButtonClick, backdrop }) =
     },
 
     {
-      id: 'admin-panel',
+      id: 'admin',
       name: 'Адміністраторська панель',
-      route: '/admin/admin-panel',
+      route: '/admin',
       icon: <MdStorage />,
     },
     {

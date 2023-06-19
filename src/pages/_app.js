@@ -9,9 +9,9 @@ import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
 import { ThemeProvider } from 'styled-components';
 import { theme } from '../../public/theme/theme';
-import { Loader } from '@/components/Loader/Loader';
+import { Loader } from '@/components/USER/Loader/Loader';
 
-import Wrapper from '@/components/Wrapper/Wrapper';
+import Wrapper from '@/components/USER/Wrapper/Wrapper';
 import { wrapper } from '@/redux/store';
 import WrapperAdmin from '@/components/ADMIN/WrapperAdmin/WrapperAdmin';
 import { refreshUser } from '@/redux/user/operations';

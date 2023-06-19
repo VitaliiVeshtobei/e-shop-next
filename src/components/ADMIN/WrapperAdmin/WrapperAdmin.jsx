@@ -8,7 +8,7 @@ import { useSelector } from 'react-redux';
 import { selectRole } from '@/redux/user/selectors';
 
 const WrapperAdmin = ({ children }) => {
-  const [activeButtonIndex, setActiveButtonIndex] = useState('admin-panel');
+  const [activeButtonIndex, setActiveButtonIndex] = useState('admin');
   const [showBurgerMenu, setShowBurgerMenu] = useState(false);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
@@ -26,7 +26,7 @@ const WrapperAdmin = ({ children }) => {
   const router = useRouter();
   const role = useSelector(selectRole);
   if (role !== 'ADMIN') {
-    router.replace('/');
+    router.replace('/admin');
     return;
   }
 
