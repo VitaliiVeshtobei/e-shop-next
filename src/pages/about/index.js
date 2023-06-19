@@ -1,4 +1,4 @@
-import { AboutUs } from '@/components/client/AboutUs/AboutUs';
+import { AboutUs } from '@/components/USER/AboutUs/AboutUs';
 import React from 'react';
 
 const About = () => {

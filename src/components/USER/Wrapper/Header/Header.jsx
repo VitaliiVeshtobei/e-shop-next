@@ -2,7 +2,7 @@ import React from 'react';
 import Location from './Location/Location';
 import NavBar from './NavBar/NavBar';
 import Search from './Search/Search';
-import { Navigation } from '@/components/client/Navigation/Navigation';
+import { Navigation } from '@/components/USER/Navigation/Navigation';
 import { useRouter } from 'next/router';
 
 const Header = () => {

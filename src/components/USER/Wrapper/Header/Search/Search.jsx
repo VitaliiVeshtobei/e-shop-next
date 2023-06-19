@@ -12,7 +12,7 @@ import { Catalog } from './Catalog/Catalog';
 import { MenuCategories } from './MenuCategories/MenuCategories';
 import { Burger } from './Burger/Burger';
 import { BurgerMenu } from './BurgerMenu/BurgerMenu';
-import Authorization from '@/components/client/AuthorizationModal/Authorization';
+import Authorization from '@/components/USER/AuthorizationModal/Authorization';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectIsLoggedIn, selectRole } from '@/redux/user/selectors';
 import { logOut } from '@/redux/user/operations';

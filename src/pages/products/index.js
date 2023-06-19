@@ -5,12 +5,12 @@ import { instance } from '@/axios/axiosDefault';
 import { getProductsByCategory } from '@/redux/products/slice';
 import { selectProductsByCategory } from '@/redux/products/selectors';
 
-import ProductsList from '@/components/client/ProductsList/ProductsList';
-import { FilterBar } from '@/components/client/FilterBar/FilterBar';
-import { FilterByPrice } from '@/components/client/FilterByPrice/FilterByPrice';
-import Pagination from '@/components/client/ProductsList/Pagination/Pagination';
+import ProductsList from '@/components/USER/ProductsList/ProductsList';
+import { FilterBar } from '@/components/USER/FilterBar/FilterBar';
+import { FilterByPrice } from '@/components/USER/FilterByPrice/FilterByPrice';
+import Pagination from '@/components/USER/ProductsList/Pagination/Pagination';
 import { Button, Container, Icon } from '@/_app/products.styled';
-import { RecentlyReviewed } from '@/components/client/RecentlyReviewed/RecentlyReviewed';
+import { RecentlyReviewed } from '@/components/USER/RecentlyReviewed/RecentlyReviewed';
 
 export async function getServerSideProps({ query }) {
   const category = query.category;
