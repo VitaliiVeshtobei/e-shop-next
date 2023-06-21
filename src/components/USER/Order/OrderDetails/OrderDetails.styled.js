@@ -6,10 +6,7 @@ export const Container = styled.div`
   padding: 15px;
   margin-bottom: 40px;
   @media screen and (min-width: 970px) {
-    position: absolute;
     width: 350px;
-    right: 30px;
-    top: 550px;
   }
 `;
 export const Wrap = styled.div`

@@ -11,12 +11,14 @@ const Order = () => {
       <Title>Оформлення замовлення</Title>
       <Container>
         <Wrap>
-          <OrderDetails />
           <ContactsInfo />
           <DeliveryInfo />
           <PaymentInfo />
         </Wrap>
-        <Summary />
+        <div>
+          <OrderDetails />
+          <Summary />
+        </div>
       </Container>
     </div>
   );
