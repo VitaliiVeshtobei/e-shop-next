@@ -1,8 +1,9 @@
-import { useSelector } from 'react-redux';
-import { useEffect, useState, useRef } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { useEffect, useState } from 'react';
 import Image from 'next/image';
 
 import { selectCart } from '@/redux/products/selectors';
+import { addOrderInfo } from '@/redux/products/slice';
 
 import {
   Container,
@@ -19,10 +20,22 @@ const OrderDetails = () => {
   const [order, setOrder] = useState([]);
   const items = useSelector(selectCart);
   const sum = order.reduce((acc, obj) => (obj.quantity ? acc + obj.price * obj.quantity : acc + obj.price), 0);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     setOrder(items);
   }, [items]);
+
+  useEffect(() => {
+    const orderInfo = {}; // Создаем пустой объект для хранения информации о заказе
+
+    items.forEach((item) => {
+      const quantity = item.quantity || 1;
+      orderInfo[item.name] = quantity + 'шт'; // Добавляем ключ и значение в объект orderInfo
+    });
+
+    dispatch(addOrderInfo({ products: orderInfo }));
+  }, [items, dispatch]);
 
   return (
     <Container>
