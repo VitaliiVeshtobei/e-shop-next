@@ -1,9 +1,12 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
+  max-width: 1100px;
+  margin-left: auto;
+  margin-right: auto;
   @media screen and (min-width: 970px) {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
   }
 `;
 

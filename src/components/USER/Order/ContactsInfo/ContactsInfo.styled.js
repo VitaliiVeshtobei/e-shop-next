@@ -75,20 +75,24 @@ export const Input = styled.input`
   border-radius: 8px;
   border: 1px solid ${(p) => p.theme.colors.border};
   padding: 0 10px;
-  margin-bottom: 14px;
+  margin-bottom: 12px;
   margin-top: 5px;
   outline: none;
-  border: 1px solid
-    ${(p) => {
-      switch (p.correct) {
-        case false:
-          return p.theme.colors.warning;
-        case true:
-          return p.theme.colors.available;
-        default:
-          return p.theme.colors.border;
-      }
-    }};
+`;
+
+export const Error = styled.div`
+  margin-bottom: 12px;
+  display: flex;
+  svg {
+    margin-right: 5px;
+    width: 16px;
+    color: ${(p) => p.theme.colors.corrasion};
+    height: 16px;
+  }
+  p {
+    font-size: 13px;
+    color: ${(p) => p.theme.colors.corrasion};
+  }
 `;
 export const Btn = styled.button`
   width: 100%;

@@ -23,6 +23,7 @@ const initialState = {
     deliveryCity: '',
     deliveryOffice: '',
     price: '',
+    products: {},
   },
 };
 
@@ -98,6 +99,9 @@ const productsSlice = createSlice({
     addOrderPrice(state, action) {
       state.order.price = action.payload.price;
     },
+    addOrderInfo(state, action) {
+      state.order.products = action.payload.products;
+    },
   },
 });
 
@@ -114,5 +118,6 @@ export const {
   addOrderContacts,
   addOrderPayment,
   addOrderDelivery,
+  addOrderInfo,
   addOrderPrice,
 } = productsSlice.actions;

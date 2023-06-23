@@ -7,7 +7,6 @@ export const Wrap = styled.div`
   @media screen and (min-width: 970px) {
     height: 250px;
     width: 350px;
-    margin-left: 10px;
   }
 `;
 export const Title = styled.h2`

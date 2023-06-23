@@ -1,132 +1,109 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { useForm } from 'react-hook-form';
 
-import { IoCheckmarkOutline } from 'react-icons/io5';
+import { IoCheckmarkOutline, IoWarningOutline } from 'react-icons/io5';
 
 import { addOrderContacts } from '@/redux/products/slice';
 
-import { Container, Step, StepWrapper, Title, Form, Input, Label, Btn } from './ContactsInfo.styled';
+import { Container, Step, StepWrapper, Title, Form, Input, Label, Btn, Error } from './ContactsInfo.styled';
 
 const ContactsInfo = () => {
-  const [phoneNumber, setPhoneNumber] = useState('');
-  const [name, setName] = useState('');
-  const [surname, setSurname] = useState('');
-  const [isSurnameCorrect, setSurnameCorrect] = useState(null);
-  const [isNameCorrect, setNameCorrect] = useState(null);
-  const [isPhoneCorrect, setPhoneCorrect] = useState(null);
-
-  const [isContactsCorrect, setContactsCorrect] = useState(false);
   const [done, setDone] = useState(false);
 
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    if (isSurnameCorrect === true && isNameCorrect === true && isPhoneCorrect === true) {
-      setContactsCorrect(true);
-    } else if (isSurnameCorrect !== true || isNameCorrect !== true || isPhoneCorrect !== true) {
-      setContactsCorrect(false);
-    }
-  }, [isSurnameCorrect, isNameCorrect, isPhoneCorrect]);
-
-  const onSurnameChange = (evt) => {
-    setSurname(evt.target.value);
-
-    if (/^[a-zA-Z]{2,}$/.test(evt.target.value)) {
-      setSurnameCorrect(true);
-      return;
-    }
-    setSurnameCorrect(false);
-  };
-  const onNameChange = (evt) => {
-    setName(evt.target.value);
-
-    if (/^[a-zA-Z]{2,}$/.test(evt.target.value)) {
-      setNameCorrect(true);
-      return;
-    }
-    setNameCorrect(false);
-  };
-  const onPhoneChange = (evt) => {
-    setPhoneNumber(evt.target.value);
-
-    if (/^\d{10}$/.test(evt.target.value)) {
-      setPhoneCorrect(true);
-      return;
-    }
-    setPhoneCorrect(false);
+  const onSubmit = (data) => {
+    console.log(data);
+    setDone(true);
+    dispatch(addOrderContacts({ phone: data.phone, name: data.name, surname: data.surname }));
   };
 
-  const onSubmit = (evt) => {
-    evt.preventDefault();
-    if (isSurnameCorrect && isNameCorrect && isPhoneCorrect) {
-      setContactsCorrect(true);
-      setDone(true);
-      dispatch(addOrderContacts({ phone: phoneNumber, name: name, surname: surname }));
-      return;
-    }
-    setContactsCorrect(false);
-  };
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isValid },
+  } = useForm({
+    mode: 'onBlur',
+  });
 
   return (
-    <Container correct={isContactsCorrect}>
+    <Container correct={done}>
       <StepWrapper>
         <Step done={done}>{done ? <IoCheckmarkOutline /> : 1}</Step>
         <Title>
           Контактні дані<span>*</span>
         </Title>
       </StepWrapper>
-
-      <Form>
+      <Form onSubmit={handleSubmit(onSubmit)}>
         <Label>
           Прізвище<span>*</span>
           <Input
-            correct={isSurnameCorrect}
             type="text"
-            value={surname}
-            required
-            name="surname"
-            onChange={onSurnameChange}
             placeholder="Введіть ваше прізвище"
-            pattern="[A-Za-z]{2,}"
+            {...register('surname', {
+              required: "Поле обов'язкове до заповнення",
+              pattern: /^[\p{L}\s]+$/u,
+              minLength: { value: 2, message: 'Введіть мінімум 2 символи' },
+            })}
+            style={{ border: errors.surname ? '1px solid #FF2400' : '1px solid #B6B6B6' }}
           />
+          <Error>
+            {errors?.surname && (
+              <>
+                <IoWarningOutline /> <p>{errors?.surname?.message || 'Допустимі лише літери кирилиці або латиниці'}</p>
+              </>
+            )}
+          </Error>
         </Label>
         <Label>
           Ім&apos;я<span>*</span>
           <Input
-            correct={isNameCorrect}
-            required
             type="text"
-            value={name}
-            name="name"
-            onChange={onNameChange}
             placeholder="Введіть ваше ім'я"
-            pattern="[A-Za-z]{2,}"
+            {...register('name', {
+              required: "Поле обов'язкове до заповнення",
+              pattern: /^[\p{L}\s]+$/u,
+              minLength: { value: 2, message: 'Введіть мінімум 2 символи' },
+            })}
+            style={{ border: errors.name ? '1px solid #FF2400' : '1px solid #B6B6B6' }}
           />
+          <Error>
+            {errors?.name && (
+              <>
+                <IoWarningOutline /> <p>{errors?.name?.message || 'Допустимі лише літери кирилиці або латиниці'}</p>
+              </>
+            )}
+          </Error>
         </Label>
         <Label>
           Телефон<span>*</span>
           <Input
-            correct={isPhoneCorrect}
-            required
             type="tel"
-            name="phone"
             placeholder="Введіть ваш телефон"
-            maxLength={10}
-            minLength={10}
-            value={phoneNumber}
-            pattern="[0-9]*"
-            title="Введіть номер телефону у форматі 0631234567"
-            onChange={onPhoneChange}
+            {...register('phone', {
+              required: "Поле обов'язкове до заповнення",
+              pattern: /^\d+$/,
+              minLength: { value: 10, message: 'Введіть мінімум 10 символів' },
+              maxLength: { value: 10, message: 'Максимум 10 символів' },
+            })}
+            style={{ border: errors.phone ? '1px solid #FF2400' : '1px solid #B6B6B6' }}
           />
+          <Error>
+            {errors?.phone && (
+              <>
+                <IoWarningOutline /> <p>{errors?.phone?.message || 'Допустимий формат вводу "0631234567"'}</p>
+              </>
+            )}
+          </Error>
         </Label>
-        {isContactsCorrect && (
-          <Btn
-            type="submit"
-            onClick={onSubmit}
-          >
-            Продовжити
-          </Btn>
-        )}
+
+        <Btn
+          type="submit"
+          disabled={!isValid}
+        >
+          Продовжити
+        </Btn>
       </Form>
     </Container>
   );
