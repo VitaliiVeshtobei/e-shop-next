@@ -1,16 +1,18 @@
 import React from 'react';
-import { ListButtonsStyled, OptionBtnStyled } from './ListButtons.styled';
-import { useRouter } from 'next/router';
 
-export const ListButtons = ({ deleteCheckedDate }) => {
+import { useRouter } from 'next/router';
+import { ListButtonsStyled, OptionBtnStyled } from './OptionButtons.styled';
+
+export const OptionButtons = ({ deleteCheckedDate }) => {
   const router = useRouter();
 
   const handleDelete = async () => {
     deleteCheckedDate();
   };
+
   return (
     <ListButtonsStyled>
-      <li>
+      <li key="create">
         <OptionBtnStyled
           type="button"
           onClick={() => router.push('category/create')}
@@ -18,10 +20,10 @@ export const ListButtons = ({ deleteCheckedDate }) => {
           Створити категорію
         </OptionBtnStyled>
       </li>
-      <li>
+      <li key="update">
         <OptionBtnStyled type="button">Редагувати</OptionBtnStyled>
       </li>
-      <li>
+      <li key="delete">
         <OptionBtnStyled
           onClick={handleDelete}
           type="button"

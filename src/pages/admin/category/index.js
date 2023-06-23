@@ -1,6 +1,5 @@
 import { getCategories } from '@/axios/axiosApi';
-
-import { MainContent } from '@/components/ADMIN/MainContent/MainContent';
+import { CategoriesAdmin } from '@/components/ADMIN/CategoriesAdmin/CategoriesAdmin';
 
 export const getServerSideProps = async () => {
   const categories = await getCategories();
@@ -8,7 +7,7 @@ export const getServerSideProps = async () => {
 };
 
 const Category = ({ categories }) => {
-  return <MainContent data={categories} />;
+  return <CategoriesAdmin categories={categories} />;
 };
 
 export default Category;

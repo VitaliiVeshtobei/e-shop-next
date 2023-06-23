@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Table } from './Table/Table';
-import { ListButtons } from './ListButtons/ListButtons';
-import { useCategoryStore } from './useCategoryStore';
+import { ListButtons } from '../OptionButtons/OptionButtons';
+import { useCategoryStore } from '../CategoriesAdmin/useCategoryStore';
 
 export const MainContent = ({ data: initialData }) => {
   const { categories, deleteCategoriesById, refetchCategories } = useCategoryStore(initialData);

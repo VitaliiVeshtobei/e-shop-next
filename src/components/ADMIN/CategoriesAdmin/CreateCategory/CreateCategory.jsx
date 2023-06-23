@@ -12,15 +12,18 @@ import {
   TitleStyled,
   UploadLabel,
   UploadText,
-} from './CreateData.styled';
-import { OptionBtnStyled } from '../MainContent/ListButtons/ListButtons.styled';
+} from './CreateCategory.styled';
+
 import Image from 'next/image';
 import { createCategorie } from '@/axios/axiosApi';
+import { OptionBtnStyled } from '../../OptionButtons/OptionButtons.styled';
+import { useRouter } from 'next/router';
 
-export const CreateData = () => {
-  // const [files, setFiles] = useState([]);
+export const CreateCategory = () => {
   const [file, setFile] = useState(null);
   const [selectedImages, setSelectedImages] = useState([]);
+
+  const router = useRouter();
 
   const {
     register,
@@ -32,29 +35,20 @@ export const CreateData = () => {
   const uploadImage = (e) => {
     const fileList = e.target.files;
     if (fileList.length > 0) {
-      // const filesArray = Array.from(fileList);
-      // setFiles(filesArray);
       setFile(fileList[0]);
-      // const fileUrls = filesArray.map((file) => URL.createObjectURL(file));
+
       setSelectedImages((prev) => [...prev, URL.createObjectURL(fileList[0])]);
     }
   };
 
-  const deleteImage = (image) => {
-    // const selectedImagesFiltred = selectedImages.filter((item) => item !== image);
-    // setSelectedImages(selectedImagesFiltred);
-  };
-
   const onSubmit = async (data) => {
     const formData = new FormData();
-    // for (let i = 0; i < files.length; i++) {
-    //   formData.append('photos', files[i]);
-    // }
     formData.append('name', data.text);
     formData.append('photo', file);
     await createCategorie(formData);
+    router.push('/admin/category');
   };
-  // console.log(file);
+
   return (
     <>
       <TitleStyled>Нова категорія</TitleStyled>
@@ -68,7 +62,6 @@ export const CreateData = () => {
             type="text"
             {...register('text', {
               required: { value: true, message: 'Потрібна назва категорії' },
-              // pattern: { value: /.+@.+/, message: 'Недійсна електронна адреса' },
             })}
           />
           {errors?.text && <ErrorMessage>{errors.text.message}</ErrorMessage>}
@@ -108,7 +101,12 @@ export const CreateData = () => {
           )}
         </PhotoContainer>
 
-        <OptionBtnStyled type="submit">Створити</OptionBtnStyled>
+        <OptionBtnStyled
+          type="submit"
+          disabled={!isDirty || !isValid}
+        >
+          Створити
+        </OptionBtnStyled>
       </FormStyled>
     </>
   );
