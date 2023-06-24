@@ -1,4 +1,5 @@
 import { getProducts } from '@/axios/axiosApi';
+import { ProductsContainerAdmin } from '@/components/ADMIN/ProductsAdmin/ProductsContainerAdmin';
 import React from 'react';
 
 export const getServerSideProps = async () => {
@@ -7,13 +8,7 @@ export const getServerSideProps = async () => {
 };
 
 const Products = ({ products }) => {
-  return (
-    <ul>
-      {products.map((product) => (
-        <li key={product._id}>{product.name}</li>
-      ))}
-    </ul>
-  );
+  return <ProductsContainerAdmin products={products} />;
 };
 
 export default Products;

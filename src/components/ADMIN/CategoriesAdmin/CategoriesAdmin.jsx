@@ -5,8 +5,10 @@ import { useCategoryStore } from './useCategoryStore';
 import { CategoriesCardAdmin } from './CategoriesCardAdmin/CategoriesCardAdmin';
 import { OptionButtons } from '../OptionButtons/OptionButtons';
 import { CategoriesListStyled } from './CategoriesAdmin.styled';
+import { useRouter } from 'next/router';
 
 export const CategoriesAdmin = ({ categories: initialCategories }) => {
+  const router = useRouter();
   const { categories, deleteCategoriesById, refetchCategories } = useCategoryStore(initialCategories);
   const [checkedData, setCheckedData] = useState([]);
 
@@ -15,10 +17,15 @@ export const CategoriesAdmin = ({ categories: initialCategories }) => {
     await refetchCategories();
   };
 
+  const listBtn = [
+    { key: 'create', type: 'button', text: ' Створити категорію', onClick: () => router.push('category/create') },
+    { key: 'update', type: 'button', text: ' Редагувати', onClick: () => console.log('Я вже скоро буду працювати :)') },
+    { key: 'delete', type: 'button', text: ' Видалити', onClick: deleteCheckedDate },
+  ];
+
   return (
     <>
-      <OptionButtons deleteCheckedDate={deleteCheckedDate} />
-
+      <OptionButtons listBtn={listBtn} />
       <CategoriesListStyled>
         {categories?.map((category) => (
           <CategoriesCardAdmin

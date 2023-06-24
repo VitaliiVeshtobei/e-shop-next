@@ -8,6 +8,7 @@ export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 10px;
+  z-index: 1000;
 
   background-color: ${(p) => p.theme.colors.scndDarkText};
   padding: 10px;
@@ -58,4 +59,5 @@ export const Backdrop = styled.div`
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.2);
   position: absolute;
+  z-index: 1000;
 `;

@@ -48,8 +48,8 @@ export const Item = styled.li`
 
 export const CheckContainer = styled.div`
   position: absolute;
-  top: 8%;
-  left: 10%;
+  top: 24px;
+  left: 24px;
   transform: translate(-50%, -50%);
   border: 1px solid #a8a8a8;
   margin: 0 auto;
