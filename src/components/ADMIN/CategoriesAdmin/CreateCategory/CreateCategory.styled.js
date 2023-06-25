@@ -31,8 +31,8 @@ export const UploadLabel = styled.label`
   align-items: center;
   justify-content: center;
   gap: 8px;
-  width: 100px;
-  height: 100px;
+  width: 200px;
+  height: 200px;
   border-radius: 5px;
   cursor: pointer;
   background-color: #a8a8a8;

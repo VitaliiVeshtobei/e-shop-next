@@ -37,7 +37,7 @@ export const CreateCategory = () => {
     if (fileList.length > 0) {
       setFile(fileList[0]);
 
-      setSelectedImages((prev) => [...prev, URL.createObjectURL(fileList[0])]);
+      setSelectedImages([URL.createObjectURL(fileList[0])]);
     }
   };
 
@@ -90,8 +90,8 @@ export const CreateCategory = () => {
                   <Image
                     src={image}
                     alt="photo"
-                    width={100}
-                    height={100}
+                    width={200}
+                    height={200}
                   />
                 </li>
               ))}
