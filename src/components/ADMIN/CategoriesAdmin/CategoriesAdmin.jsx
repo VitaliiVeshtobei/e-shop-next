@@ -19,8 +19,21 @@ export const CategoriesAdmin = ({ categories: initialCategories }) => {
 
   const listBtn = [
     { key: 'create', type: 'button', text: ' Створити категорію', onClick: () => router.push('category/create') },
-    { key: 'update', type: 'button', text: ' Редагувати', onClick: () => console.log('Я вже скоро буду працювати :)') },
-    { key: 'delete', type: 'button', text: ' Видалити', onClick: deleteCheckedDate },
+    {
+      key: 'update',
+      type: 'button',
+      text: ' Редагувати',
+      disabled: checkedData.length !== 1,
+      onClick: () =>
+        checkedData.length === 1 && router.push({ pathname: 'category/edit', query: { id: checkedData[0] } }),
+    },
+    {
+      key: 'delete',
+      type: 'button',
+      text: ' Видалити',
+      disabled: !checkedData.length,
+      onClick: deleteCheckedDate,
+    },
   ];
 
   return (
