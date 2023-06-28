@@ -30,3 +30,7 @@ export const updateCategory = async (id, formData) => {
     headers: { 'Content-Type': 'multipart/form-data' },
   });
 };
+
+export const createOrder = async (data) => {
+  await instanceNew.post('/api/orders/create', data);
+};
