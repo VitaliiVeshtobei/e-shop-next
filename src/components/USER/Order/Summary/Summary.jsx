@@ -6,7 +6,7 @@ import { useEffect } from 'react';
 import { addOrderPrice } from '@/redux/products/slice';
 import { createOrder } from '@/axios/axiosApi';
 
-const Summary = () => {
+const Summary = ({ setShowOrderConfirmModal }) => {
   const order = useSelector(selectCart);
   const orderData = useSelector(selectOrder);
   const sum = order.reduce((acc, obj) => (obj.quantity ? acc + obj.price * obj.quantity : acc + obj.price), 0);
@@ -19,6 +19,7 @@ const Summary = () => {
 
   const onCheckoutClick = async () => {
     await createOrder(orderData);
+    setShowOrderConfirmModal(true);
   };
 
   return (

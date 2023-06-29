@@ -4,8 +4,11 @@ import DeliveryInfo from './DeliveryInfo/DeliveryInfo';
 import PaymentInfo from './PaymentInfo/PaymentInfo';
 import Summary from './Summary/Summary';
 import OrderDetails from './OrderDetails/OrderDetails';
+import { OrderConfirmationModal } from './OrderConfirmationModal/OrderConfirmationModal';
+import { useState } from 'react';
 
 const Order = () => {
+  const [showOrderConfirmModal, setShowOrderConfirmModal] = useState(false);
   return (
     <div>
       <Title>Оформлення замовлення</Title>
@@ -17,9 +20,10 @@ const Order = () => {
         </Wrap>
         <div>
           <OrderDetails />
-          <Summary />
+          <Summary setShowOrderConfirmModal={setShowOrderConfirmModal} />
         </div>
       </Container>
+      {showOrderConfirmModal && <OrderConfirmationModal />}
     </div>
   );
 };
