@@ -16,6 +16,12 @@ export const Navigation = ({ activeButtonIndex, handleButtonClick, backdrop }) =
       route: '/admin/products',
       icon: <BiCategory />,
     },
+    {
+      id: 'orders',
+      name: 'Замовлення',
+      route: '/admin/orders',
+      icon: <BiCategory />,
+    },
 
     {
       id: 'admin',

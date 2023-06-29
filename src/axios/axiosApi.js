@@ -8,7 +8,6 @@ export const getCategories = async () => {
 
 export const getCategoryById = async (id) => {
   const { data } = await instanceNew(`/api/category/get/${id}`);
-  console.log(id);
   return data.category;
 };
 
@@ -33,4 +32,9 @@ export const updateCategory = async (id, formData) => {
 
 export const createOrder = async (data) => {
   await instanceNew.post('/api/orders/create', data);
+};
+
+export const getOrders = async () => {
+  const { data } = await instanceNew.get('/api/orders/get');
+  return data.orders;
 };
