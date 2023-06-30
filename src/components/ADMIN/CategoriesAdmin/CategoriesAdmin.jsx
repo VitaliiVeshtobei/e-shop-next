@@ -57,9 +57,9 @@ export const CategoriesAdmin = ({ categories: initialCategories }) => {
       </CategoriesListStyled>
       {showDeleteModal && (
         <DeleteModalAdmin
-          text={`Ви точно хочете видалити ${checkedData.length} ${
-            !checkedData.length > 1 ? 'категорію' : 'категорії'
-          } ?`}
+          text={`Ви точно бажаєте видалити ${checkedData.length} ${
+            checkedData.length === 1 ? 'категорію' : 'категорії'
+          }?`}
           deleteFunction={deleteCheckedDate}
           close={() => setShowDeleteModal(false)}
         />
