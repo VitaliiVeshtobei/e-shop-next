@@ -12,7 +12,7 @@ export const OrderConfirmationModal = () => {
           Дякуюємо Вам за замовлення, найблжчим часом з вами зʼєднається наш менеджер!
         </TextModalConfirmation>
         <OptionBtnStyled
-          type="OptionBtnStyled"
+          type="button"
           onClick={() => router.push('/')}
         >
           На головну

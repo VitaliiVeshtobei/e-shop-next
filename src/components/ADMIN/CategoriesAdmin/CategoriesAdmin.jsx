@@ -6,8 +6,10 @@ import { CategoriesCardAdmin } from './CategoriesCardAdmin/CategoriesCardAdmin';
 import { OptionButtons } from '../OptionButtons/OptionButtons';
 import { CategoriesListStyled } from './CategoriesAdmin.styled';
 import { useRouter } from 'next/router';
+import { DeleteModalAdmin } from '../DeleteModalAdmin/DeleteModalAdmin';
 
 export const CategoriesAdmin = ({ categories: initialCategories }) => {
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
   const router = useRouter();
   const { categories, deleteCategoriesById, refetchCategories } = useCategoryStore(initialCategories);
   const [checkedData, setCheckedData] = useState([]);
@@ -15,6 +17,8 @@ export const CategoriesAdmin = ({ categories: initialCategories }) => {
   const deleteCheckedDate = async () => {
     await deleteCategoriesById(checkedData);
     await refetchCategories();
+    setCheckedData([]);
+    setShowDeleteModal(false);
   };
 
   const listBtn = [
@@ -32,7 +36,7 @@ export const CategoriesAdmin = ({ categories: initialCategories }) => {
       type: 'button',
       text: ' Видалити',
       disabled: !checkedData.length,
-      onClick: deleteCheckedDate,
+      onClick: () => setShowDeleteModal(true),
     },
   ];
 
@@ -51,6 +55,15 @@ export const CategoriesAdmin = ({ categories: initialCategories }) => {
           />
         ))}
       </CategoriesListStyled>
+      {showDeleteModal && (
+        <DeleteModalAdmin
+          text={`Ви точно хочете видалити ${checkedData.length} ${
+            !checkedData.length > 1 ? 'категорію' : 'категорії'
+          } ?`}
+          deleteFunction={deleteCheckedDate}
+          close={() => setShowDeleteModal(false)}
+        />
+      )}
     </>
   );
 };
