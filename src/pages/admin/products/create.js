@@ -1,19 +1,14 @@
+import { ButtonBack } from '@/components/ADMIN/ButtonBack/ButtonBack';
 import { useRouter } from 'next/router';
 import React from 'react';
 
 const Create = () => {
   const router = useRouter();
-  console.log(router);
 
   return (
     <div>
-      <button
-        type="button"
-        onClick={() => router.back()}
-      >
-        Назад
-      </button>
-      Create product
+      <ButtonBack onClick={() => router.back()} />
+      <div>Create product</div>
     </div>
   );
 };

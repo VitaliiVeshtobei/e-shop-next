@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import styled from 'styled-components';
 
 export const OptionBtnStyled = styled.button`
@@ -20,6 +19,5 @@ export const OptionBtnStyled = styled.button`
 export const ListButtonsStyled = styled.ul`
   display: flex;
   justify-content: center;
-  margin-top: 10px;
   gap: 8px;
 `;
