@@ -12,43 +12,9 @@ import {
   DiscountPrice,
   DiscountWrap,
   DiscountPercent,
-  CheckContainer,
-  AiOutlineCheckStyled,
-  InputCheckStyled,
 } from './ProductCardAdmin.styled';
-import { useState } from 'react';
 
-const ProductCard = ({ product, products }) => {
-  // const res = {
-  //   available: true,
-  //   category: '645df47070d882a852130043',
-  //   currency: 'UAH',
-  //   description: 'Супер гарне світило',
-  //   discount: 10,
-  //   images: (2)[('http:image.test.ua', 'http:image.test2.ua')],
-  //   in_stock: 'в наявності',
-  //   name: 'Ліхтар',
-  //   price: 500,
-  //   quantity_in_stock: 30,
-  //   sku: 'KJH123',
-  // };
-
-  const [checkedData, setCheckedData] = useState([]);
-
-  const handleChange = (id) => {
-    const checkedIdx = checkedData.findIndex((item) => item === id);
-    console.log(checkedIdx);
-    if (checkedIdx === -1) {
-      setCheckedData((prev) => [...prev, id]);
-    } else {
-      setCheckedData((prev) => prev.filter((item) => item !== id));
-    }
-  };
-
-  const isChecked = (id) => {
-    return checkedData.includes(id);
-  };
-
+const ProductCard = ({ product, children }) => {
   return (
     <>
       <Wrapper>
@@ -84,14 +50,7 @@ const ProductCard = ({ product, products }) => {
         <Cart inStock={product.in_stock}>
           <IoCartOutline />
         </Cart>
-
-        <CheckContainer checked={isChecked(product._id)}>
-          <AiOutlineCheckStyled checked={isChecked(product._id)} />
-          <InputCheckStyled
-            onChange={() => handleChange(product._id)}
-            type="checkbox"
-          ></InputCheckStyled>
-        </CheckContainer>
+        {children}
       </Wrapper>
     </>
   );
