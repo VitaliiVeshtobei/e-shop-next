@@ -23,7 +23,7 @@ export const CategoriesTableBodyAdmin = ({ id, img, category, checkedData, setCh
     return checkedData.includes(id);
   };
   return (
-    <TrStyled>
+    <TrStyled onClick={() => handleChange(id)}>
       <td>
         <CheckContainer checked={isChecked(id)}>
           <AiOutlineCheckStyled checked={isChecked(id)} />
