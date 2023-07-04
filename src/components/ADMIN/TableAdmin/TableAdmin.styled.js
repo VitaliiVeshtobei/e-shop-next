@@ -16,6 +16,9 @@ export const Table = styled.table`
   }
 
   tbody tr {
+    td:first-child {
+      width: 50px;
+    }
     transition: background-color ${(p) => p.theme.transition}, color ${(p) => p.theme.transition},
       border ${(p) => p.theme.transition};
   }
