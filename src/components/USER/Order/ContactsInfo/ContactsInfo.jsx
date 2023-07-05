@@ -25,9 +25,14 @@ const ContactsInfo = () => {
   const dispatch = useDispatch();
 
   const onSubmit = (data) => {
-    console.log(data);
     setDone(true);
-    dispatch(addOrderContacts({ phone: data.phone, name: data.name, surname: data.surname }));
+    dispatch(
+      addOrderContacts({
+        phone: data.phone.replace(/\s/g, '').replace(/[()\-]/g, ''),
+        name: data.name,
+        surname: data.surname,
+      })
+    );
   };
 
   const {

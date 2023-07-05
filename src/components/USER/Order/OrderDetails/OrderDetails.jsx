@@ -29,7 +29,7 @@ const OrderDetails = () => {
   useEffect(() => {
     items.forEach((item) => {
       const quantity = item.quantity || 1;
-      dispatch(addOrderInfo({ name: item.name, quantity: quantity }));
+      dispatch(addOrderInfo({ id: item.id, name: item.name, quantity: quantity }));
     });
   }, [items, dispatch]);
 

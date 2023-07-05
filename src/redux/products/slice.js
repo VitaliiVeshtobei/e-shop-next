@@ -95,12 +95,15 @@ const productsSlice = createSlice({
       state.order.price = action.payload.price;
     },
     addOrderInfo(state, action) {
-      const { name, quantity } = action.payload;
-      state.order.products.push({ name, quantity });
+      const { name, quantity, id } = action.payload;
+      state.order.products.push({ id, name, quantity });
     },
     addOrderComment(state, action) {
       state.order.comment = action.payload;
       console.log(action.payload);
+    },
+    clearOrder: (state) => {
+      state.order = initialState.order;
     },
   },
 });
@@ -121,4 +124,5 @@ export const {
   addOrderInfo,
   addOrderPrice,
   addOrderComment,
+  clearOrder,
 } = productsSlice.actions;
