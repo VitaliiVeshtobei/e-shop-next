@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import InputMask from 'react-input-mask';
 import DEVICE from '@/constants/deviceSize';
 const { tablet, laptop } = DEVICE;
 
@@ -70,6 +71,17 @@ export const Label = styled.label`
   }
 `;
 export const Input = styled.input`
+  width: 100%;
+  height: 35px;
+  border-radius: 8px;
+  border: 1px solid ${(p) => p.theme.colors.border};
+  padding: 0 10px;
+  margin-bottom: 12px;
+  margin-top: 5px;
+  outline: none;
+`;
+
+export const InputMaskPhone = styled(InputMask)`
   width: 100%;
   height: 35px;
   border-radius: 8px;

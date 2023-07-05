@@ -31,7 +31,7 @@ const Meest = () => {
   };
 
   const onBtnClick = () => {
-    dispatch(addOrderDelivery({ delivery: 'Meest', deliveryType: type, deliveryCity: city, deliveryOffice: office }));
+    dispatch(addOrderDelivery({ delivery: { company: 'Meest', type: type, city: city, office: office } }));
   };
   return (
     <Container>

@@ -6,7 +6,18 @@ import { IoCheckmarkOutline, IoWarningOutline } from 'react-icons/io5';
 
 import { addOrderContacts } from '@/redux/products/slice';
 
-import { Container, Step, StepWrapper, Title, Form, Input, Label, Btn, Error } from './ContactsInfo.styled';
+import {
+  Container,
+  Step,
+  StepWrapper,
+  Title,
+  Form,
+  Input,
+  InputMaskPhone,
+  Label,
+  Btn,
+  Error,
+} from './ContactsInfo.styled';
 
 const ContactsInfo = () => {
   const [done, setDone] = useState(false);
@@ -14,9 +25,14 @@ const ContactsInfo = () => {
   const dispatch = useDispatch();
 
   const onSubmit = (data) => {
-    console.log(data);
     setDone(true);
-    dispatch(addOrderContacts({ phone: data.phone, name: data.name, surname: data.surname }));
+    dispatch(
+      addOrderContacts({
+        phone: data.phone.replace(/\s/g, '').replace(/[()\-]/g, ''),
+        name: data.name,
+        surname: data.surname,
+      })
+    );
   };
 
   const {
@@ -78,14 +94,18 @@ const ContactsInfo = () => {
         </Label>
         <Label>
           Телефон<span>*</span>
-          <Input
+          <InputMaskPhone
+            mask="+380 (99) 999-99-99"
+            maskChar="_"
+            id="phone"
             type="tel"
-            placeholder="Введіть ваш телефон"
+            placeholder="+380 (__) ___-__-__"
             {...register('phone', {
               required: "Поле обов'язкове до заповнення",
-              pattern: /^\d+$/,
-              minLength: { value: 10, message: 'Введіть мінімум 10 символів' },
-              maxLength: { value: 10, message: 'Максимум 10 символів' },
+              pattern: {
+                value: /^\+380 \([0-9]{2}\) [0-9]{3}-[0-9]{2}-[0-9]{2}$/,
+                message: 'Недійсний номер телефону',
+              },
             })}
             style={{ border: errors.phone ? '1px solid #FF2400' : '1px solid #B6B6B6' }}
           />

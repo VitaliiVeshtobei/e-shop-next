@@ -30,9 +30,7 @@ const Ukrposhta = () => {
   };
 
   const onBtnClick = () => {
-    dispatch(
-      addOrderDelivery({ delivery: 'Ukrposhta', deliveryType: type, deliveryCity: city, deliveryOffice: office })
-    );
+    dispatch(addOrderDelivery({ delivery: { company: 'Укрпошта', type: type, city: city, office: office } }));
   };
   return (
     <Container>
