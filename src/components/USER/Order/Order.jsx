@@ -6,6 +6,7 @@ import Summary from './Summary/Summary';
 import OrderDetails from './OrderDetails/OrderDetails';
 import { OrderConfirmationModal } from './OrderConfirmationModal/OrderConfirmationModal';
 import { useState } from 'react';
+import Comments from './Comments/Comments';
 
 const Order = () => {
   const [showOrderConfirmModal, setShowOrderConfirmModal] = useState(false);
@@ -17,6 +18,7 @@ const Order = () => {
           <ContactsInfo />
           <DeliveryInfo />
           <PaymentInfo />
+          <Comments />
         </Wrap>
         <div>
           <OrderDetails />

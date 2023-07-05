@@ -30,9 +30,7 @@ const NP = () => {
   };
 
   const onBtnClick = () => {
-    dispatch(
-      addOrderDelivery({ delivery: 'Nova Poshta', deliveryType: type, deliveryCity: city, deliveryOffice: office })
-    );
+    dispatch(addOrderDelivery({ delivery: { company: 'Нова Пошта', type: type, city: city, office: office } }));
   };
   return (
     <Container>

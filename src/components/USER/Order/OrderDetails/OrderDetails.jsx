@@ -27,14 +27,10 @@ const OrderDetails = () => {
   }, [items]);
 
   useEffect(() => {
-    const orderInfo = {}; // Создаем пустой объект для хранения информации о заказе
-
     items.forEach((item) => {
       const quantity = item.quantity || 1;
-      orderInfo[item.name] = quantity + 'шт'; // Добавляем ключ и значение в объект orderInfo
+      dispatch(addOrderInfo({ name: item.name, quantity: quantity }));
     });
-
-    dispatch(addOrderInfo({ products: orderInfo }));
   }, [items, dispatch]);
 
   return (

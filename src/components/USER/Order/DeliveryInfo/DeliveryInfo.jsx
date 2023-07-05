@@ -18,7 +18,7 @@ const DeliveryInfo = () => {
   const order = useSelector(selectOrder);
 
   useEffect(() => {
-    if (order.delivery !== '') {
+    if (order.delivery.company !== '') {
       setDone(true);
     }
   }, [order]);
@@ -26,7 +26,7 @@ const DeliveryInfo = () => {
   const handleDeliveryOptionChange = (event) => {
     setDeliveryOption(event.target.value);
     if (event.target.value === 'Samovyviz') {
-      return dispatch(addOrderDelivery({ delivery: 'Samovyviz' }));
+      return dispatch(addOrderDelivery({ delivery: { company: 'Самовивіз' } }));
     }
   };
 

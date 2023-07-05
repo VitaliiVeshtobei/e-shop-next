@@ -18,12 +18,10 @@ const initialState = {
     surname: '',
     phone: '',
     payment: '',
-    delivery: '',
-    deliveryType: '',
-    deliveryCity: '',
-    deliveryOffice: '',
+    delivery: { company: '', type: '', city: '', office: '' },
     price: '',
-    products: {},
+    comment: '',
+    products: [],
   },
 };
 
@@ -92,15 +90,17 @@ const productsSlice = createSlice({
     },
     addOrderDelivery(state, action) {
       state.order.delivery = action.payload.delivery;
-      state.order.deliveryType = action.payload.deliveryType;
-      state.order.deliveryCity = action.payload.deliveryCity;
-      state.order.deliveryOffice = action.payload.deliveryOffice;
     },
     addOrderPrice(state, action) {
       state.order.price = action.payload.price;
     },
     addOrderInfo(state, action) {
-      state.order.products = action.payload.products;
+      const { name, quantity } = action.payload;
+      state.order.products.push({ name, quantity });
+    },
+    addOrderComment(state, action) {
+      state.order.comment = action.payload;
+      console.log(action.payload);
     },
   },
 });
@@ -120,4 +120,5 @@ export const {
   addOrderDelivery,
   addOrderInfo,
   addOrderPrice,
+  addOrderComment,
 } = productsSlice.actions;
