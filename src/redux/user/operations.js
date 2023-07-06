@@ -15,6 +15,12 @@ export const registration = createAsyncThunk('user/create', async (credentials, 
     if (errNot.includes('E11000 duplicate key error collection')) {
       toast.error('Ця електронна адреса вже використовується');
     }
+    if (errNot.includes('email is already used')) {
+      toast.error('Ця електронна адреса вже використовується');
+    }
+    if (errNot.includes('phone is already used')) {
+      toast.error('Цей номер вже використовується');
+    }
 
     if (errNot === 'Email is not verified, but already registered') {
       toast.warning(
