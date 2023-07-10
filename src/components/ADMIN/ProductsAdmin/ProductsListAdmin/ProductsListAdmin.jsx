@@ -49,10 +49,7 @@ export const ProductsListAdmin = ({ products, isChecked, handleChange, viewWindo
                 <td style={{ position: 'relative' }}>
                   <CheckContainer checked={isChecked(item._id)}>
                     <AiOutlineCheckStyled checked={isChecked(item._id)} />
-                    <InputCheckStyled
-                      onChange={() => handleChange(item._id)}
-                      type="checkbox"
-                    />
+                    <InputCheckStyled type="checkbox" />
                   </CheckContainer>
                 </td>
                 <td>{item.name}</td>

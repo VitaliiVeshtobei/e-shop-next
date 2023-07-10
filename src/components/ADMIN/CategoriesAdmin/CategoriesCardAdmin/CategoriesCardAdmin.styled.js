@@ -63,6 +63,9 @@ export const InputCheckStyled = styled.input`
   height: 100%;
   margin: 0;
   opacity: 0;
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 export const AiOutlineCheckStyled = styled(AiOutlineCheck)`

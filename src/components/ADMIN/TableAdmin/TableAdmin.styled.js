@@ -21,6 +21,9 @@ export const Table = styled.table`
     }
     transition: background-color ${(p) => p.theme.transition}, color ${(p) => p.theme.transition},
       border ${(p) => p.theme.transition};
+    &:hover {
+      cursor: pointer;
+    }
   }
   tbody tr:nth-child(2n) {
     background-color: ${(p) => p.theme.colors.smoke};
