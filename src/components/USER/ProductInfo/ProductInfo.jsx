@@ -7,6 +7,7 @@ import ProductDescription from './ProductDescription/ProductDescription';
 import ProductImages from './ProductImages/ProductImages';
 
 import { Wrapper } from './ProductInfo.styled';
+import { ProductDescriptionWithComments } from './ProductDescriptionWithComments/ProductDescriptionWithComments';
 
 const ProductInfo = () => {
   const { description_multilang } = useSelector(selectProductInfo);
@@ -16,7 +17,8 @@ const ProductInfo = () => {
         <ProductImages />
         <ProductAbout />
       </Wrapper>
-      {description_multilang?.uk && <ProductDescription />}
+      <ProductDescriptionWithComments />
+      {/* {description_multilang?.uk && <ProductDescription />} */}
     </div>
   );
 };
