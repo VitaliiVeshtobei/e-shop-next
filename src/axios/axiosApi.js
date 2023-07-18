@@ -38,3 +38,8 @@ export const getOrders = async () => {
   const { data } = await instanceNew.get('/api/orders/get');
   return data.orders;
 };
+
+export const getCommentsByProductId = async (id) => {
+  const { data } = await instanceNew.get(`/api/comments/getByProductId/${id}`);
+  return data.comments;
+};
