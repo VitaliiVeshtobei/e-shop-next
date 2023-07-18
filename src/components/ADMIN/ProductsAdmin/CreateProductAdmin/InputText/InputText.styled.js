@@ -6,7 +6,7 @@ export const Form = styled.form`
   flex-direction: column;
   gap: 15px;
   padding: 20px;
-  max-width: 1000px;
+  width: 100%;
 `;
 
 export const Wrapper = styled.div`
