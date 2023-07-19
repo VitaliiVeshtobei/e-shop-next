@@ -1,6 +1,15 @@
 import DEVICE from '@/constants/deviceSize';
 import styled from 'styled-components';
 
+export const Form = styled.form`
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 20px;
+  width: 100%;
+`;
+
 export const UploadLabel = styled.label`
   display: flex;
   flex-direction: column;
@@ -10,7 +19,7 @@ export const UploadLabel = styled.label`
   width: 100%;
   /* height: calc(100% - 20px); */
   height: 100%;
-  border-radius: 5px;
+  border-radius: 10px;
   cursor: pointer;
   background-color: #a8a8a8;
   background-image: ${(props) =>
@@ -39,15 +48,32 @@ export const WrapperPhoto = styled.div`
   display: flex;
   justify-content: start;
   gap: 20px;
+  margin-bottom: 20px;
   /* aspect-ratio: 5 / 1; */
   /* overflow: hidden; */
-  height: 520px;
+  /* height: 380px; */
 `;
 
 export const UploadContainer = styled.div`
   /* min-width: 300px;
   height: 300px; */
   /* flex: 1; */
+`;
+export const GrupContainer = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-column-gap: 20px;
+  /* min-width: 300px;
+  height: 300px; */
+  /* flex: 1; */
+`;
+
+export const AddPhotoContainer = styled.div`
+  display: ${(p) => (p.status ? 'flex' : 'none')};
+  justify-content: center;
+  align-items: center;
+  width: 170px;
+  height: 170px;
 `;
 
 export const BtnAddPhoto = styled.button`

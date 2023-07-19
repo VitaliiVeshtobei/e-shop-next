@@ -1,11 +1,11 @@
-import { Input, Label, Wrapper } from './InputText.styled';
+import { Label, Textarea, Wrapper } from './InputTextarea.styled';
 
-export const InputText = ({ label, type, children, register, error, onChange }) => {
+export const InputTextarea = ({ label, children, register, error, onChange }) => {
   return (
     <Wrapper>
-      <Input
+      <Textarea
         id={label}
-        type={type}
+        rows="5"
         placeholder=" "
         {...register}
         errorStatus={error}

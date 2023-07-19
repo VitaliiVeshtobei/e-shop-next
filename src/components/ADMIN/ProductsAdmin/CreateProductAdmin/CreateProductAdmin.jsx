@@ -1,7 +1,11 @@
 import { useState } from 'react';
 import {
+  AddPhotoContainer,
   BtnAddPhoto,
   ButtonOperationContainer,
+  DiscountContainer,
+  Form,
+  GrupContainer,
   InputFileStyled,
   OperationButton,
   UploadContainer,
@@ -9,12 +13,13 @@ import {
   WrapperPhoto,
 } from './CreateProductAdmin.styled';
 import { InputText } from './InputText/InputText';
-import { Form } from './InputText/InputText.styled';
 import { BsUpload } from 'react-icons/bs';
 import { MdOutlineAddPhotoAlternate } from 'react-icons/md';
 import placeholder from '../../../../../public/images/placeholder.jpg';
 import { ErrorMessage } from './ErrorMessage/ErrorMessage';
 import { useForm } from 'react-hook-form';
+import { InputTextarea } from './Textarea/InputTextarea';
+import { OptionBtnStyled } from '../../OptionButtons/OptionButtons.styled';
 
 export const CreateProductAdmin = () => {
   const [selectedImages, setSelectedImages] = useState([]);
@@ -22,7 +27,7 @@ export const CreateProductAdmin = () => {
   const {
     register,
     handleSubmit,
-
+    setValue,
     formState: { errors, isDirty, isValid },
   } = useForm({ mode: 'onBlur' });
 
@@ -59,14 +64,31 @@ export const CreateProductAdmin = () => {
     setSelectedImages([...selectedImages]);
   };
 
+  const onSubmit = async (data) => {
+    data.images = selectedImages;
+    console.log(data);
+    // const formData = new FormData();
+    // formData.append('name', data.text);
+    // formData.append('photo', file);
+    // await createCategorie(formData);
+    // router.push('/admin/category');
+  };
+
+  const handleInputChange = (event) => {
+    setValue(event.target.name, event.target.value, { shouldValidate: true });
+  };
+
   return (
     <div style={{ marginTop: '15px' }}>
       <h1>Створення карточки продукта</h1>
-      <Form>
+      <Form
+        onSubmit={handleSubmit(onSubmit)}
+        encType="multipart/form-data"
+      >
         <div>
           <h3 style={{ textAlign: 'center', marginBottom: '15px' }}>Фото</h3>
           <WrapperPhoto>
-            <UploadContainer style={{ minWidth: '500px', height: '500px' }}>
+            <UploadContainer style={{ minWidth: '360px', height: '360px' }}>
               <UploadLabel backgroundImage={selectedImages[0] ? selectedImages[0] : placeholder}>
                 <BsUpload />
                 <InputFileStyled
@@ -100,7 +122,7 @@ export const CreateProductAdmin = () => {
                     if (index !== 0) {
                       return (
                         <UploadContainer
-                          style={{ width: '230px', height: '230px' }}
+                          style={{ width: '170px', height: '170px' }}
                           key={item}
                         >
                           <UploadLabel backgroundImage={item ? item : placeholder}>
@@ -156,27 +178,21 @@ export const CreateProductAdmin = () => {
                     }
                   })}
 
-                <UploadContainer
-                  style={{
-                    display: 'flex',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    width: '230px',
-                    height: '230px',
-                  }}
-                >
-                  {selectedImages &&
+                <AddPhotoContainer
+                  status={
+                    selectedImages &&
                     selectedImages[selectedImages.length - 1] !== null &&
                     selectedImages[selectedImages.length - 1] !== undefined &&
-                    selectedImages.length < 10 && (
-                      <BtnAddPhoto
-                        type="button"
-                        onClick={addContainerImage}
-                      >
-                        <MdOutlineAddPhotoAlternate />
-                      </BtnAddPhoto>
-                    )}
-                </UploadContainer>
+                    selectedImages.length < 10
+                  }
+                >
+                  <BtnAddPhoto
+                    type="button"
+                    onClick={addContainerImage}
+                  >
+                    <MdOutlineAddPhotoAlternate />
+                  </BtnAddPhoto>
+                </AddPhotoContainer>
               </div>
             )}
           </WrapperPhoto>
@@ -185,6 +201,7 @@ export const CreateProductAdmin = () => {
         <InputText
           type="text"
           label="Назва"
+          onChange={handleInputChange}
           register={{
             ...register('name', {
               required: { value: true, message: 'Потрібна назва товара' },
@@ -195,20 +212,9 @@ export const CreateProductAdmin = () => {
           {errors?.name && <ErrorMessage text={errors.name.message} />}
         </InputText>
         <InputText
-          type="number"
-          label="Кількість"
-          register={{
-            ...register('number', {
-              required: { value: true, message: 'Потрібна кількість товарів' },
-            }),
-          }}
-          error={errors.number ? true : false}
-        >
-          {errors?.number && <ErrorMessage text={errors.number.message} />}
-        </InputText>
-        <InputText
           type="text"
           label="Категорія"
+          onChange={handleInputChange}
           register={{
             ...register('category', {
               required: { value: true, message: 'Потрібно вибрати категорію' },
@@ -218,21 +224,39 @@ export const CreateProductAdmin = () => {
         >
           {errors?.category && <ErrorMessage text={errors.category.message} />}
         </InputText>
-        <InputText
-          type="number"
-          label="Ціна"
-          register={{
-            ...register('price', {
-              required: { value: true, message: 'Потрібно вказати ціну товара' },
-            }),
-          }}
-          error={errors.price ? true : false}
-        >
-          {errors?.price && <ErrorMessage text={errors.price.message} />}
-        </InputText>
+        <GrupContainer>
+          <InputText
+            type="number"
+            label="Кількість"
+            onChange={handleInputChange}
+            register={{
+              ...register('number', {
+                required: { value: true, message: 'Потрібна кількість товарів' },
+              }),
+            }}
+            error={errors.number ? true : false}
+          >
+            {errors?.number && <ErrorMessage text={errors.number.message} />}
+          </InputText>
+
+          <InputText
+            type="number"
+            label="Ціна"
+            onChange={handleInputChange}
+            register={{
+              ...register('price', {
+                required: { value: true, message: 'Потрібно вказати ціну товара' },
+              }),
+            }}
+            error={errors.price ? true : false}
+          >
+            {errors?.price && <ErrorMessage text={errors.price.message} />}
+          </InputText>
+        </GrupContainer>
         <InputText
           type="text"
           label="Артикул"
+          onChange={handleInputChange}
           register={{
             ...register('sku', {
               required: { value: true, message: 'Потрібно вказати артикул товару' },
@@ -242,30 +266,53 @@ export const CreateProductAdmin = () => {
         >
           {errors?.sku && <ErrorMessage text={errors.sku.message} />}
         </InputText>
-        <InputText
-          type="number"
-          label="Знижка"
+        <GrupContainer>
+          <InputText
+            type="number"
+            label="Знижка"
+            onChange={handleInputChange}
+            register={{
+              ...register('discount', {
+                required: { value: true, message: 'Потрібно вказати знижку товара' },
+              }),
+            }}
+            error={errors.discount ? true : false}
+          >
+            {errors?.discount && <ErrorMessage text={errors.discount.message} />}
+          </InputText>
+          <InputText
+            type="datetime-local"
+            label="Знижка діє до"
+            onChange={handleInputChange}
+            register={{
+              ...register('datetime', {
+                required: { value: true, message: 'Потрібно вказати дату дії знижки' },
+              }),
+            }}
+            error={errors.datetime ? true : false}
+          >
+            {errors?.datetime && <ErrorMessage text={errors.datetime.message} />}
+          </InputText>
+        </GrupContainer>
+        <InputTextarea
+          label="Опис товару"
+          onChange={handleInputChange}
           register={{
-            ...register('discount', {
-              required: { value: true, message: 'Потрібно вказати знижку товара' },
+            ...register('feedback', {
+              required: { value: true, message: 'Потрібно вказати опис товару' },
             }),
           }}
-          error={errors.discount ? true : false}
+          error={errors.feedback ? true : false}
         >
-          {errors?.discount && <ErrorMessage text={errors.discount.message} />}
-        </InputText>
-        <InputText
-          type="datetime-local"
-          label="Знижка діє до"
-          register={{
-            ...register('datetime', {
-              required: { value: true, message: 'Потрібно вказати дату дії знижки' },
-            }),
-          }}
-          error={errors.datetime ? true : false}
+          {errors?.feedback && <ErrorMessage text={errors.feedback.message} />}
+        </InputTextarea>
+
+        <OptionBtnStyled
+          type="submit"
+          disabled={!isDirty || !isValid}
         >
-          {errors?.datetime && <ErrorMessage text={errors.datetime.message} />}
-        </InputText>
+          Створити
+        </OptionBtnStyled>
       </Form>
     </div>
   );

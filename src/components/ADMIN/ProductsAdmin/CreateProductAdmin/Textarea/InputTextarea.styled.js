@@ -4,34 +4,19 @@ export const Wrapper = styled.div`
   position: relative;
 `;
 
-export const Input = styled.input`
+export const Textarea = styled.textarea`
   cursor: pointer;
   position: relative;
   width: 100%;
-  height: 40px;
+  height: 100%;
   outline: none;
   border: 2px solid ${(p) => (p.errorStatus ? p.theme.colors.warning : p.theme.colors.border)};
   background-color: transparent;
   border-radius: 8px;
+  font-family: inherit;
+  line-height: 1.5;
   font-size: 16px;
-  padding: 0 10px;
-  transition: all ${(p) => p.theme.transition};
-
-  &:focus {
-    border-color: ${(p) => (p.errorStatus ? p.theme.colors.warning : p.theme.colors.border)};
-  }
-`;
-export const Textarea = styled.input`
-  cursor: pointer;
-  position: relative;
-  width: 100%;
-  height: 40px;
-  outline: none;
-  border: 2px solid ${(p) => (p.errorStatus ? p.theme.colors.warning : p.theme.colors.border)};
-  background-color: transparent;
-  border-radius: 8px;
-  font-size: 16px;
-  padding: 0 10px;
+  padding: 10px 10px;
   transition: all ${(p) => p.theme.transition};
 
   &:focus {
@@ -42,25 +27,25 @@ export const Textarea = styled.input`
 export const Label = styled.label`
   position: absolute;
   left: 10px;
-  top: 50%;
-  transform: translateY(-50%);
+  top: 5px;
+
   font-size: 16px;
   transition: all ${(p) => p.theme.transition};
   pointer-events: none;
   color: ${(p) => p.theme.colors.darkText};
 
-  ${Input}:focus + &,
-  ${Input}:not(:placeholder-shown) + & {
-    top: 2px;
+  ${Textarea}:focus + &,
+  ${Textarea}:not(:placeholder-shown) + & {
+    top: -4px;
     left: 15px;
-    font-size: 10px;
+    font-size: 12px;
     color: ${(p) => p.theme.colors.accent};
     background-color: ${(p) => p.theme.colors.navbar};
     padding: 0 10px;
     border-radius: 10px;
   }
 
-  ${Input}:not(:focus)  + & {
+  ${Textarea}:not(:focus)  + & {
     color: ${(p) => p.theme.colors.darkText};
   }
 `;
