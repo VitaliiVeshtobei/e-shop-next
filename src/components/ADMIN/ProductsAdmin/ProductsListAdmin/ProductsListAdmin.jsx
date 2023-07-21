@@ -1,6 +1,6 @@
 import ProductCard from '../ProductCardAdmin/ProductCardAdmin';
 import { AiOutlineCheckStyled, CheckContainer, InputCheckStyled, Item, List } from './ProductsListAdmin.styled';
-import { TableAdmin } from '../../TableAdmin/TableAdmin';
+import { TableAdmin } from '../../common/TableAdmin/TableAdmin';
 
 const listThead = [
   'Select',

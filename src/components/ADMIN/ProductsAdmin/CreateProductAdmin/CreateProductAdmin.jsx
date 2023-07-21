@@ -12,15 +12,15 @@ import {
   UploadLabel,
   WrapperPhoto,
 } from './CreateProductAdmin.styled';
-import { InputText } from './InputText/InputText';
+import { InputText } from '../../common/InputText/InputText';
 import { BsUpload } from 'react-icons/bs';
 import { MdOutlineAddPhotoAlternate } from 'react-icons/md';
 import placeholder from '../../../../../public/images/placeholder.jpg';
-import { ErrorMessage } from './ErrorMessage/ErrorMessage';
+import { ErrorMessage } from '../../common/ErrorMessage/ErrorMessage';
 import { useForm } from 'react-hook-form';
-import { InputTextarea } from './Textarea/InputTextarea';
+import { InputTextarea } from '../../common/Textarea/InputTextarea';
 import { OptionBtnStyled } from '../../OptionButtons/OptionButtons.styled';
-import { SelectComponent } from './SelectComponent/SelectComponent';
+import { SelectComponent } from '../../common/SelectComponent/SelectComponent';
 import { createProduct } from '@/axios/axiosApi';
 import { useRouter } from 'next/router';
 

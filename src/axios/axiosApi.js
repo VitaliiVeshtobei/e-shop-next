@@ -47,7 +47,7 @@ export const createProduct = async (formData) => {
   await instanceNew.post('/api/product/create', formData, { headers: { 'Content-Type': 'multipart/form-data' } });
 };
 
-export const deleteProducts = async (idx) => {
+export const deleteProduct = async (idx) => {
   await instanceNew.delete('/api/product/delete', { data: idx });
 };
 
