@@ -1,3 +1,4 @@
+import DEVICE from '@/constants/deviceSize';
 import styled from 'styled-components';
 
 export const Wrapper = styled.div`
@@ -22,7 +23,7 @@ export const Section = styled.section`
   height: calc(100vh - 86px);
   overflow: hidden;
 
-  @media screen and (min-width: 769px) {
+  @media ${DEVICE.tablet} {
     grid-template-columns: 250px 1fr;
   }
 `;

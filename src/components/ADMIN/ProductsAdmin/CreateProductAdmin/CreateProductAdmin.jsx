@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import {
   AddPhotoContainer,
+  BtnDelete,
   BtnAddPhoto,
   ButtonOperationContainer,
-  DiscountContainer,
   Form,
   GrupContainer,
   InputFileStyled,
@@ -20,15 +20,19 @@ import { ErrorMessage } from './ErrorMessage/ErrorMessage';
 import { useForm } from 'react-hook-form';
 import { InputTextarea } from './Textarea/InputTextarea';
 import { OptionBtnStyled } from '../../OptionButtons/OptionButtons.styled';
+import { SelectComponent } from './SelectComponent/SelectComponent';
+import { createProduct } from '@/axios/axiosApi';
+import { useRouter } from 'next/router';
 
-export const CreateProductAdmin = () => {
+export const CreateProductAdmin = ({ categories }) => {
   const [selectedImages, setSelectedImages] = useState([]);
+  const router = useRouter();
 
   const {
     register,
     handleSubmit,
     setValue,
-    formState: { errors, isDirty, isValid },
+    formState: { errors, isValid },
   } = useForm({ mode: 'onBlur' });
 
   const uploadImage = (e, index) => {
@@ -60,22 +64,37 @@ export const CreateProductAdmin = () => {
   };
 
   const deleteContainerImage = (index) => {
-    selectedImages.splice(index, 1);
+    if (selectedImages[index + 1] === null && index === 0) {
+      selectedImages.splice(index, 2);
+    } else {
+      selectedImages.splice(index, 1);
+    }
+
     setSelectedImages([...selectedImages]);
   };
 
   const onSubmit = async (data) => {
-    data.images = selectedImages;
-    console.log(data);
-    // const formData = new FormData();
-    // formData.append('name', data.text);
-    // formData.append('photo', file);
-    // await createCategorie(formData);
-    // router.push('/admin/category');
+    const formData = new FormData();
+    formData.append('name', data.name);
+    formData.append('price', Number(data.price));
+    formData.append('discount', Number(data.discount));
+    formData.append('currency', 'грн');
+    formData.append('sku', data.sku);
+    formData.append('images', JSON.stringify(selectedImages));
+    formData.append('description', data.description);
+    formData.append('in_stock', data.discount);
+    formData.append('quantity_in_stock', data.discount);
+    formData.append('category', data.category);
+    await createProduct(formData);
+    router.push('/admin/products');
   };
 
   const handleInputChange = (event) => {
-    setValue(event.target.name, event.target.value, { shouldValidate: true });
+    if (event.target.localName === 'option') {
+      setValue(event.target.name, event.target.id, { shouldValidate: true });
+    } else {
+      setValue(event.target.name, event.target.value, { shouldValidate: true });
+    }
   };
 
   return (
@@ -86,7 +105,6 @@ export const CreateProductAdmin = () => {
         encType="multipart/form-data"
       >
         <div>
-          <h3 style={{ textAlign: 'center', marginBottom: '15px' }}>Фото</h3>
           <WrapperPhoto>
             <UploadContainer style={{ minWidth: '360px', height: '360px' }}>
               <UploadLabel backgroundImage={selectedImages[0] ? selectedImages[0] : placeholder}>
@@ -101,12 +119,12 @@ export const CreateProductAdmin = () => {
               </UploadLabel>
               <ButtonOperationContainer>
                 {selectedImages[0] !== null && selectedImages[0] !== undefined && (
-                  <button
+                  <BtnDelete
                     type="button"
                     onClick={() => deleteContainerImage(0)}
                   >
-                    delete
-                  </button>
+                    Видалити
+                  </BtnDelete>
                 )}
                 <label htmlFor="image-0">
                   <OperationButton>
@@ -136,12 +154,12 @@ export const CreateProductAdmin = () => {
                             />
                           </UploadLabel>
                           <ButtonOperationContainer>
-                            <button
+                            <BtnDelete
                               type="button"
                               onClick={() => deleteContainerImage(index)}
                             >
-                              delete
-                            </button>
+                              Видалити
+                            </BtnDelete>
                             <label htmlFor={`image-${index}`}>
                               <OperationButton type="button">{item ? 'Змінити' : 'Завантажити'}</OperationButton>
                             </label>
@@ -163,12 +181,12 @@ export const CreateProductAdmin = () => {
                             />
                           </UploadLabel>
                           <ButtonOperationContainer>
-                            <button
+                            <BtnDelete
                               type="button"
                               onClick={() => deleteContainerImage(index)}
                             >
-                              delete
-                            </button>
+                              Видалити
+                            </BtnDelete>
                             <label htmlFor={`image-${index}`}>
                               <OperationButton type="button">{item ? 'Змінити' : 'Завантажити'}</OperationButton>
                             </label>
@@ -211,9 +229,10 @@ export const CreateProductAdmin = () => {
         >
           {errors?.name && <ErrorMessage text={errors.name.message} />}
         </InputText>
-        <InputText
+        <SelectComponent
           type="text"
           label="Категорія"
+          list={categories}
           onChange={handleInputChange}
           register={{
             ...register('category', {
@@ -223,7 +242,7 @@ export const CreateProductAdmin = () => {
           error={errors.category ? true : false}
         >
           {errors?.category && <ErrorMessage text={errors.category.message} />}
-        </InputText>
+        </SelectComponent>
         <GrupContainer>
           <InputText
             type="number"
@@ -298,18 +317,18 @@ export const CreateProductAdmin = () => {
           label="Опис товару"
           onChange={handleInputChange}
           register={{
-            ...register('feedback', {
+            ...register('description', {
               required: { value: true, message: 'Потрібно вказати опис товару' },
             }),
           }}
-          error={errors.feedback ? true : false}
+          error={errors.description ? true : false}
         >
-          {errors?.feedback && <ErrorMessage text={errors.feedback.message} />}
+          {errors?.description && <ErrorMessage text={errors.description.message} />}
         </InputTextarea>
 
         <OptionBtnStyled
           type="submit"
-          disabled={!isDirty || !isValid}
+          disabled={!isValid || selectedImages.length === 0}
         >
           Створити
         </OptionBtnStyled>

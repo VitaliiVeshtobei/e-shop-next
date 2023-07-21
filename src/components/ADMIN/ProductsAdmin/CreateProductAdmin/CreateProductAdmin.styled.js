@@ -17,7 +17,6 @@ export const UploadLabel = styled.label`
   justify-content: center;
   gap: 8px;
   width: 100%;
-  /* height: calc(100% - 20px); */
   height: 100%;
   border-radius: 10px;
   cursor: pointer;
@@ -26,15 +25,28 @@ export const UploadLabel = styled.label`
     `url(${props.backgroundImage?.src ? props.backgroundImage?.src : props.backgroundImage})`};
   background-size: cover;
   background-position: center;
+  transition: all ${(p) => p.theme.transition};
+
+  :hover {
+    box-shadow: 0px 0px 19px 0px rgba(0, 0, 0, 0.75);
+  }
 `;
 
 export const ButtonOperationContainer = styled.div`
   display: flex;
   justify-content: space-between;
 `;
+
 export const OperationButton = styled.p`
   font-size: 10px;
   text-align: center;
+  cursor: pointer;
+  transition: all ${(p) => p.theme.transition};
+
+  :hover {
+    color: ${(p) => p.theme.colors.accent};
+  }
+
   @media ${DEVICE.version} {
     font-size: 14px;
   }
@@ -49,9 +61,6 @@ export const WrapperPhoto = styled.div`
   justify-content: start;
   gap: 20px;
   margin-bottom: 20px;
-  /* aspect-ratio: 5 / 1; */
-  /* overflow: hidden; */
-  /* height: 380px; */
 `;
 
 export const UploadContainer = styled.div`
@@ -63,9 +72,6 @@ export const GrupContainer = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-column-gap: 20px;
-  /* min-width: 300px;
-  height: 300px; */
-  /* flex: 1; */
 `;
 
 export const AddPhotoContainer = styled.div`
@@ -82,5 +88,13 @@ export const BtnAddPhoto = styled.button`
   svg {
     width: 80px;
     height: 80px;
+  }
+`;
+
+export const BtnDelete = styled.button`
+  cursor: pointer;
+  transition: all ${(p) => p.theme.transition};
+  :hover {
+    color: ${(p) => p.theme.colors.accent};
   }
 `;

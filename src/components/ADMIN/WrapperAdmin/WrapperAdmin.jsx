@@ -59,17 +59,17 @@ const WrapperAdmin = ({ children }) => {
             showBurgerMenu={showBurgerMenu}
           />
           <Section>
-            {windowWidth <= 768 ? (
+            {windowWidth <= 767 ? (
               showBurgerMenu && (
                 <Navigation
-                  backdrop={windowWidth <= 768}
+                  backdrop={windowWidth <= 767}
                   activeButtonIndex={activeButtonIndex}
                   handleButtonClick={handleButtonClick}
                 />
               )
             ) : (
               <Navigation
-                backdrop={windowWidth <= 768}
+                backdrop={windowWidth <= 767}
                 activeButtonIndex={activeButtonIndex}
                 handleButtonClick={handleButtonClick}
               />
