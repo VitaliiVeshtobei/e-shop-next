@@ -27,10 +27,7 @@ export const CategoriesTableBodyAdmin = ({ id, img, category, checkedData, setCh
       <td>
         <CheckContainer checked={isChecked(id)}>
           <AiOutlineCheckStyled checked={isChecked(id)} />
-          <InputCheckStyled
-            onChange={() => handleChange(id)}
-            type="checkbox"
-          />
+          <InputCheckStyled type="checkbox" />
         </CheckContainer>
       </td>
       <td>{category}</td>

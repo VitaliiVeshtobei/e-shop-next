@@ -11,6 +11,9 @@ export const HeaderContainer = styled.div`
 `;
 
 export const Button = styled.button`
+  &:hover {
+    cursor: pointer;
+  }
   svg {
     transition: transform ${(p) => p.theme.transition};
     fill: ${(p) => p.theme.colors.accentBg};

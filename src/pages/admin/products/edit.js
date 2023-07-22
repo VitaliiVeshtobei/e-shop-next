@@ -1,5 +1,5 @@
 import { getProducts } from '@/axios/axiosApi';
-import { ButtonBack } from '@/components/ADMIN/ButtonBack/ButtonBack';
+import { ButtonBack } from '@/components/ADMIN/common/ButtonBack/ButtonBack';
 import { useRouter } from 'next/router';
 import React from 'react';
 

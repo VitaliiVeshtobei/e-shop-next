@@ -21,6 +21,9 @@ export const CategoriesListStyled = styled.ul`
 `;
 
 export const ButtonChangeView = styled.button`
+  &:hover {
+    cursor: pointer;
+  }
   svg {
     transition: transform ${(p) => p.theme.transition};
     fill: ${(p) => p.theme.colors.accentBg};

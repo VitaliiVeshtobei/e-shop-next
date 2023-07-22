@@ -7,8 +7,8 @@ import { CategoriesCardAdmin } from './CategoriesCardAdmin/CategoriesCardAdmin';
 import { OptionButtons } from '../OptionButtons/OptionButtons';
 import { ButtonChangeView, CategoriesListStyled, HeaderContainer, MainContainer } from './CategoriesAdmin.styled';
 import { useRouter } from 'next/router';
-import { DeleteModalAdmin } from '../DeleteModalAdmin/DeleteModalAdmin';
-import { TableAdmin } from '../TableAdmin/TableAdmin';
+import { DeleteModalAdmin } from '../common/DeleteModalAdmin/DeleteModalAdmin';
+import { TableAdmin } from '../common/TableAdmin/TableAdmin';
 import { CategoriesTableBodyAdmin } from './CategoriesTableBodyAdmin/CategoriesTableBodyAdmin';
 
 const listThead = ['Вибрати', 'Категорія', 'Фото'];

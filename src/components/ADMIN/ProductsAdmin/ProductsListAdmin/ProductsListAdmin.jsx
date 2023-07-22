@@ -1,6 +1,6 @@
 import ProductCard from '../ProductCardAdmin/ProductCardAdmin';
 import { AiOutlineCheckStyled, CheckContainer, InputCheckStyled, Item, List } from './ProductsListAdmin.styled';
-import { TableAdmin } from '../../TableAdmin/TableAdmin';
+import { TableAdmin } from '../../common/TableAdmin/TableAdmin';
 
 const listThead = [
   'Select',
@@ -49,10 +49,7 @@ export const ProductsListAdmin = ({ products, isChecked, handleChange, viewWindo
                 <td style={{ position: 'relative' }}>
                   <CheckContainer checked={isChecked(item._id)}>
                     <AiOutlineCheckStyled checked={isChecked(item._id)} />
-                    <InputCheckStyled
-                      onChange={() => handleChange(item._id)}
-                      type="checkbox"
-                    />
+                    <InputCheckStyled type="checkbox" />
                   </CheckContainer>
                 </td>
                 <td>{item.name}</td>

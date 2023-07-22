@@ -5,6 +5,7 @@ export const Button = styled.button`
   font-size: 20px;
   font-weight: 700;
   transition: color ${(p) => p.theme.transition};
+  cursor: pointer;
 
   &:hover {
     color: ${(p) => p.theme.colors.accent};

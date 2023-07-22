@@ -11,12 +11,6 @@ export const getCategoryById = async (id) => {
   return data.category;
 };
 
-export const getProducts = async () => {
-  const { data } = await instanceNew('/api/product/get');
-
-  return data.products;
-};
-
 export const createCategorie = async (formData) => {
   await instanceNew.post('/api/category/create', formData, { headers: { 'Content-Type': 'multipart/form-data' } });
 };
@@ -42,4 +36,23 @@ export const getOrders = async () => {
 export const getCommentsByProductId = async (id) => {
   const { data } = await instanceNew.get(`/api/comments/getByProductId/${id}`);
   return data.comments;
+};
+
+export const getProducts = async () => {
+  const { data } = await instanceNew('/api/product/get');
+  return data.products;
+};
+
+export const createProduct = async (formData) => {
+  await instanceNew.post('/api/product/create', formData, { headers: { 'Content-Type': 'multipart/form-data' } });
+};
+
+export const deleteProduct = async (idx) => {
+  await instanceNew.delete('/api/product/delete', { data: idx });
+};
+
+export const updateProduct = async (id, formData) => {
+  await instanceNew.patch(`/api/product/update/${id}`, formData, {
+    headers: { 'Content-Type': 'multipart/form-data' },
+  });
 };
