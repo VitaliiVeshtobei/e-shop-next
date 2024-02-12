@@ -25,9 +25,9 @@ import { createProduct } from '@/axios/axiosApi';
 import { useRouter } from 'next/router';
 
 export const CreateProductAdmin = ({ categories }) => {
+  const [files, setFiles] = useState([]);
   const [selectedImages, setSelectedImages] = useState([]);
   const router = useRouter();
-
   const {
     register,
     handleSubmit,
@@ -42,6 +42,7 @@ export const CreateProductAdmin = ({ categories }) => {
 
     const newSelectedImages = Array.from(fileList).map((item) => URL.createObjectURL(item));
     const updateImages = [...selectedImages];
+    const updatedFiles = [...files];
 
     if (updateImages.length > 0) {
       const total = updateImages.length + newSelectedImages.length;
@@ -49,42 +50,53 @@ export const CreateProductAdmin = ({ categories }) => {
       if (total > 10 || newSelectedImages.length > 10) {
         updateImages.splice(index, 1, ...newSelectedImages);
         updateImages.splice(10);
+        updatedFiles.splice(index, 1, ...fileList);
+        updatedFiles.splice(10);
       } else {
         updateImages.splice(index, 1, ...newSelectedImages);
+        updatedFiles.splice(index, 1, ...fileList);
       }
-
-      return setSelectedImages(updateImages);
+      setSelectedImages(updateImages);
+      setFiles(updatedFiles);
+      return;
     }
-
+    setFiles([...fileList]);
     setSelectedImages([...newSelectedImages]);
   };
 
   const addContainerImage = () => {
     setSelectedImages([...selectedImages, null]);
+    setFiles([...files, null]);
   };
 
   const deleteContainerImage = (index) => {
     if (selectedImages[index + 1] === null && index === 0) {
       selectedImages.splice(index, 2);
+      files.splice(index, 2);
     } else {
       selectedImages.splice(index, 1);
+      files.splice(index, 1);
     }
 
     setSelectedImages([...selectedImages]);
+    setFiles([...files]);
   };
 
   const onSubmit = async (data) => {
     const formData = new FormData();
+    const idCategory = categories.find((c) => c.name === data.category);
     formData.append('name', data.name);
     formData.append('price', Number(data.price));
     formData.append('discount', Number(data.discount));
     formData.append('currency', 'грн');
     formData.append('sku', data.sku);
-    formData.append('images', JSON.stringify(selectedImages));
+    files.forEach((file) => {
+      formData.append('photos', file);
+    });
     formData.append('description', data.description);
-    formData.append('in_stock', data.discount);
-    formData.append('quantity_in_stock', data.discount);
-    formData.append('category', data.category);
+    formData.append('in_stock', data.number ? 'В наявності' : 'Не має в наявності');
+    formData.append('quantity_in_stock', data.number);
+    formData.append('category', idCategory._id);
     await createProduct(formData);
     router.push('/admin/products');
   };
